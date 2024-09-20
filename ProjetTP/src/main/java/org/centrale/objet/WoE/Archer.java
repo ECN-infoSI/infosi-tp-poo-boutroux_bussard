@@ -34,9 +34,9 @@ public class Archer extends Personnage {
         this.initialisefleche();
     }
 
-    public Archer(Creature m) {
-        super(m);
-        this.initialisefleche();
+    public Archer(Archer archer) {
+        super(archer);
+        this.nbFleche = archer.nbFleche;
     }
     private void initialisefleche(){
         this.nbFleche=5;
