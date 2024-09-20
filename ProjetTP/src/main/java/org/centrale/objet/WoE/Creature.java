@@ -4,6 +4,8 @@
  */
 package org.centrale.objet.WoE;
 
+import java.util.Random;
+
 /**
  *
  * @author Quent
@@ -86,10 +88,14 @@ public class Creature {
     public Point2D getPos() {
         return pos;
     }
-
+    
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
+    
+    /**
+     * Affiche tous les attributs de la créature. 
+     */
     public void affiche(){
     System.out.println("Point de Vie    : "+ptVie);
     System.out.println("Degat d'attaque : "+ degAtt);
@@ -99,5 +105,15 @@ public class Creature {
     System.out.print("Position        :");
     pos.affiche();
     }
-    public void deplace(){}
+    
+    /**
+     * Deplace aleatoirement la creature sur une des cases adjacentes (diagonales inclues). 
+     * La creature peut egalement ne pas se deplacer (1 chance sur 9). 
+     */
+    public void deplace(){
+        Random generateurAleatoire = new Random();
+        int avanceX = generateurAleatoire.nextInt(2)-1;
+        int avanceY = generateurAleatoire.nextInt(2)-1;
+        pos.translate(avanceX, avanceY);
+    }
 }
