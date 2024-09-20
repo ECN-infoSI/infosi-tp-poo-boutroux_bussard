@@ -5,10 +5,11 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ *Tous les types de créature humaine du jeu, pnj ou joueur
  * @author Quent
  */
 public class Personnage extends Creature {
+    /** distance d'attaque maximale*/
     public int distAttMax; 
 
     /**
@@ -36,7 +37,7 @@ public class Personnage extends Creature {
 
     /**
      * constructeur avec 1 seul parametre, la position
-     * @param pos 
+     * @param pos position en 2D
      */
     public Personnage(Point2D pos) {
         super(pos);
@@ -72,7 +73,7 @@ public class Personnage extends Creature {
         this.distAttMax = distAttMax;
     }
     /**
-     * affcihe tous les composants du personnage
+     * affiche tous les composants du personnage
      */
     @Override public void affiche(){
         super.affiche();
