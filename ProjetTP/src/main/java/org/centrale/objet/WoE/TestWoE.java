@@ -14,35 +14,46 @@ public class TestWoE {
      * @param args 
      */
     public static void main(String[] args){
-        World mondetest=new World();
-        mondetest.creerMondeAlea();
-        mondetest.afficheWorld();
-        mondetest.bugs1.affiche();
-        mondetest.robin.affiche();
-        mondetest.peon.affiche();
+        World mondeTest=new World();
+        mondeTest.creerMondeAlea();
+        mondeTest.afficheWorld();
+        mondeTest.bugs1.affiche();
+        mondeTest.robin.affiche();
+        mondeTest.peon.affiche();
         System.out.println("Position peon avant deplacement aleatoire : ");
-        mondetest.peon.getPos().affiche();
+        mondeTest.peon.getPos().affiche();
         for (int i = 0; i < 10; i++){
-            mondetest.peon.deplace();
+            mondeTest.peon.deplace();
             System.out.println("Position peon apres deplacement aleatoire : ");
-            mondetest.peon.getPos().affiche();
+            mondeTest.peon.getPos().affiche();
         }
         System.out.println("Position bugs1 avant deplacement aleatoire : ");
-        mondetest.bugs1.getPos().affiche();
-        mondetest.bugs1.deplace();
+        mondeTest.bugs1.getPos().affiche();
+        mondeTest.bugs1.deplace();
         System.out.println("Position bugs1 apres deplacement aleatoire : ");
-        mondetest.bugs1.getPos().affiche();
+        mondeTest.bugs1.getPos().affiche();
         
         System.out.println("Position robin avant deplacement aleatoire : ");
-        mondetest.robin.getPos().affiche();
-        mondetest.robin.deplace();
+        mondeTest.robin.getPos().affiche();
+        mondeTest.robin.deplace();
         System.out.println("Position robin apres deplacement aleatoire : ");
-        mondetest.robin.getPos().affiche();
+        mondeTest.robin.getPos().affiche();
         
         System.out.println("Position peon avant deplacement aleatoire : ");
-        mondetest.peon.getPos().affiche();
-        mondetest.peon.deplace();
+        mondeTest.peon.getPos().affiche();
+        mondeTest.peon.deplace();
         System.out.println("Position peon apres deplacement aleatoire : ");
-        mondetest.peon.getPos().affiche();
+        mondeTest.peon.getPos().affiche();
+        
+        mondeTest.guillaumeT = new Archer(mondeTest.robin);
+        mondeTest.robin.deplace();
+        System.out.println("Position robin avant deplacement robin : ");
+        mondeTest.robin.getPos().affiche();
+        System.out.println("Position robin apres deplacement robin : ");
+        mondeTest.robin.getPos().affiche();
+        System.out.println("Position robin avant deplacement guillaumeT : ");
+        mondeTest.guillaumeT.getPos().affiche();
+        System.out.println("Position robin apres deplacement guillaumeT : ");
+        mondeTest.guillaumeT.getPos().affiche();
     }
 }
