@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class World {
     /** un archer du monde */
     public Archer robin; 
+    /** un archer du monde */
+    public Archer guillaumeT; 
     /** un paysan du monde */
     public Paysan peon; 
     /** un lapin du monde */
