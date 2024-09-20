@@ -22,8 +22,8 @@ public class Lapin extends Monstre {
         super(ptVie, degAtt, ptPar, pageAtt, pagePar, pos);
     }
 
-    public Lapin(Creature m) {
-        super(m);
+    public Lapin(Lapin lapin) {
+        super(lapin);
     }
     @Override public void affiche(){
         System.out.println("Lapin");
