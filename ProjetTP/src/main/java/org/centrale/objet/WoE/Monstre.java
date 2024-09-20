@@ -22,8 +22,8 @@ public class Monstre extends Creature {
         super(ptVie, degAtt, ptPar, pageAtt, pagePar, pos);
     }
 
-    public Monstre(Creature m) {
-        super(m);
+    public Monstre(Monstre monstre) {
+        super(monstre);
     }
     @Override public void affiche(){
         System.out.println("Monstre");
