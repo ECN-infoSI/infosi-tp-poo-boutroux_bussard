@@ -90,6 +90,14 @@ public class Creature {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
-    public void affiche(){}
+    public void affiche(){
+    System.out.println("Point de Vie    : "+ptVie);
+    System.out.println("Degat d'attaque : "+ degAtt);
+    System.out.println("Point de Parade : "+ptVie);
+    System.out.println("% d'attaque     : "+ pageAtt);
+    System.out.println("% de parade     : "+ pagePar);
+    System.out.print("Position        :");
+    pos.affiche();
+    }
     public void deplace(){}
 }

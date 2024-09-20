@@ -10,6 +10,11 @@ package org.centrale.objet.WoE;
  */
 public class TestWoE {
     public static void main(String[] args){
-        
+        World mondetest=new World();
+        mondetest.creerMondeAlea();
+        mondetest.afficheWorld();
+        mondetest.bugs1.affiche();
+        mondetest.robin.affiche();
+        mondetest.peon.affiche();
     }
 }

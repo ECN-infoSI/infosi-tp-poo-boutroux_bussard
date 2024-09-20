@@ -33,4 +33,16 @@ public class Personnage extends Creature {
     private void initialisedistAttMax(){
         this.distAttMax=1;
     }
+
+    public int getDistAttMax() {
+        return distAttMax;
+    }
+
+    public void setDistAttMax(int distAttMax) {
+        this.distAttMax = distAttMax;
+    }
+    @Override public void affiche(){
+        super.affiche();
+        System.out.println("Dist d'att max  : "+distAttMax);
+    }
 }

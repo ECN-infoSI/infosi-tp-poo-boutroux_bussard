@@ -24,5 +24,8 @@ public class Paysan extends Personnage {
     public Paysan(Creature m) {
         super(m);
     }
-    
+    @Override public void affiche(){
+        System.out.println("paysan");
+        super.affiche();
+    }
 }

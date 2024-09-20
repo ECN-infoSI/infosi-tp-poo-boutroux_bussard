@@ -12,31 +12,46 @@ import java.util.Random;
 public class World {
     public Archer robin;
     public Paysan peon;
-    public Lapin bugs;
+    public Lapin bugs1;
+    public Lapin bugs2;
 
     public World() {
+        this.bugs1=new Lapin();
+        this.bugs2=new Lapin();
+        this.robin=new Archer();
+        this.peon=new Paysan();
     }
     
     public void creerMondeAlea(){
+        int nbrElements =4;
         Random generateurAleatoire = new Random();
+        Point2D[] positions = new Point2D[nbrElements];
+        boolean testPosDifferents;
         
-        Point2D pointApparitionAleatoire = generePoint2DAleatoire(generateurAleatoire);
-        robin = new Archer(pointApparitionAleatoire);
-        
-        while(pointApparitionAleatoire.equals(robin.getPos())){
-            pointApparitionAleatoire = generePoint2DAleatoire(generateurAleatoire);
+        for(int i=0;i<nbrElements;i++){
+            testPosDifferents=false;
+            
+            while(testPosDifferents==false){
+                positions[i]=generePoint2DAleatoire(generateurAleatoire);
+                testPosDifferents=true;
+                
+                for(int j=0; j<i;j++){
+                    if (positions[i].equals(positions[j])){
+                        testPosDifferents=false;
+                    }
+                }
+            }
         }
-        peon = new Paysan(pointApparitionAleatoire);
-        
-        while(pointApparitionAleatoire.equals(robin.getPos()) || pointApparitionAleatoire.equals(peon.getPos())){
-            pointApparitionAleatoire = generePoint2DAleatoire(generateurAleatoire);
-        }
-        bugs = new Lapin(pointApparitionAleatoire);
+        bugs1.setPos(positions[0]);
+        bugs2.setPos(positions[1]);
+        peon.setPos(positions[2]);
+        robin.setPos(positions[3]);
     }
     
     private Point2D generePoint2DAleatoire(Random generateurAleatoire){
-        int posX = generateurAleatoire.nextInt(50);
-        int posY = generateurAleatoire.nextInt(50);
+        int taillemonde=2; //largeur du monde 
+        int posX = generateurAleatoire.nextInt(taillemonde);
+        int posY = generateurAleatoire.nextInt(taillemonde);
         Point2D pointAleatoire = new Point2D(posX, posY);
         pointAleatoire.affiche();
         return pointAleatoire;
@@ -47,8 +62,10 @@ public class World {
         robin.getPos().affiche();
         System.out.print("Le paysan se trouve en : ");
         peon.getPos().affiche();
-        System.out.print("Le lapin se trouve en : ");
-        bugs.getPos().affiche();
+        System.out.print("Le premier lapin se trouve en : ");
+        bugs1.getPos().affiche();
+        System.out.print("Le second lapin se trouve en : ");
+        bugs2.getPos().affiche();
         
     }
 }

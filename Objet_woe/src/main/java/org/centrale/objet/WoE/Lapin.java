@@ -25,5 +25,8 @@ public class Lapin extends Monstre {
     public Lapin(Creature m) {
         super(m);
     }
-    
+    @Override public void affiche(){
+        System.out.println("Lapin");
+        super.affiche();
+    }
 }

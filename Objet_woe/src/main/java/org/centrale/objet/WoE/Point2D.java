@@ -72,7 +72,6 @@ public class Point2D {
          
         // typecast o to Complex so that we can compare data members 
         Point2D c = (Point2D) o;
-        System.out.println("est du meme type");
         // Compare the data members and return accordingly 
         return x == c.x && y == c.y;
         //&& Double.compare(y, c.y) == 0;

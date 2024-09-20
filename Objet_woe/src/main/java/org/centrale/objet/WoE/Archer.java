@@ -33,4 +33,9 @@ public class Archer extends Personnage {
     private void initialisefleche(){
         this.nbFleche=5;
     }
+    @Override public void affiche(){
+        System.out.println("archer");
+        super.affiche();
+        System.out.println("nbr de fleches  : "+nbFleche);
+    }
 }
