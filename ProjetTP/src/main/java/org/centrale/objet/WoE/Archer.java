@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  *
  * @author Quent
  */
-public class Archer extends Personnage {
+public class Archer extends Personnage implements Combattant {
     private int nbFleche;
 
     public void setNbFleche(int nbFleche) {
@@ -26,11 +26,13 @@ public class Archer extends Personnage {
 
     public Archer() {
         super();
+        initialiseDistAttMax();
         this.initialisefleche();
     }
 
     public Archer(Point2D pos) {
         super(pos);
+        initialiseDistAttMax();
         this.initialisefleche();
     }
 
@@ -38,6 +40,11 @@ public class Archer extends Personnage {
         super(archer);
         this.nbFleche = archer.nbFleche;
     }
+    
+    private void initialiseDistAttMax(){
+        this.distAttMax = 10;
+    }
+    
     private void initialisefleche(){
         this.nbFleche=5;
     }
@@ -45,5 +52,12 @@ public class Archer extends Personnage {
         System.out.println("archer");
         super.affiche();
         System.out.println("nbr de fleches  : "+nbFleche);
+    }
+
+    @Override
+    public void combattre(Creature creature) {
+        if (this.getPos().distance(creature.getPos()) <= this.getDistAttMax()){
+            creature.setPtVie(creature.getPtVie() - this.getDegAtt());
+        }
     }
 }
