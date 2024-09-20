@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class World {
     public Archer robin;
+    public Archer guillaumeT;
     public Paysan peon;
     public Lapin bugs1;
     public Lapin bugs2;
@@ -20,14 +21,16 @@ public class World {
 
     public World() {
         this.creatures = new ArrayList<Creature>();
+        this.robin=new Archer();
+        creatures.add(robin);
+        this.guillaumeT = new Archer();
+        creatures.add(guillaumeT);
+        this.peon=new Paysan();
+        creatures.add(peon);
         this.bugs1=new Lapin();
         creatures.add(bugs1);
         this.bugs2=new Lapin();
         creatures.add(bugs2);
-        this.robin=new Archer();
-        creatures.add(robin);
-        this.peon=new Paysan();
-        creatures.add(peon);
     }
     
     public void creerMondeAlea(){
