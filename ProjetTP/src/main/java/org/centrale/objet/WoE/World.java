@@ -11,14 +11,20 @@ import java.util.ArrayList;
  * @author remib
  */
 public class World {
-    public Archer robin;
-    public Archer guillaumeT;
-    public Paysan peon;
-    public Lapin bugs1;
+    /** un archer du monde */
+    public Archer robin; 
+    /** un paysan du monde */
+    public Paysan peon; 
+    /** un lapin du monde */
+    public Lapin bugs1; 
+    /** un lapin du monde */
     public Lapin bugs2;
+    /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
+    /** valeur de la longeur d'un coté du monde carré */
     private final int tailleMonde = 50;
 
+    /** constructeur sans parametre*/
     public World() {
         this.creatures = new ArrayList<Creature>();
         this.robin=new Archer();
@@ -33,6 +39,10 @@ public class World {
         creatures.add(bugs2);
     }
     
+    /**
+     * crée un monde aléatoire contenant des éléments donnés (2 lapins, 1 archer et 1 paysans),
+     * fixe les positions des elements et s'assure qu'il n'y a pas plusieurs éléments sur la même case
+     */
     public void creerMondeAlea(){
         int nbrElements = creatures.size();
         Random generateurAleatoire = new Random();
@@ -58,15 +68,20 @@ public class World {
             creatures.get(creatureIndex).setPos(positions[creatureIndex]);
         }
     }
-    
+    /**
+     * genere un point2D aleatoire
+     * @param generateurAleatoire un générateur de nombre aléatoire 
+     * @return un Point2D aleatoire dont les deux attributs sont compris entre 0 et tailleMonde
+     */
     private Point2D generePoint2DAleatoire(Random generateurAleatoire){
         int posX = generateurAleatoire.nextInt(tailleMonde);
         int posY = generateurAleatoire.nextInt(tailleMonde);
         Point2D pointAleatoire = new Point2D(posX, posY);
-        pointAleatoire.affiche();
         return pointAleatoire;
     }
-    
+    /**
+     * affiche les coordonnées de tous les elements du monde
+     */
     public void afficheWorld(){
         System.out.print("L'archer se trouve en : ");
         robin.getPos().affiche();
