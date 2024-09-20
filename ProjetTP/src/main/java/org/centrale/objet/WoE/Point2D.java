@@ -52,9 +52,20 @@ public class Point2D {
     }
     
     /**
-     *
-     * @param o
-     * @return
+     * calcul le nombre de case minimal séparant 2 points
+     * @param autrepoint le second point2D séparant les deux cases 
+     * @return le nombre de case entre les deux
+     */
+    public int distance(Point2D autrepoint){
+        int ecart_x= Math.abs(this.getX()-autrepoint.getX());
+        int ecart_y= Math.abs(this.getY()-autrepoint.getY());
+        return Math.max(ecart_x, ecart_y);
+    }
+    
+    /**
+     *determine si l'objet o possède les mêmes valeurs que le point2D this
+     * @param o un objet a comparer
+     * @return true si les objets sont les mêmes; false sinon
      */
     @Override public boolean equals(Object o) {
  
