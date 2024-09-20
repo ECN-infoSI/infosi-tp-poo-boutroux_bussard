@@ -48,6 +48,7 @@ public class Archer extends Personnage implements Combattant {
     private void initialisefleche(){
         this.nbFleche=5;
     }
+    
     @Override public void affiche(){
         System.out.println("archer");
         super.affiche();

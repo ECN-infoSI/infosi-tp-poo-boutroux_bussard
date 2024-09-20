@@ -9,9 +9,28 @@ package org.centrale.objet.WoE;
  * @author remib
  */
 public class Loup extends Monstre implements Combattant {
+
+    public Loup() {
+    }
+
+    public Loup(Point2D pos) {
+        super(pos);
+    }
+
+    public Loup(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
+        super(ptVie, degAtt, ptPar, pageAtt, pagePar, pos);
+    }
+
+    public Loup(Loup loup) {
+        super(loup);
+    }
     
+    /**
+     * Le loup saute sur sa victime pour attaquer donc sa portée est de 0. 
+     * @param creature 
+     */
     @Override public void combattre(Creature creature) {
-        if (this.getPos().distance(creature.getPos()) < 1){
+        if (this.getPos().distance(creature.getPos()) == 0){
             creature.setPtVie(creature.getPtVie() - this.getDegAtt());
         }
     }
