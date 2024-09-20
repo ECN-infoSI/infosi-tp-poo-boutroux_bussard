@@ -21,9 +21,10 @@ public class Paysan extends Personnage {
         super(pos);
     }
 
-    public Paysan(Creature m) {
-        super(m);
+    public Paysan(Paysan paysan) {
+        super(paysan);
     }
+    
     @Override public void affiche(){
         System.out.println("paysan");
         super.affiche();
