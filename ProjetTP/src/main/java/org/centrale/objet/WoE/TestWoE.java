@@ -46,14 +46,14 @@ public class TestWoE {
         mondeTest.peon.getPos().affiche();
         
         mondeTest.guillaumeT = new Archer(mondeTest.robin);
-        mondeTest.robin.deplace();
         System.out.println("Position robin avant deplacement robin : ");
         mondeTest.robin.getPos().affiche();
+        System.out.println("Position guillaumeT avant deplacement robin : ");
+        mondeTest.guillaumeT.getPos().affiche();
+        mondeTest.robin.deplace();
         System.out.println("Position robin apres deplacement robin : ");
         mondeTest.robin.getPos().affiche();
-        System.out.println("Position robin avant deplacement guillaumeT : ");
-        mondeTest.guillaumeT.getPos().affiche();
-        System.out.println("Position robin apres deplacement guillaumeT : ");
+        System.out.println("Position guillaumeT apres deplacement robin : ");
         mondeTest.guillaumeT.getPos().affiche();
     }
 }
