@@ -4,6 +4,7 @@
  */
 package org.centrale.objet.WoE;
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,17 +15,23 @@ public class World {
     public Paysan peon;
     public Lapin bugs1;
     public Lapin bugs2;
+    private ArrayList<Creature> creatures;
     private final int tailleMonde = 50;
 
     public World() {
+        this.creatures = new ArrayList<Creature>();
         this.bugs1=new Lapin();
+        creatures.add(bugs1);
         this.bugs2=new Lapin();
+        creatures.add(bugs2);
         this.robin=new Archer();
+        creatures.add(robin);
         this.peon=new Paysan();
+        creatures.add(peon);
     }
     
     public void creerMondeAlea(){
-        int nbrElements =4;
+        int nbrElements = creatures.size();
         Random generateurAleatoire = new Random();
         Point2D[] positions = new Point2D[nbrElements];
         boolean testPosDifferents;
@@ -43,10 +50,10 @@ public class World {
                 }
             }
         }
-        bugs1.setPos(positions[0]);
-        bugs2.setPos(positions[1]);
-        peon.setPos(positions[2]);
-        robin.setPos(positions[3]);
+        
+        for (int creatureIndex = 0; creatureIndex < nbrElements; creatureIndex++){
+            creatures.get(creatureIndex).setPos(positions[creatureIndex]);
+        }
     }
     
     private Point2D generePoint2DAleatoire(Random generateurAleatoire){
