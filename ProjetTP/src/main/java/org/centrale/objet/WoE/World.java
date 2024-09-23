@@ -113,7 +113,7 @@ public class World {
                 }
                 Case caseActuelle = carte[indiceColonne][indiceLigne];
                 if (caseActuelle.creature != null){
-                    System.out.print(" " + "T" + " ");
+                    System.out.print(" " + caseActuelle.creature.getSymboleCarte() + " ");
                     continue;
                 }
                 if (caseActuelle.objet != null){

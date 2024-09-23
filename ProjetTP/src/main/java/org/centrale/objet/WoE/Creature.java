@@ -99,6 +99,11 @@ public class Creature implements AffichableCarte{
     public char getSymboleCarte() {
         return symboleCarte;
     }
+
+    @Override
+    public void definirSymboleCarte() {
+        symboleCarte = 'T';
+    }
     
     /**
      * Affiche tous les attributs de la créature. 
@@ -184,10 +189,5 @@ public class Creature implements AffichableCarte{
                 creature.setPtVie(nouveauPointVie);
             }
         }
-    }
-
-    @Override
-    public void definirSymboleCarte() {
-        symboleCarte = 'T';
     }
 }

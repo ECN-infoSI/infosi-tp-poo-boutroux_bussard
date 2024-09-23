@@ -32,6 +32,10 @@ public class Guerrier extends Personnage implements Combattant {
         this.distAttMax = 1;
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'G';
+    }
+    
     @Override public void affiche(){
         System.out.println("guerrier");
         super.affiche();

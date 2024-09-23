@@ -45,6 +45,10 @@ public class Archer extends Personnage implements Combattant {
         this.distAttMax = 10;
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'A';
+    }
+    
     private void initialisefleche(){
         this.nbFleche=5;
     }
