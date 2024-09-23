@@ -21,6 +21,10 @@ public class World {
     public Lapin bugs1; 
     /** un lapin du monde */
     public Lapin bugs2;
+    /** un guerrier du monde */
+    public Guerrier grosBill;
+    /** un loup du monde */
+    public Loup wolfie;
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
@@ -39,6 +43,10 @@ public class World {
         creatures.add(bugs1);
         this.bugs2=new Lapin();
         creatures.add(bugs2);
+        this.grosBill=new Guerrier();
+        creatures.add(grosBill);
+        this.wolfie=new Loup();
+        creatures.add(wolfie);
     }
     
     /**

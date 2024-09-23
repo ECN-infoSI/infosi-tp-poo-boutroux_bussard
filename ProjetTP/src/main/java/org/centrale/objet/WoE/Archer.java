@@ -57,8 +57,18 @@ public class Archer extends Personnage implements Combattant {
 
     @Override
     public void combattre(Creature creature) {
-        if (this.getPos().distance(creature.getPos()) <= this.getDistAttMax()){
-            creature.setPtVie(creature.getPtVie() - this.getDegAtt());
+        combatCorpsACorps(creature);
+        combatADistance(creature);
+    }
+    
+    private void combatADistance(Creature creature){
+        if (getNbFleche() <=0){
+            return;
+        }
+        int distance =this.getPos().distance(creature.getPos());
+        if (distance <= getDistAttMax() && distance > 1){
+            attaque(creature);
+            nbFleche -=1; 
         }
     }
 }

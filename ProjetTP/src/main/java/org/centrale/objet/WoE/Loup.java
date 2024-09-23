@@ -30,9 +30,7 @@ public class Loup extends Monstre implements Combattant {
      * @param creature 
      */
     @Override public void combattre(Creature creature) {
-        if (this.getPos().distance(creature.getPos()) == 0){
-            creature.setPtVie(creature.getPtVie() - this.getDegAtt());
-        }
+        combatCorpsACorps(creature);
     }
     
 }

@@ -38,8 +38,6 @@ public class Guerrier extends Personnage implements Combattant {
     }
     
     @Override public void combattre(Creature creature) {
-        if (this.getPos().distance(creature.getPos()) <= this.getDistAttMax()){
-            creature.setPtVie(creature.getPtVie() - this.getDegAtt());
-        }
+        combatCorpsACorps(creature);
     }
 }
