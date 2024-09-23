@@ -56,10 +56,11 @@ public class TestWoE {
 //        System.out.println("Position guillaumeT apres deplacement robin : ");
 //        mondeTest.guillaumeT.getPos().affiche();
         
-        for(int i=0; i<10;i++){
-            mondeTest.afficheWorld();
+        for(int i=0; i<20;i++){
             mondeTest.grosBill.deplace(mondeTest.carte);
-            System.out.println();
+            mondeTest.grosBill.combattre(mondeTest.wolfie);
+            System.out.println("pv loup : " +mondeTest.wolfie.getPtVie());
+            
         }
         
     }

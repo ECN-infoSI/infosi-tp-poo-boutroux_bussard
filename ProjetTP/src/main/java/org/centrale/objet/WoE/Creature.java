@@ -192,11 +192,17 @@ public class Creature implements AffichableCarte{
         int jetDe = generateurAleatoire.nextInt(100) + 1;
         if (getPageAtt() >= jetDe){
             jetDe = generateurAleatoire.nextInt(100) + 1;
+            int degats;
             if (creature.getPagePar() >= jetDe){
-                int degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);
-                int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
-                creature.setPtVie(nouveauPointVie);
+                degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);
+            }else{
+                degats =this.getDegAtt();
             }
+            int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
+            creature.setPtVie(nouveauPointVie);
+            
         }
     }
+    
+    
 }
