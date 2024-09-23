@@ -17,6 +17,7 @@ public class Creature {
     private int pageAtt;
     private int pagePar;
     private Point2D pos;
+    protected char symboleCarte;  
 
     public Creature() {
         this.ptVie = 100;
@@ -25,6 +26,7 @@ public class Creature {
         this.pageAtt = 0;
         this.pagePar = 0;
         this.pos = new Point2D();
+        this.symboleCarte='C';
     }
 
     public Creature(Point2D pos) {
@@ -39,6 +41,7 @@ public class Creature {
         this.pageAtt = pageAtt;
         this.pagePar = pagePar;
         this.pos = pos;
+        this.symboleCarte='C';
     }
     
     public Creature(Creature m) {
@@ -92,6 +95,10 @@ public class Creature {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
+
+    public char getSymboleCarte() {
+        return symboleCarte;
+    }
     
     /**
      * Affiche tous les attributs de la créature. 
@@ -108,13 +115,56 @@ public class Creature {
     
     /**
      * Deplace aleatoirement la creature sur une des cases adjacentes (diagonales inclues). 
-     * La creature peut egalement ne pas se deplacer (1 chance sur 9). 
+     * La creature peut egalement ne pas se deplacer (1 chance sur 9).
+     * si la creature veut se deplacer sur une case contenant une autre creature, elle reste sur place
+     * si la creature veut se deplacer sur une case hors de la carte elle fait le mouvement opposé
+     * @param carte le tableau représentant contenant les differents objets du monde et leur positions 
      */
-    public void deplace(){
+    public void deplace(Case[][] carte){
+        
         Random generateurAleatoire = new Random();
-        int avanceX = generateurAleatoire.nextInt(2)-1;
-        int avanceY = generateurAleatoire.nextInt(2)-1;
-        pos.translate(avanceX, avanceY);
+        
+        int oldX=this.pos.getX();
+        int oldY=this.pos.getY();
+        
+        int avanceX = generateurAleatoire.nextInt(3)-1;
+        int avanceY = generateurAleatoire.nextInt(3)-1;
+        
+        int newX=oldX +avanceX;
+        int newY=oldY +avanceY;
+        
+        //si la case cible du déplacement existe et qu'elle contient une créature on interrompt le déplacement
+        if (carte[newX][newY] != null){
+            if (carte[newX][newY].creature != null){
+                avanceX=0;
+                avanceY=0;
+            }
+        }else if ( newX<0 || newX>carte.length || newY<0 || newY>carte.length){ //si la case cible est hors limites, on inverse le déplacement
+                avanceX=-avanceX;
+                avanceY=-avanceY;
+                }
+        
+        newX=oldX+avanceX;
+        newY=oldY+avanceY;
+        
+        //vider case oldX,oldY;
+        if (carte[oldX][oldY].objet != null ){
+            carte[oldX][oldY].creature=null;
+        }else {
+            carte[oldX][oldY]=null;
+        }
+        
+        //remplir case newX,newY;
+        if (carte[newX][newY]==null){
+            carte[newX][newY] = new Case(this);
+        } 
+        else {
+            carte[newX][newY].creature=this;
+        }
+        
+        //modifier la position de la créature
+        this.pos.translate(avanceX, avanceY);    
+       
     }
     
     protected void combatCorpsACorps(Creature creature){
