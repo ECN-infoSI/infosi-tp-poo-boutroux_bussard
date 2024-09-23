@@ -30,6 +30,10 @@ public class World {
     /** valeur de la longeur d'un coté du monde carré */
     private final int tailleMonde = 50;
 
+    public int getTailleMonde() {
+        return tailleMonde;
+    }
+    
     /** constructeur sans parametre*/
     public World() {
         this.creatures = new ArrayList<Creature>();
