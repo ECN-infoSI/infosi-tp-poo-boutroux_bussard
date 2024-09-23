@@ -55,5 +55,10 @@ public class TestWoE {
         mondeTest.robin.getPos().affiche();
         System.out.println("Position guillaumeT apres deplacement robin : ");
         mondeTest.guillaumeT.getPos().affiche();
+        
+        for(int i=0; i<100;i++){
+            PotionSoin potion = new PotionSoin();
+            System.out.print(potion.getQttSoin()+"; ");
+        }
     }
 }
