@@ -9,5 +9,9 @@ package org.centrale.objet.WoE;
  * @author remib
  */
 public interface Combattant {
+    /**
+     * tous les combattants doivent implémenter combattre
+     * @param creature 
+     */
     public void combattre(Creature creature);
 }

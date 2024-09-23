@@ -11,7 +11,7 @@ package org.centrale.objet.WoE;
 public class TestWoE {
     /**
      * Permet de tester toutes les méthodes du projet. 
-     * @param args 
+     * @param args les arguments de la methode
      */
     public static void main(String[] args){
         World mondeTest=new World();

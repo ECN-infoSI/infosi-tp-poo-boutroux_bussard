@@ -34,11 +34,18 @@ public class Guerrier extends Personnage implements Combattant {
         symboleCarte = 'G';
     }
     
+    /**
+     * affiche les attributs du guerrier
+     */
     @Override public void affiche(){
         System.out.println("guerrier");
         super.affiche();
     }
     
+    /**
+     * le guerrier ne se bat qu'au corps a corps
+     * @param creature 
+     */
     @Override public void combattre(Creature creature) {
         combatCorpsACorps(creature);
     }

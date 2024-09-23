@@ -38,7 +38,7 @@ public class Monstre extends Creature {
 
     /**
      * constructeur de recopie
-     * @param m Monstre a recopier
+     * @param monstre Monstre a recopier
      */
     public Monstre(Monstre monstre) {
         super(monstre);

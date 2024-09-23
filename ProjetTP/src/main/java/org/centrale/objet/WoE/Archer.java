@@ -56,7 +56,12 @@ public class Archer extends Personnage implements Combattant {
         super.affiche();
         System.out.println("nbr de fleches  : "+nbFleche);
     }
-
+    
+    /**
+     * l'archer se bat au corps a corps (avec un couteau par exemple)
+     * et il se bat evidemment a distance
+     * @param creature 
+     */
     @Override
     public void combattre(Creature creature) {
         combatCorpsACorps(creature);

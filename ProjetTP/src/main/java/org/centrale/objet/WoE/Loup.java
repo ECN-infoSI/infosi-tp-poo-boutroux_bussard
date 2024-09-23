@@ -30,8 +30,8 @@ public class Loup extends Monstre implements Combattant {
     }
     
     /**
-     * Le loup saute sur sa victime pour attaquer donc sa portée est de 0. 
-     * @param creature 
+     * Le loup est un animal qui ne peut tirer à l'arc donc sa portée est de 1. 
+     * @param creature la creature a combattre
      */
     @Override public void combattre(Creature creature) {
         combatCorpsACorps(creature);
