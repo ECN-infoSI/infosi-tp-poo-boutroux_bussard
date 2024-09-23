@@ -28,7 +28,7 @@ public class World {
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
-    public final int tailleMonde = 50;
+    public final int tailleMonde = 10;
     
     private Case[][] carte = new Case[tailleMonde][tailleMonde];
     /** constructeur sans parametre*/
@@ -97,14 +97,24 @@ public class World {
      * affiche les coordonnées de tous les elements du monde
      */
     public void afficheWorld(){
-        System.out.print("L'archer se trouve en : ");
-        robin.getPos().affiche();
-        System.out.print("Le paysan se trouve en : ");
-        peon.getPos().affiche();
-        System.out.print("Le premier lapin se trouve en : ");
-        bugs1.getPos().affiche();
-        System.out.print("Le second lapin se trouve en : ");
-        bugs2.getPos().affiche();
-        
+        for (int indiceColonne = 0; indiceColonne < tailleMonde; indiceColonne++){
+            System.out.println("");
+            for (int indiceLigne = 0; indiceLigne < tailleMonde; indiceLigne++){
+                if (carte[indiceColonne][indiceLigne] == null){
+                    System.out.print(" " + "." + " ");
+                    continue;
+                }
+                Case caseActuelle = carte[indiceColonne][indiceLigne];
+                if (caseActuelle.creature != null){
+                    System.out.print(" " + "T" + " ");
+                    continue;
+                }
+                if (caseActuelle.objet != null){
+                    System.out.print(" " + "X" + " ");
+                    continue;
+                }
+                System.out.print(" " + "o" + " ");
+            }
+        }
     }
 }
