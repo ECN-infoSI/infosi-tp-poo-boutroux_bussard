@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author Quent
  */
-public class Creature {
+public class Creature implements AffichableCarte{
     private int ptVie;
     private int degAtt;
     private int ptPar;
@@ -26,12 +26,12 @@ public class Creature {
         this.pageAtt = 0;
         this.pagePar = 0;
         this.pos = new Point2D();
-        this.symboleCarte='C';
+        definirSymboleCarte();
     }
 
     public Creature(Point2D pos) {
         this();
-        this.pos = pos;
+        this.pos = new Point2D(pos);
     }
     
     public Creature(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
@@ -40,8 +40,8 @@ public class Creature {
         this.ptPar = ptPar;
         this.pageAtt = pageAtt;
         this.pagePar = pagePar;
-        this.pos = pos;
-        this.symboleCarte='C';
+        this.pos = new Point2D(pos);
+        definirSymboleCarte();
     }
     
     public Creature(Creature m) {
@@ -184,5 +184,10 @@ public class Creature {
                 creature.setPtVie(nouveauPointVie);
             }
         }
+    }
+
+    @Override
+    public void definirSymboleCarte() {
+        symboleCarte = 'T';
     }
 }
