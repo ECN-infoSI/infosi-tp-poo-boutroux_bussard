@@ -135,26 +135,31 @@ public class Creature implements AffichableCarte{
         int avanceX = generateurAleatoire.nextInt(3)-1;
         int avanceY = generateurAleatoire.nextInt(3)-1;
        
+        System.out.println();
+        System.out.println("avance random : "+avanceX+";"+avanceY);
         int newX=oldX +avanceX;
         int newY=oldY +avanceY;
         
-        //si la case cible du déplacement existe et qu'elle contient une créature on interrompt le déplacement
-        if ( newX<0 || newX>=carte.length || newY<0 || newY>=carte.length){ //si la case cible est hors limites, on inverse le déplacement
-                avanceX=-avanceX;
-                avanceY=-avanceY;
-                newX=oldX+avanceX;
-                newY=oldY+avanceY;
+        
+        if ( newX<0 || newX>=carte.length ){ //si la case cible est hors limites, on inverse le déplacement
+            avanceX=-avanceX;
+            newX=oldX+avanceX;      
+        }
+        if(newY<0 || newY>=carte.length){
+            avanceY=-avanceY;
+            newY=oldY+avanceY;
         }
         
+        //si la case cible du déplacement existe et qu'elle contient une créature on interrompt le déplacement
         if (carte[newX][newY] != null){
             if (carte[newX][newY].creature != null){
-                avanceX=0;
+                newX=oldX;
                 avanceY=0;
-                newX=oldX+avanceX;
-                newY=oldY+avanceY;
+                avanceX=0;
+                newY=oldY;
             }
         }
-        
+        System.out.println("avance final  : "+avanceX+";"+avanceY);
         
         //vider case oldX,oldY;
         if (carte[oldX][oldY].objet != null ){
@@ -164,11 +169,11 @@ public class Creature implements AffichableCarte{
         }
         
         //remplir case newX,newY;
-        if (carte[newX][newY]==null){
-            carte[newX][newY] = new Case(this);
+        if (carte[newX][newY]!=null){
+            carte[newX][newY].creature=this;
         } 
         else {
-            carte[newX][newY].creature=this;
+            carte[newX][newY] = new Case(this);
         }
         
         //modifier la position de la créature
