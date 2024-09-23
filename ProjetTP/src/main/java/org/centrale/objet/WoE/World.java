@@ -30,7 +30,9 @@ public class World {
     /** valeur de la longeur d'un coté du monde carré */
     public final int tailleMonde = 10;
     
-    private Case[][] carte = new Case[tailleMonde][tailleMonde];
+    public Case[][] carte = new Case[tailleMonde][tailleMonde];
+    
+    
     /** constructeur sans parametre*/
     public World() {
         this.creatures = new ArrayList<Creature>();
@@ -93,6 +95,11 @@ public class World {
         Point2D pointAleatoire = new Point2D(posX, posY);
         return pointAleatoire;
     }
+    
+    public void tourDeJeu(){
+        
+    }
+    
     /**
      * affiche les coordonnées de tous les elements du monde
      */
