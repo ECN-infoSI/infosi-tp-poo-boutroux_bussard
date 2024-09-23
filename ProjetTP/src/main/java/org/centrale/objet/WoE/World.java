@@ -30,7 +30,7 @@ public class World {
     /** valeur de la longeur d'un coté du monde carré */
     public final int tailleMonde = 50;
     
-    //private ArrayList<ArrayList<
+    private Case[][] carte = new Case[tailleMonde][tailleMonde];
     /** constructeur sans parametre*/
     public World() {
         this.creatures = new ArrayList<Creature>();
@@ -77,6 +77,9 @@ public class World {
         
         for (int creatureIndex = 0; creatureIndex < nbrElements; creatureIndex++){
             creatures.get(creatureIndex).setPos(positions[creatureIndex]);
+        }
+        for (Creature creature : creatures){
+            carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
         }
     }
     /**
