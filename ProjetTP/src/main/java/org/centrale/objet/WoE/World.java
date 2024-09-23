@@ -28,12 +28,9 @@ public class World {
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
-    private final int tailleMonde = 50;
-
-    public int getTailleMonde() {
-        return tailleMonde;
-    }
+    public final int tailleMonde = 50;
     
+    //private ArrayList<ArrayList<
     /** constructeur sans parametre*/
     public World() {
         this.creatures = new ArrayList<Creature>();
