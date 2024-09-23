@@ -134,23 +134,27 @@ public class Creature implements AffichableCarte{
         
         int avanceX = generateurAleatoire.nextInt(3)-1;
         int avanceY = generateurAleatoire.nextInt(3)-1;
-        
+       
         int newX=oldX +avanceX;
         int newY=oldY +avanceY;
         
         //si la case cible du déplacement existe et qu'elle contient une créature on interrompt le déplacement
+        if ( newX<0 || newX>=carte.length || newY<0 || newY>=carte.length){ //si la case cible est hors limites, on inverse le déplacement
+                avanceX=-avanceX;
+                avanceY=-avanceY;
+                newX=oldX+avanceX;
+                newY=oldY+avanceY;
+        }
+        
         if (carte[newX][newY] != null){
             if (carte[newX][newY].creature != null){
                 avanceX=0;
                 avanceY=0;
+                newX=oldX+avanceX;
+                newY=oldY+avanceY;
             }
-        }else if ( newX<0 || newX>carte.length || newY<0 || newY>carte.length){ //si la case cible est hors limites, on inverse le déplacement
-                avanceX=-avanceX;
-                avanceY=-avanceY;
-                }
+        }
         
-        newX=oldX+avanceX;
-        newY=oldY+avanceY;
         
         //vider case oldX,oldY;
         if (carte[oldX][oldY].objet != null ){
