@@ -25,6 +25,11 @@ public class Lapin extends Monstre {
     public Lapin(Lapin lapin) {
         super(lapin);
     }
+    
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'L';
+    }
+    
     @Override public void affiche(){
         System.out.println("Lapin");
         super.affiche();

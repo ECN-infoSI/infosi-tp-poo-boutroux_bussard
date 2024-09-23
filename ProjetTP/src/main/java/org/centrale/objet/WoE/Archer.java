@@ -11,14 +11,6 @@ package org.centrale.objet.WoE;
 public class Archer extends Personnage implements Combattant {
     private int nbFleche;
 
-    public void setNbFleche(int nbFleche) {
-        this.nbFleche = nbFleche;
-    }
-
-    public int getNbFleche() {
-        return nbFleche;
-    }
-
     public Archer(int distAttMax, int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos,int nbFleche) {
         super(distAttMax, ptVie, degAtt, ptPar, pageAtt, pagePar, pos);
         this.nbFleche=nbFleche;
@@ -26,13 +18,11 @@ public class Archer extends Personnage implements Combattant {
 
     public Archer() {
         super();
-        initialiseDistAttMax();
         this.initialisefleche();
     }
 
     public Archer(Point2D pos) {
         super(pos);
-        initialiseDistAttMax();
         this.initialisefleche();
     }
 
@@ -41,7 +31,7 @@ public class Archer extends Personnage implements Combattant {
         this.nbFleche = archer.nbFleche;
     }
     
-    private void initialiseDistAttMax(){
+    @Override protected void initialiseDistAttMax(){
         this.distAttMax = 10;
     }
     
@@ -51,6 +41,14 @@ public class Archer extends Personnage implements Combattant {
     
     private void initialisefleche(){
         this.nbFleche=5;
+    }
+    
+    public void setNbFleche(int nbFleche) {
+        this.nbFleche = nbFleche;
+    }
+
+    public int getNbFleche() {
+        return nbFleche;
     }
     
     @Override public void affiche(){

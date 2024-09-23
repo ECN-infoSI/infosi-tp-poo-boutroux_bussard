@@ -25,6 +25,10 @@ public class Loup extends Monstre implements Combattant {
         super(loup);
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'W';
+    }
+    
     /**
      * Le loup saute sur sa victime pour attaquer donc sa portée est de 0. 
      * @param creature 

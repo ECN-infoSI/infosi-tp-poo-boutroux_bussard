@@ -29,7 +29,6 @@ public class Epee extends Objet {
         super(point);
         this.degAtt=genereNombreAleatoire();
     }
-
     
     public int getDegAtt() {
         return degAtt;
@@ -37,6 +36,10 @@ public class Epee extends Objet {
 
     public void setDegAtt(int degAtt) {
         this.degAtt = degAtt;
+    }
+    
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'E';
     }
     
     private int genereNombreAleatoire(){

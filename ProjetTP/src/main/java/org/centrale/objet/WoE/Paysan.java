@@ -25,6 +25,10 @@ public class Paysan extends Personnage {
         super(paysan);
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'P';
+    }
+    
     @Override public void affiche(){
         System.out.println("paysan");
         super.affiche();

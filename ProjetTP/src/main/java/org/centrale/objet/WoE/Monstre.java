@@ -44,6 +44,10 @@ public class Monstre extends Creature {
         super(monstre);
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'M';
+    }
+    
     /**
      * affiche tout les attributs de monstre
      */

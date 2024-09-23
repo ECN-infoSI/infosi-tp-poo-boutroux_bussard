@@ -32,7 +32,7 @@ public class Personnage extends Creature {
      */
     public Personnage() {
         super();
-        this.initialisedistAttMax();
+        this.initialiseDistAttMax();
     }
 
     /**
@@ -41,7 +41,7 @@ public class Personnage extends Creature {
      */
     public Personnage(Point2D pos) {
         super(pos);
-        this.initialisedistAttMax();
+        this.initialiseDistAttMax();
     }
 
     /**
@@ -53,7 +53,11 @@ public class Personnage extends Creature {
         this.distAttMax = perso.distAttMax;
     }
     
-    private void initialisedistAttMax(){
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'T';
+    }
+    
+    protected void initialiseDistAttMax(){
         this.distAttMax=1;
     }
 

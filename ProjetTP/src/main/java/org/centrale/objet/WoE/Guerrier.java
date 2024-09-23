@@ -16,19 +16,17 @@ public class Guerrier extends Personnage implements Combattant {
 
     public Guerrier() {
         super();
-        initialiseDistAttMax();
     }
 
     public Guerrier(Point2D pos) {
         super(pos);
-        initialiseDistAttMax();
     }
 
     public Guerrier(Guerrier guerrier) {
         super(guerrier);
     }
     
-    private void initialiseDistAttMax(){
+    @Override protected void initialiseDistAttMax(){
         this.distAttMax = 1;
     }
     

@@ -54,4 +54,7 @@ public class PotionSoin extends Objet {
         this.qttSoin = qttSoin;
     }
     
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'S';
+    }
 }    

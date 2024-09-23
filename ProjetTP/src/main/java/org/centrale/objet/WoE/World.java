@@ -117,10 +117,10 @@ public class World {
                     continue;
                 }
                 if (caseActuelle.objet != null){
-                    System.out.print(" " + "X" + " ");
+                    System.out.print(" " + caseActuelle.objet.getSymboleCarte() + " ");
                     continue;
                 }
-                System.out.print(" " + "o" + " ");
+                System.out.print(" " + "." + " ");
             }
         }
     }
