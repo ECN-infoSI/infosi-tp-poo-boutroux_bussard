@@ -97,7 +97,44 @@ public class World {
     }
     
     public void tourDeJeu(){
-        
+        for (Creature creature : creatures){
+            creature.deplace(carte);
+            verifierPresenceCreatureProches(creature);
+        }
+    }
+    
+    private void verifierPresenceCreatureProches(Creature creature){
+        if (!(creature instanceof Combattant)){
+            return;
+        }
+        if (creature instanceof Personnage){
+            for(int k =1 ; k <= ((Personnage) creature).getDistAttMax(); k++){
+                for (int i=1 ; i <= k+1; i++){
+                    for (int j=1 ; j <= k+1; j++){
+                        if (carte[i][j] != null){
+                            if (carte[i][j].creature != null){
+                                ((Combattant) creature).combattre(carte[i][j].creature);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (creature instanceof Loup){
+            for(int k =1 ; k <= 1; k++){
+                for (int i=1 ; i <= k+1; i++){
+                    for (int j=1 ; j <= k+1; j++){
+                        if (carte[i][j] != null){
+                            if (carte[i][j].creature != null){
+                                ((Combattant) creature).combattre(carte[i][j].creature);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     /**

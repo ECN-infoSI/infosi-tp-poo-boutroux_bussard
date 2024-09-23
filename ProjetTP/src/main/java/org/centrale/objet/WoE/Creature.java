@@ -45,7 +45,7 @@ public class Creature implements AffichableCarte{
     }
     
     public Creature(Creature m) {
-        this(m.ptVie,m.degAtt,m.ptPar,m.pageAtt,m.pagePar,new Point2D(m.pos));
+        this(m.ptVie,m.degAtt,m.ptPar,m.pageAtt,m.pagePar,m.pos);
     }
 
     public int getPtVie() {
