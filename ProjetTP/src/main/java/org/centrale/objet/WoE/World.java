@@ -96,6 +96,9 @@ public class World {
         return pointAleatoire;
     }
     
+    /**
+     * Chaque creature bouge puis attaque
+     */
     public void tourDeJeu(){
         for (Creature creature : creatures){
             creature.deplace(carte);
@@ -103,6 +106,12 @@ public class World {
         }
     }
     
+    /**
+     * on vérifie la présence de créatures du plus proche au plus loin
+     * Cette méthode est moche et sera modifiée plus tard
+     * Nous n'avons pas eu le temps de la tester malheureusement
+     * @param creature 
+     */
     private void verifierPresenceCreatureProches(Creature creature){
         if (!(creature instanceof Combattant)){
             return;
