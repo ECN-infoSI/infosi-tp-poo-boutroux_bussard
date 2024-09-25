@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  *
  * @author Quent
  */
-public class Objet implements AffichableCarte{
+public abstract class  Objet implements AffichableCarte{
     private Point2D pos;
     
     protected char symboleCarte;
@@ -38,4 +38,7 @@ public class Objet implements AffichableCarte{
     @Override public void definirSymboleCarte(){
         symboleCarte = 'O';
     }
+    
+    public abstract void utiliser(Creature creature);
+      
 }

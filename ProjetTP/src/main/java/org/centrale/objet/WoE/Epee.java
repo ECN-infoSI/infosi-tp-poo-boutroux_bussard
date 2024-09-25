@@ -46,4 +46,9 @@ public class Epee extends Objet {
         Random generateurAleatoire = new Random();
         return minQttDegat+ generateurAleatoire.nextInt(maxQttDegat-minQttDegat+1);
     }
+
+    @Override
+    public void utiliser(Creature creature) {
+        creature.setDegAtt(creature.getDegAtt()+degAtt);
+    }
 }

@@ -57,4 +57,10 @@ public class PotionSoin extends Objet {
     @Override public void definirSymboleCarte(){
         symboleCarte = 'S';
     }
+
+    @Override
+    public void utiliser(Creature creature) {
+        creature.setPtVie(creature.getPtVie()+qttSoin);
+    }
+    
 }    
