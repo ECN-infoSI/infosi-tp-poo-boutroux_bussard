@@ -56,12 +56,22 @@ public class TestWoE {
 //        System.out.println("Position guillaumeT apres deplacement robin : ");
 //        mondeTest.guillaumeT.getPos().affiche();
         
-        for(int i=0; i<20;i++){
-            mondeTest.grosBill.deplace(mondeTest.carte);
-            mondeTest.grosBill.combattre(mondeTest.wolfie);
-            System.out.println("pv loup : " +mondeTest.wolfie.getPtVie());
-            
-        }
-        
+//        for(int i=0; i<20;i++){
+//            mondeTest.grosBill.deplace(mondeTest.carte);
+//            mondeTest.grosBill.combattre(mondeTest.wolfie);
+//            System.out.println("pv loup : " +mondeTest.wolfie.getPtVie());
+//            
+//        }
+
+        World mondeTestFonctionnement=new World();
+        mondeTestFonctionnement.creerMondeSpecifique();
+        mondeTestFonctionnement.afficheWorld();
+        mondeTestFonctionnement.grosBill.affiche();
+        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
+        mondeTestFonctionnement.afficheWorld();
+        mondeTestFonctionnement.grosBill.affiche();
+        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
+        mondeTestFonctionnement.afficheWorld();
+        mondeTestFonctionnement.grosBill.affiche();
     }
 }

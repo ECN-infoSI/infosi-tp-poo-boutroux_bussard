@@ -132,11 +132,13 @@ public class Creature implements AffichableCarte{
         int oldX=this.pos.getX();
         int oldY=this.pos.getY();
         
-        int avanceX = generateurAleatoire.nextInt(3)-1;
-        int avanceY = generateurAleatoire.nextInt(3)-1;
+//        int avanceX = generateurAleatoire.nextInt(3)-1;
+//        int avanceY = generateurAleatoire.nextInt(3)-1;
+       int avanceX=0;
+       int avanceY=1;
        
-        System.out.println();
-        System.out.println("avance random : "+avanceX+";"+avanceY);
+//        System.out.println();
+//        System.out.println("avance random : "+avanceX+";"+avanceY);
         int newX=oldX +avanceX;
         int newY=oldY +avanceY;
         
@@ -177,7 +179,13 @@ public class Creature implements AffichableCarte{
         }
         
         //modifier la position de la créature
-        this.pos.translate(avanceX, avanceY);    
+        this.pos.translate(avanceX, avanceY);
+        
+        //utiliser les objets de la case d'arrivée
+        if (carte[newX][newY].objet!=null){
+            carte[newX][newY].objet.utiliser(this);
+            carte[newX][newY].objet=null;
+        }
        
     }
     

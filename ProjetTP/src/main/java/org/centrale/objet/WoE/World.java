@@ -84,6 +84,30 @@ public class World {
             carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
         }
     }
+    
+    
+    /**
+     * crée un monde choisi par nous pour tester les différents mécanismes du jeu
+     * Ne marche que si le monde n'a pas encore été créé
+     */
+    public void creerMondeSpecifique(){
+        //On choisi les personnages sur la carte
+        creatures.clear();
+        creatures.add(grosBill);
+        
+        //On choisi les diférents objets sur la carte
+        PotionSoin potion = new PotionSoin();
+        Epee epee =new Epee();
+        
+        //On choisi les positions des éléments
+        Point2D position =new Point2D(2,2);
+        grosBill.setPos(position);
+        carte[2][2]=new Case(grosBill);
+        carte[2][3]=new Case(potion);
+        carte[2][4]=new Case(epee);
+    }
+    
+    
     /**
      * genere un point2D aleatoire
      * @param generateurAleatoire un générateur de nombre aléatoire 
@@ -169,5 +193,6 @@ public class World {
                 System.out.print(" " + "." + " ");
             }
         }
+        System.out.println();
     }
 }
