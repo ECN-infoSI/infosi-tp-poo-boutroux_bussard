@@ -23,8 +23,8 @@ public class Creature implements AffichableCarte{
         this.ptVie = 100;
         this.degAtt = 10;
         this.ptPar = 5;
-        this.pageAtt = 0;
-        this.pagePar = 0;
+        this.pageAtt = 100;
+        this.pagePar = 100;
         this.pos = new Point2D();
         definirSymboleCarte();
     }
@@ -191,15 +191,19 @@ public class Creature implements AffichableCarte{
     
     protected void combatCorpsACorps(Creature creature){
         if (this.getPos().distance(creature.getPos()) <= 1){
+            System.out.println("combat corps a corps");
             attaque(creature);
+            
         }
     }
     
     protected void attaque(Creature creature){
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
+        System.out.println("jet d'attaque"+jetDe);
         if (getPageAtt() >= jetDe){
             jetDe = generateurAleatoire.nextInt(100) + 1;
+            System.out.println("jet de parade"+jetDe);
             int degats;
             if (creature.getPagePar() >= jetDe){
                 degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);

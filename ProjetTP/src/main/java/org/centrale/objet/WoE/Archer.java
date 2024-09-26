@@ -70,6 +70,7 @@ public class Archer extends Personnage implements Combattant {
     
     private void combatADistance(Creature creature){
         if (getNbFleche() <=0){
+            System.out.println("pas de fleches");
             return;
         }
         int distance =this.getPos().distance(creature.getPos());

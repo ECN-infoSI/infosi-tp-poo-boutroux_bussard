@@ -93,18 +93,19 @@ public class World {
     public void creerMondeSpecifique(){
         //On choisi les personnages sur la carte
         creatures.clear();
-        creatures.add(grosBill);
+        creatures.add(robin);
+        creatures.add(bugs1);
         
         //On choisi les diférents objets sur la carte
-        PotionSoin potion = new PotionSoin();
-        Epee epee =new Epee();
+        //new Epee excalibur =new Epee();
         
         //On choisi les positions des éléments
-        Point2D position =new Point2D(2,2);
-        grosBill.setPos(position);
-        carte[2][2]=new Case(grosBill);
-        carte[2][3]=new Case(potion);
-        carte[2][4]=new Case(epee);
+        Point2D positionrobin =new Point2D(2,2);
+        Point2D positionBugs =new Point2D(2,4);
+        robin.setPos(positionrobin);
+        bugs1.setPos(positionBugs);
+        carte[2][2]=new Case(robin);
+        carte[2][4]=new Case(bugs1);
     }
     
     
@@ -136,17 +137,21 @@ public class World {
      * Nous n'avons pas eu le temps de la tester malheureusement
      * @param creature 
      */
-    private void verifierPresenceCreatureProches(Creature creature){
+    public void verifierPresenceCreatureProches(Creature creature){
         if (!(creature instanceof Combattant)){
             return;
         }
         if (creature instanceof Personnage){
+            int posX=creature.getPos().getX();
+            int posY=creature.getPos().getY();
+                    
             for(int k =1 ; k <= ((Personnage) creature).getDistAttMax(); k++){
-                for (int i=1 ; i <= k+1; i++){
-                    for (int j=1 ; j <= k+1; j++){
-                        if (carte[i][j] != null){
-                            if (carte[i][j].creature != null){
-                                ((Combattant) creature).combattre(carte[i][j].creature);
+                for (int i=k ; i >= -k; i--){
+                    for (int j=-k ; j <= k; j++){
+                        if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
+                            if (carte[posX+i][posY+j].creature != null){
+                                System.out.println("attaque");
+                                ((Combattant) creature).combattre(carte[posX+i][posY+j].creature);
                                 return;
                             }
                         }

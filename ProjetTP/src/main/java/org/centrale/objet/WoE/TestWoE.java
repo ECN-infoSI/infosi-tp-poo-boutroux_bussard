@@ -65,13 +65,41 @@ public class TestWoE {
 
         World mondeTestFonctionnement=new World();
         mondeTestFonctionnement.creerMondeSpecifique();
+////test fonctionnement potion et épée
+//        mondeTestFonctionnement.afficheWorld();
+//        mondeTestFonctionnement.grosBill.affiche();
+//        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
+//        mondeTestFonctionnement.afficheWorld();
+//        mondeTestFonctionnement.grosBill.affiche();
+//        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
+//        mondeTestFonctionnement.afficheWorld();
+//        mondeTestFonctionnement.grosBill.affiche();
+        
+
         mondeTestFonctionnement.afficheWorld();
-        mondeTestFonctionnement.grosBill.affiche();
-        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
+        System.out.println();
+        mondeTestFonctionnement.bugs1.affiche();
+        System.out.println();
+        mondeTestFonctionnement.robin.affiche();
+        System.out.println();
+        System.out.println("distance = "+ mondeTestFonctionnement.robin.getPos().distance(mondeTestFonctionnement.bugs1.getPos()));
+        System.out.println();
+        System.out.println("tentative attaque");
+        System.out.println();
+        mondeTestFonctionnement.verifierPresenceCreatureProches(mondeTestFonctionnement.robin);
+        System.out.println();
+        mondeTestFonctionnement.bugs1.affiche();
+        System.out.println();
+        mondeTestFonctionnement.robin.deplace(mondeTestFonctionnement.carte);
         mondeTestFonctionnement.afficheWorld();
-        mondeTestFonctionnement.grosBill.affiche();
-        mondeTestFonctionnement.grosBill.deplace(mondeTestFonctionnement.carte);
-        mondeTestFonctionnement.afficheWorld();
-        mondeTestFonctionnement.grosBill.affiche();
+        System.out.println();
+        System.out.println("tentative attaque");
+        System.out.println();
+        mondeTestFonctionnement.verifierPresenceCreatureProches(mondeTestFonctionnement.robin);
+        mondeTestFonctionnement.bugs1.affiche();
+        
+
+            
+
     }
 }
