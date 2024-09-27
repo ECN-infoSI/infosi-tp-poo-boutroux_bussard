@@ -84,6 +84,10 @@ public class Personnage extends Creature {
         System.out.println("Dist d'att max  : "+distAttMax);
     }
 
+    /**
+     * Le personnage ne fait rien de particulier pour le moment. 
+     * @param carte 
+     */
     @Override
     public void agir(Case[][] carte) {
     }
@@ -101,21 +105,30 @@ public class Personnage extends Creature {
             for (int i=k ; i >= -k; i--){
                 if (i == k || i == -k){//si on se trouve à une des extrémités, on parcourt toute la colonne
                     for (int j=-k ; j <= k; j++){
-                        if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
-                            if (carte[posX+i][posY+j].creature != null){
-                                System.out.println("attaque");
-                                //combattre(carte[posX+i][posY+j].creature);
-                                return carte[posX+i][posY+j].creature;
-                            }
+                        if(!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte) || carte[posX+i][posY+j] == null){
+                            continue;
                         }
+                        Case caseATester = carte[posX+i][posY+j];
+                        if (caseATester.creature == null){
+                            continue;
+                        }
+                        return caseATester.creature;
                     }
                 }
                 else {
-                    if (carte[posX+i][posY+k] != null && carte[posX+i][posY+k].creature != null){
-                        return carte[posX+i][posY+k].creature;
+                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY+k), carte) && carte[posX+i][posY+k] != null){
+                        Case caseATester = carte[posX+i][posY+k];
+                        if (caseATester.creature == null){
+                            continue;
+                        }
+                        return caseATester.creature;
                     }
-                    else if (carte[posX+i][posY-k] != null && carte[posX+i][posY-k].creature != null){
-                        return carte[posX+i][posY-k].creature;
+                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY-k), carte) && carte[posX+i][posY-k] != null){
+                        Case caseATester = carte[posX+i][posY-k];
+                        if (caseATester.creature == null){
+                            continue;
+                        }
+                        return caseATester.creature;
                     }
                 }
             }

@@ -72,13 +72,14 @@ public class Monstre extends Creature {
         
         for (int i=1 ; i >= -1; i--){
             for (int j=-1 ; j <= 1; j++){
-                if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
-                    if (carte[posX+i][posY+j].creature != null){
-                        System.out.println("attaque");
-                        //combattre(carte[posX+i][posY+j].creature);
-                        return carte[posX+i][posY+j].creature;
-                    }
+                if (!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte) || carte[posX+i][posY+j] == null || (i == 0 && j == 0)){
+                    continue;
                 }
+                Case caseATester = carte[posX+i][posY+j];
+                if (caseATester.creature == null){
+                    continue;
+                }
+                return caseATester.creature;
             }
         }
         return null;
