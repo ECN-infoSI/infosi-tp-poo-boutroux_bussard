@@ -86,7 +86,7 @@ public class TestWoE {
         System.out.println();
         System.out.println("tentative attaque");
         System.out.println();
-        mondeTestFonctionnement.verifierPresenceCreatureProches(mondeTestFonctionnement.robin);
+        mondeTestFonctionnement.robin.agir(mondeTestFonctionnement.carte);
         System.out.println();
         mondeTestFonctionnement.bugs1.affiche();
         System.out.println();
@@ -95,7 +95,7 @@ public class TestWoE {
         System.out.println();
         System.out.println("tentative attaque");
         System.out.println();
-        mondeTestFonctionnement.verifierPresenceCreatureProches(mondeTestFonctionnement.robin);
+        mondeTestFonctionnement.robin.agir(mondeTestFonctionnement.carte);
         mondeTestFonctionnement.bugs1.affiche();
         
 

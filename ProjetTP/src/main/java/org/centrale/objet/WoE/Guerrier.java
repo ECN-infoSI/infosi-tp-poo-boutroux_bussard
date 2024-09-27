@@ -41,6 +41,14 @@ public class Guerrier extends Personnage implements Combattant {
         System.out.println("guerrier");
         super.affiche();
     }
+
+    @Override
+    public void agir(Case[][] carte) {
+        Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
+        if (creatureAAttaquer != null){
+            combattre(creatureAAttaquer);
+        }
+    }
     
     /**
      * le guerrier ne se bat qu'au corps a corps

@@ -83,4 +83,43 @@ public class Personnage extends Creature {
         super.affiche();
         System.out.println("Dist d'att max  : "+distAttMax);
     }
+
+    @Override
+    public void agir(Case[][] carte) {
+    }
+    
+    /**
+     * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
+     * @param carte 
+     */
+    @Override
+    public Creature verifierPresenceCreatureProches(Case[][] carte){
+        int posX = getPos().getX();
+        int posY = getPos().getY();
+
+        for(int k =1 ; k <= getDistAttMax(); k++){
+            for (int i=k ; i >= -k; i--){
+                if (i == k || i == -k){//si on se trouve à une des extrémités, on parcourt toute la colonne
+                    for (int j=-k ; j <= k; j++){
+                        if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
+                            if (carte[posX+i][posY+j].creature != null){
+                                System.out.println("attaque");
+                                //combattre(carte[posX+i][posY+j].creature);
+                                return carte[posX+i][posY+j].creature;
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (carte[posX+i][posY+k] != null && carte[posX+i][posY+k].creature != null){
+                        return carte[posX+i][posY+k].creature;
+                    }
+                    else if (carte[posX+i][posY-k] != null && carte[posX+i][posY-k].creature != null){
+                        return carte[posX+i][posY-k].creature;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

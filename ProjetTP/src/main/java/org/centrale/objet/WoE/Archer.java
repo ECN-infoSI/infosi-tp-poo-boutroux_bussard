@@ -56,6 +56,14 @@ public class Archer extends Personnage implements Combattant {
         super.affiche();
         System.out.println("nbr de fleches  : "+nbFleche);
     }
+
+    @Override
+    public void agir(Case[][] carte) {
+        Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
+        if (creatureAAttaquer != null){
+            combattre(creatureAAttaquer);
+        }
+    }
     
     /**
      * l'archer se bat au corps a corps (avec un couteau par exemple)
@@ -68,14 +76,18 @@ public class Archer extends Personnage implements Combattant {
         combatADistance(creature);
     }
     
+    /**
+     * Tire une flèche sur une créature
+     * @param creature 
+     */
     private void combatADistance(Creature creature){
         if (getNbFleche() <=0){
             System.out.println("pas de fleches");
             return;
         }
-        int distance =this.getPos().distance(creature.getPos());
+        int distance = this.getPos().distance(creature.getPos());
         if (distance <= getDistAttMax() && distance > 1){
-            attaque(creature);
+            attaqueDistance(creature);
             nbFleche -=1; 
         }
     }

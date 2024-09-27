@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author Quent
  */
-public class Creature implements AffichableCarte{
+public abstract class Creature implements AffichableCarte{
     private int ptVie;
     private int degAtt;
     private int ptPar;
@@ -189,21 +189,27 @@ public class Creature implements AffichableCarte{
        
     }
     
+    /**
+     * La méthode à appeler pour que la créature fasse ses actions spécifiques
+     * @param carte 
+     */
+    public abstract void agir(Case[][] carte);
+    
     protected void combatCorpsACorps(Creature creature){
         if (this.getPos().distance(creature.getPos()) <= 1){
             System.out.println("combat corps a corps");
-            attaque(creature);
+            attaqueCorpsACorps(creature);
             
         }
     }
     
-    protected void attaque(Creature creature){
+    protected void attaqueCorpsACorps(Creature creature){
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
-        System.out.println("jet d'attaque"+jetDe);
+        System.out.println("jet d'attaque : "+jetDe);
         if (getPageAtt() >= jetDe){
             jetDe = generateurAleatoire.nextInt(100) + 1;
-            System.out.println("jet de parade"+jetDe);
+            System.out.println("jet de parade : "+jetDe);
             int degats;
             if (creature.getPagePar() >= jetDe){
                 degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);
@@ -216,5 +222,23 @@ public class Creature implements AffichableCarte{
         }
     }
     
+    protected void attaqueDistance(Creature creature){
+        Random generateurAleatoire = new Random();
+        int jetDe = generateurAleatoire.nextInt(100) + 1;
+        System.out.println("jet d'attaque"+jetDe);
+        if (getPageAtt() >= jetDe){
+            jetDe = generateurAleatoire.nextInt(100) + 1;
+            int degats =this.getDegAtt();
+            int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
+            creature.setPtVie(nouveauPointVie);
+            
+        }
+    }
     
+    /**
+     * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
+     * @param carte
+     * @return 
+     */
+    public abstract Creature verifierPresenceCreatureProches(Case[][] carte);
 }

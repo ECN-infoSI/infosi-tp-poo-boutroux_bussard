@@ -55,4 +55,32 @@ public class Monstre extends Creature {
         System.out.println("Monstre");
         super.affiche();
     }
+
+    @Override
+    public void agir(Case[][] carte) {
+    }
+
+    /**
+     * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
+     * @param carte
+     * @return 
+     */
+    @Override
+    public Creature verifierPresenceCreatureProches(Case[][] carte) {
+        int posX = getPos().getX();
+        int posY = getPos().getY();
+        
+        for (int i=1 ; i >= -1; i--){
+            for (int j=-1 ; j <= 1; j++){
+                if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
+                    if (carte[posX+i][posY+j].creature != null){
+                        System.out.println("attaque");
+                        //combattre(carte[posX+i][posY+j].creature);
+                        return carte[posX+i][posY+j].creature;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

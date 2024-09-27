@@ -127,51 +127,7 @@ public class World {
     public void tourDeJeu(){
         for (Creature creature : creatures){
             creature.deplace(carte);
-            verifierPresenceCreatureProches(creature);
-        }
-    }
-    
-    /**
-     * on vérifie la présence de créatures du plus proche au plus loin
-     * Cette méthode est moche et sera modifiée plus tard
-     * Nous n'avons pas eu le temps de la tester malheureusement
-     * @param creature 
-     */
-    public void verifierPresenceCreatureProches(Creature creature){
-        if (!(creature instanceof Combattant)){
-            return;
-        }
-        if (creature instanceof Personnage){
-            int posX=creature.getPos().getX();
-            int posY=creature.getPos().getY();
-                    
-            for(int k =1 ; k <= ((Personnage) creature).getDistAttMax(); k++){
-                for (int i=k ; i >= -k; i--){
-                    for (int j=-k ; j <= k; j++){
-                        if (carte[posX+i][posY+j] != null && (i!=0 || j!=0)){
-                            if (carte[posX+i][posY+j].creature != null){
-                                System.out.println("attaque");
-                                ((Combattant) creature).combattre(carte[posX+i][posY+j].creature);
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (creature instanceof Loup){
-            for(int k =1 ; k <= 1; k++){
-                for (int i=1 ; i <= k+1; i++){
-                    for (int j=1 ; j <= k+1; j++){
-                        if (carte[i][j] != null){
-                            if (carte[i][j].creature != null){
-                                ((Combattant) creature).combattre(carte[i][j].creature);
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
+            creature.agir(carte);
         }
     }
     

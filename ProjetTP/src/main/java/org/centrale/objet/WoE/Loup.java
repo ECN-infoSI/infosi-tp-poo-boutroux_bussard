@@ -28,6 +28,14 @@ public class Loup extends Monstre implements Combattant {
     @Override public void definirSymboleCarte(){
         symboleCarte = 'W';
     }
+
+    @Override
+    public void agir(Case[][] carte) {
+        Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
+        if (creatureAAttaquer != null){
+            combattre(creatureAAttaquer);
+        }
+    }
     
     /**
      * Le loup est un animal qui ne peut tirer à l'arc donc sa portée est de 1. 
