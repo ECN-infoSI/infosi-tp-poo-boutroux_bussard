@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Classe servant de coordonnée dans un plan 2D. 
  * @author Quent
  */
 public class Point2D {
@@ -27,6 +27,7 @@ public class Point2D {
     public void setY(int y) {
         this.y = y;
     }
+    
     public Point2D (int a, int b){
         this.x=a;
         this.y=b;
@@ -39,20 +40,23 @@ public class Point2D {
     public Point2D(Point2D p) {
         this(p.getX(),p.getY());
     }
+    
     public void SetPosition(int x,int y){
         this.x=x;
         this.y=y;
     } 
+    
     public void affiche(){
         System.out.println("["+x+";"+y+"]");
     }
+    
     public void translate(int dx, int dy){
         this.x +=dx;
         this.y +=dy;
     }
     
     /**
-     * calcul le nombre de case minimal séparant 2 points
+     * Calcul le nombre de case minimal séparant 2 points. 
      * @param autrepoint le second point2D séparant les deux cases 
      * @return le nombre de case entre les deux
      */
@@ -63,7 +67,7 @@ public class Point2D {
     }
     
     /**
-     *determine si l'objet o possède les mêmes valeurs que le point2D this
+     * Determine si l'objet o possède les mêmes valeurs que le point2D this. 
      * @param o un objet a comparer
      * @return true si les objets sont les mêmes; false sinon
      */

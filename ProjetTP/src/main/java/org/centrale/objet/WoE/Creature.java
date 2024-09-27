@@ -7,7 +7,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * Classe abstraite que possèdent tous les etres vivants du monde. 
  * @author Quent
  */
 public abstract class Creature implements AffichableCarte{
@@ -195,6 +195,10 @@ public abstract class Creature implements AffichableCarte{
      */
     public abstract void agir(Case[][] carte);
     
+    /**
+     * Verfie que la creature est adjacente puis l'attaque. 
+     * @param creature 
+     */
     protected void combatCorpsACorps(Creature creature){
         if (this.getPos().distance(creature.getPos()) <= 1){
             System.out.println("combat corps a corps");
@@ -203,6 +207,10 @@ public abstract class Creature implements AffichableCarte{
         }
     }
     
+    /**
+     * Attaque pouvant etre paree. 
+     * @param creature 
+     */
     protected void attaqueCorpsACorps(Creature creature){
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
@@ -222,6 +230,10 @@ public abstract class Creature implements AffichableCarte{
         }
     }
     
+    /**
+     * Attaque ne pouvant pas etre paree. 
+     * @param creature 
+     */
     protected void attaqueDistance(Creature creature){
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;

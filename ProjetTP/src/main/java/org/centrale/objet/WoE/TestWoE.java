@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Classe de test pour toutes les autres classes. 
  * @author remib
  */
 public class TestWoE {
@@ -97,9 +97,5 @@ public class TestWoE {
         System.out.println();
         mondeTestFonctionnement.robin.agir(mondeTestFonctionnement.carte);
         mondeTestFonctionnement.bugs1.affiche();
-        
-
-            
-
     }
 }

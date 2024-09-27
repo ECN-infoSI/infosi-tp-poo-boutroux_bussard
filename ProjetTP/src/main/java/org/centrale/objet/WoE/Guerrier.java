@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Le guerrier est un personnage se battant à courte portee. 
  * @author remib
  */
 public class Guerrier extends Personnage implements Combattant {
@@ -41,7 +41,11 @@ public class Guerrier extends Personnage implements Combattant {
         System.out.println("guerrier");
         super.affiche();
     }
-
+    
+    /**
+     * Le guerrier se bat des que possible. 
+     * @param carte 
+     */
     @Override
     public void agir(Case[][] carte) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);

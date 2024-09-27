@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Les monstres sont toutes les creatures non humanoides. 
  * @author Quent
  */
 public class Monstre extends Creature {
@@ -61,7 +61,7 @@ public class Monstre extends Creature {
     }
 
     /**
-     * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
+     * Permet de déterminer quelle créature est la plus proche dans le perimetre de ditance d'attaque. 
      * @param carte
      * @return 
      */

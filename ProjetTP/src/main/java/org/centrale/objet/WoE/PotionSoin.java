@@ -7,7 +7,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * Objet que les creatures peuvent ramasser puis utiliser pour regagner de la vie. 
  * @author Quent
  */
 public class PotionSoin extends Objet {
@@ -57,10 +57,14 @@ public class PotionSoin extends Objet {
     @Override public void definirSymboleCarte(){
         symboleCarte = 'S';
     }
-
+    
+    /**
+     * Augmente les points de vie de l'utilisateur. 
+     * @param utilisateur 
+     */
     @Override
-    public void utiliser(Creature creature) {
-        creature.setPtVie(creature.getPtVie()+qttSoin);
+    public void utiliser(Creature utilisateur) {
+        utilisateur.setPtVie(utilisateur.getPtVie()+qttSoin);
     }
     
 }    

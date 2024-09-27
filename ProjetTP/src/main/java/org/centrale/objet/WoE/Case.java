@@ -5,7 +5,8 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Element de base de la carte. 
+ * On peut y placer un objet et/ou une creature. 
  * @author remib
  */
 public class Case {

@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- *
+ * Le monde est la classe principale qui contient des references vers toutes les creatures s'y trouvant et les faisant agir a chaque tour. 
  * @author remib
  */
 public class World {
@@ -136,7 +136,7 @@ public class World {
     }
     
     /**
-     * affiche les coordonnées de tous les elements du monde
+     * Affiche les toutes les cases avec un caractere adapte à l'element present sur la case
      */
     public void afficheWorld(){
         for (int indiceColonne = 0; indiceColonne < tailleMonde; indiceColonne++){

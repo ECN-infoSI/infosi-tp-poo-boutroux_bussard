@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Classe static permettant d'utiliser certaines methodes a travers tous les scripts. 
  * @author remib
  */
 public final class Util {

@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Les objets peuvent se trouver sur la carte ou dans l'inventaire d'une creature(bientot implemente). 
  * @author Quent
  */
 public abstract class  Objet implements AffichableCarte{
@@ -39,6 +39,6 @@ public abstract class  Objet implements AffichableCarte{
         symboleCarte = 'O';
     }
     
-    public abstract void utiliser(Creature creature);
+    public abstract void utiliser(Creature utilisateur);
       
 }

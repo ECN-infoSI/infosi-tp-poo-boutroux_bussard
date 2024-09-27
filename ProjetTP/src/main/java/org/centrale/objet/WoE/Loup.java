@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Le loup est un monstre capable de se battre. 
  * @author remib
  */
 public class Loup extends Monstre implements Combattant {
@@ -28,7 +28,11 @@ public class Loup extends Monstre implements Combattant {
     @Override public void definirSymboleCarte(){
         symboleCarte = 'W';
     }
-
+    
+    /**
+     * Le loup attaque s'il voit une creature a sa portee. 
+     * @param carte 
+     */
     @Override
     public void agir(Case[][] carte) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);

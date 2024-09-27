@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Tous les elements affichabes sur la carte doivent definir le symbole les caracterisant. 
  * @author remib
  */
 public interface AffichableCarte {

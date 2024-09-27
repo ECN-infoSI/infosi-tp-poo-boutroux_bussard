@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *Tous les types de créature humaine du jeu, pnj ou joueur
+ * Tous les types de créature humaine du jeu, pnj ou joueur. 
  * @author Quent
  */
 public class Personnage extends Creature {
@@ -53,16 +53,12 @@ public class Personnage extends Creature {
         this.distAttMax = perso.distAttMax;
     }
     
-    @Override public void definirSymboleCarte(){
-        symboleCarte = 'T';
-    }
-    
     protected void initialiseDistAttMax(){
         this.distAttMax=1;
     }
 
     /**
-     * getter de la distance d'attaque max
+     * Getter de la distance d'attaque max
      * @return la distance d'attaque maximale du personnage
      */
     public int getDistAttMax() {
@@ -70,14 +66,19 @@ public class Personnage extends Creature {
     }
 
     /**
-     * setter de la distance d'attaque maximale
+     * Setter de la distance d'attaque maximale
      * @param distAttMax nouvelle valeur de la distance d'attaque maximale
      */
     public void setDistAttMax(int distAttMax) {
         this.distAttMax = distAttMax;
     }
+    
+    @Override public void definirSymboleCarte(){
+        symboleCarte = 'T';
+    }
+    
     /**
-     * affiche tous les composants du personnage
+     * Affiche tous les composants du personnage
      */
     @Override public void affiche(){
         super.affiche();
@@ -93,7 +94,7 @@ public class Personnage extends Creature {
     }
     
     /**
-     * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
+     * Permet de déterminer quelle créature est la plus proche dans le perimetre de ditance d'attaque. 
      * @param carte 
      */
     @Override

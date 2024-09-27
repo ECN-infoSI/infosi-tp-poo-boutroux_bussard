@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * L'epee est un objet permettant d'augmenter les degats de celui qui l'utilise. 
  * @author Quent
  */
 public class Epee extends Objet {
@@ -46,9 +46,13 @@ public class Epee extends Objet {
         Random generateurAleatoire = new Random();
         return minQttDegat+ generateurAleatoire.nextInt(maxQttDegat-minQttDegat+1);
     }
-
+    
+    /**
+     * Augmente les degats de l'utilisateur. 
+     * @param utilisateur 
+     */
     @Override
-    public void utiliser(Creature creature) {
-        creature.setDegAtt(creature.getDegAtt()+degAtt);
+    public void utiliser(Creature utilisateur) {
+        utilisateur.setDegAtt(utilisateur.getDegAtt()+degAtt);
     }
 }

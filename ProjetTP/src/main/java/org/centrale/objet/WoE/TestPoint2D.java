@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Classe de test pour Point2D. 
  * @author remib
  */
 public class TestPoint2D {

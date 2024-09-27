@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * L'archer est un personnage se battant à longue portee. 
  * @author Quent
  */
 public class Archer extends Personnage implements Combattant {
@@ -56,7 +56,11 @@ public class Archer extends Personnage implements Combattant {
         super.affiche();
         System.out.println("nbr de fleches  : "+nbFleche);
     }
-
+    
+    /**
+     * L'archer attaque s'il voit une creature a sa portee. 
+     * @param carte 
+     */
     @Override
     public void agir(Case[][] carte) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
@@ -66,7 +70,7 @@ public class Archer extends Personnage implements Combattant {
     }
     
     /**
-     * l'archer se bat au corps a corps (avec un couteau par exemple)
+     * L'archer se bat au corps a corps (avec un couteau par exemple)
      * et il se bat evidemment a distance
      * @param creature 
      */
