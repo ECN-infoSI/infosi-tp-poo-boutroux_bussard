@@ -104,8 +104,10 @@ public class World {
         Point2D positionBugs =new Point2D(2,4);
         robin.setPos(positionrobin);
         bugs1.setPos(positionBugs);
-        carte[2][2]=new Case(robin);
-        carte[2][4]=new Case(bugs1);
+        
+        for (Creature creature : creatures){
+            carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
+        }
     }
     
     
@@ -122,7 +124,9 @@ public class World {
     }
     
     /**
-     * Chaque creature bouge puis attaque
+     * Chaque creature bouge puis agit, 
+     * l'action va dépendre de la créature appelée.
+     * Certaines crétures ne font rien d'autre que se déplacer. 
      */
     public void tourDeJeu(){
         for (Creature creature : creatures){
