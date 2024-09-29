@@ -132,10 +132,10 @@ public abstract class Creature implements AffichableCarte{
         int oldX=this.pos.getX();
         int oldY=this.pos.getY();
         
-//        int avanceX = generateurAleatoire.nextInt(3)-1;
-//        int avanceY = generateurAleatoire.nextInt(3)-1;
-       int avanceX=0;
-       int avanceY=1;
+        int avanceX = generateurAleatoire.nextInt(3)-1;
+        int avanceY = generateurAleatoire.nextInt(3)-1;
+//       int avanceX=0;
+//       int avanceY=1;
        
 //        System.out.println();
 //        System.out.println("avance random : "+avanceX+";"+avanceY);
