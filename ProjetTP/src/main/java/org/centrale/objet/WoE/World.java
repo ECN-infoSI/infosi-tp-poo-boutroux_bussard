@@ -27,7 +27,7 @@ public class World {
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
-    public final int tailleMonde = 5000;
+    public final int tailleMonde = 5;
     
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
     
@@ -57,27 +57,27 @@ public class World {
           Random generateurAleatoire = new Random();
           
           int nbrArcher=generateurAleatoire.nextInt(nbrMaxParElement);
-          System.out.println("Nombre d'Archer -1 : "+ nbrArcher);
+          System.out.println("Nombre d'Archer : "+ (nbrArcher+1));
           for(int i=0;i<=nbrArcher;i++){
               creatures.add(new Archer());
           }
           int nbrGuerrier=generateurAleatoire.nextInt(nbrMaxParElement);
-          System.out.println("Nombre de Guerrier -1 : "+ nbrGuerrier);
+          System.out.println("Nombre de Guerrier : "+ (nbrGuerrier+1));
           for(int i=0;i<=nbrGuerrier;i++){
               creatures.add(new Guerrier());
           }
           int nbrPaysan=generateurAleatoire.nextInt(nbrMaxParElement);
-          System.out.println("Nombre de paysan -1 : "+ nbrPaysan);
+          System.out.println("Nombre de paysan : "+ (nbrPaysan+1));
           for(int i=0;i<=nbrPaysan;i++){
               creatures.add(new Paysan());
           }
           int nbrLoup=generateurAleatoire.nextInt(nbrMaxParElement);
-          System.out.println("Nombre de loup -1 : "+ nbrLoup);
+          System.out.println("Nombre de loup : "+ (nbrLoup+1));
           for(int i=0;i<=nbrLoup;i++){
               creatures.add(new Loup());
           }
           int nbrLapin=generateurAleatoire.nextInt(nbrMaxParElement);
-          System.out.println("Nombre de Lapin -1 : "+ nbrLapin);
+          System.out.println("Nombre de Lapin : "+ (nbrLapin+1));
           for(int i=0;i<=nbrLapin;i++){
               creatures.add(new Lapin());
           }
@@ -130,7 +130,7 @@ public class World {
         
         int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/2;
         int nbrObjet=generateurAleatoire.nextInt(nbrEntiteMaxObjet);
-        System.out.println("Nombre d'objet -1 : "+ nbrObjet );
+        System.out.println("Nombre d'objet : "+ (nbrObjet+1) );
         for(int i=0;i<=nbrObjet;i++){
             testPosDifferents=false;
             
@@ -233,7 +233,7 @@ public class World {
     }
     
     /**
-     * Calcule les pv de toutes les créature du monde et affiche leur somme
+     * Calcule les pv de toutes les créature du monde et affiche leur somme en utilisant l'iterateur
      */
     public void afficherNbrPvTotIterateur(){
         int somme=0;
@@ -242,6 +242,10 @@ public class World {
         }
         System.out.println("Le nombre de point de vie total de l'ensemble des creatures est :"+ somme);
     }
+    
+    /**
+     * Calcule les pv de toutes les créature du monde et affiche leur somme en utilisant la taille de la liste
+     */
     public void afficherNbrPvTotTaille(){
             int somme=0;
             for(int i=0;i<creatures.size();i++){
