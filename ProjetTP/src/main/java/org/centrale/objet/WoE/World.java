@@ -12,19 +12,19 @@ import java.util.ArrayList;
  */
 public class World {
     /** un archer du monde */
-    public Archer robin; 
-    /** un archer du monde */
-    public Archer guillaumeT; 
-    /** un paysan du monde */
-    public Paysan peon; 
-    /** un lapin du monde */
-    public Lapin bugs1; 
-    /** un lapin du monde */
-    public Lapin bugs2;
-    /** un guerrier du monde */
-    public Guerrier grosBill;
-    /** un loup du monde */
-    public Loup wolfie;
+//    public Archer robin; 
+//    /** un archer du monde */
+//    public Archer guillaumeT; 
+//    /** un paysan du monde */
+//    public Paysan peon; 
+//    /** un lapin du monde */
+//    public Lapin bugs1; 
+//    /** un lapin du monde */
+//    public Lapin bugs2;
+//    /** un guerrier du monde */
+//    public Guerrier grosBill;
+//    /** un loup du monde */
+//    public Loup wolfie;
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
@@ -33,30 +33,63 @@ public class World {
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
     
     
-    /** constructeur sans parametre*/
+    /** constructeur sans parametre
+     * choisi aléatoirement un nombre de chaque type d'entité
+     */
     public World() {
         this.creatures = new ArrayList<Creature>();
-        this.robin=new Archer();
-        creatures.add(robin);
-        this.guillaumeT = new Archer();
-        creatures.add(guillaumeT);
-        this.peon=new Paysan();
-        creatures.add(peon);
-        this.bugs1=new Lapin();
-        creatures.add(bugs1);
-        this.bugs2=new Lapin();
-        creatures.add(bugs2);
-        this.grosBill=new Guerrier();
-        creatures.add(grosBill);
-        this.wolfie=new Loup();
-        creatures.add(wolfie);
+//        this.robin=new Archer();
+//        creatures.add(robin);
+//        this.guillaumeT = new Archer();
+//        creatures.add(guillaumeT);
+//        this.peon=new Paysan();
+//        creatures.add(peon);
+//        this.bugs1=new Lapin();
+//        creatures.add(bugs1);
+//        this.bugs2=new Lapin();
+//        creatures.add(bugs2);
+//        this.grosBill=new Guerrier();
+//        creatures.add(grosBill);
+//        this.wolfie=new Loup();
+//        creatures.add(wolfie);
+          //5 est le nombre d'entité différentes (Archer,Guerrier,Paysan,lapin, Loup)
+          int nbrMaxParElement=tailleMonde*tailleMonde/5;
+          Random generateurAleatoire = new Random();
+          
+          int nbrArcher=generateurAleatoire.nextInt(nbrMaxParElement);
+          System.out.println("Nombre d'Archer -1 : "+ nbrArcher);
+          for(int i=0;i<=nbrArcher;i++){
+              creatures.add(new Archer());
+          }
+          int nbrGuerrier=generateurAleatoire.nextInt(nbrMaxParElement);
+          System.out.println("Nombre de Guerrier -1 : "+ nbrGuerrier);
+          for(int i=0;i<=nbrGuerrier;i++){
+              creatures.add(new Guerrier());
+          }
+          int nbrPaysan=generateurAleatoire.nextInt(nbrMaxParElement);
+          System.out.println("Nombre de paysan -1 : "+ nbrPaysan);
+          for(int i=0;i<=nbrPaysan;i++){
+              creatures.add(new Paysan());
+          }
+          int nbrLoup=generateurAleatoire.nextInt(nbrMaxParElement);
+          System.out.println("Nombre de loup -1 : "+ nbrLoup);
+          for(int i=0;i<=nbrLoup;i++){
+              creatures.add(new Loup());
+          }
+          int nbrLapin=generateurAleatoire.nextInt(nbrMaxParElement);
+          System.out.println("Nombre de Lapin -1 : "+ nbrLapin);
+          for(int i=0;i<=nbrLapin;i++){
+              creatures.add(new Lapin());
+          }
     }
     
     /**
-     * crée un monde aléatoire contenant des éléments donnés (2 lapins, 1 archer et 1 paysans),
+     * crée un monde aléatoire contenant des éléments donnés,
      * fixe les positions des elements et s'assure qu'il n'y a pas plusieurs éléments sur la même case
+     * créé des objets et les pose sur des cases vide du monde
      */
     public void creerMondeAlea(){
+        //positionner les creatures dans le monde
         int nbrElements = creatures.size();
         Random generateurAleatoire = new Random();
         Point2D[] positions = new Point2D[nbrElements];
@@ -83,6 +116,32 @@ public class World {
         for (Creature creature : creatures){
             carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
         }
+        
+        int NbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/2;
+        int nbrObjet=generateurAleatoire.nextInt(NbrEntiteMaxObjet);
+        for(int i=0;i<nbrObjet;i++){
+            testPosDifferents=false;
+            
+            while(testPosDifferents==false){
+                int x=generateurAleatoire.nextInt(tailleMonde);
+                int y=generateurAleatoire.nextInt(tailleMonde);
+                if ( carte[x][y]==null){
+                    int typeAleatoire = generateurAleatoire.nextInt(2);
+                    switch(typeAleatoire){
+                        case 0:
+                           carte[x][y]=new Case(new PotionSoin());
+                           break;
+                        case 1:
+                           carte[x][y]=new Case(new Epee());
+                           break;
+                        default:
+                            System.out.println("Erreur: création objet non existant");
+                            break;    
+                    }
+                    testPosDifferents=true;
+                }
+            }
+        }     
     }
     
     
@@ -93,17 +152,17 @@ public class World {
     public void creerMondeSpecifique(){
         //On choisi les personnages sur la carte
         creatures.clear();
-        creatures.add(robin);
-        creatures.add(bugs1);
+//        creatures.add(robin);
+//        creatures.add(bugs1);
         
         //On choisi les diférents objets sur la carte
         //new Epee excalibur =new Epee();
         
         //On choisi les positions des éléments
-        Point2D positionrobin =new Point2D(2,2);
-        Point2D positionBugs =new Point2D(2,4);
-        robin.setPos(positionrobin);
-        bugs1.setPos(positionBugs);
+//        Point2D positionrobin =new Point2D(2,2);
+//        Point2D positionBugs =new Point2D(2,4);
+//        robin.setPos(positionrobin);
+//        bugs1.setPos(positionBugs);
         
         for (Creature creature : creatures){
             carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
