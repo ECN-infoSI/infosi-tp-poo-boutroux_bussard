@@ -14,9 +14,9 @@ public class TestWoE {
      * @param args les arguments de la methode
      */
     public static void main(String[] args){
-        World mondeTest=new World();
-        mondeTest.creerMondeAlea();
-        mondeTest.afficheWorld();
+//        World mondeTest=new World();
+//        mondeTest.creerMondeAlea();
+//        mondeTest.afficheWorld();
 //        mondeTest.bugs1.affiche();
 //        mondeTest.robin.affiche();
 //        mondeTest.peon.affiche();
@@ -97,5 +97,15 @@ public class TestWoE {
 //        System.out.println();
 //        mondeTestFonctionnement.robin.agir(mondeTestFonctionnement.carte);
 //        mondeTestFonctionnement.bugs1.affiche();
+        
+        World monde1=new World(100000);
+        monde1.creerMondeAlea();
+        long hDebut=System.nanoTime();
+        monde1.afficherNbrPvTotIterateur();
+        long hFin=System.nanoTime();
+        System.out.println("duree de l'operation :"+ (hFin-hDebut));
+                
+
+            
     }
 }

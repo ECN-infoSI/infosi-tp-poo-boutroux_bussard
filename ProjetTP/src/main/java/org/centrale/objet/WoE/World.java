@@ -5,7 +5,6 @@
 package org.centrale.objet.WoE;
 import java.util.Random;
 import java.util.ArrayList;
-
 /**
  * Le monde est la classe principale qui contient des references vers toutes les creatures s'y trouvant et les faisant agir a chaque tour. 
  * @author remib
@@ -28,7 +27,7 @@ public class World {
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
     /** valeur de la longeur d'un coté du monde carré */
-    public final int tailleMonde = 10;
+    public final int tailleMonde = 5000;
     
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
     
@@ -38,6 +37,7 @@ public class World {
      */
     public World() {
         this.creatures = new ArrayList<Creature>();
+        
 //        this.robin=new Archer();
 //        creatures.add(robin);
 //        this.guillaumeT = new Archer();
@@ -84,42 +84,54 @@ public class World {
     }
     
     /**
+     * constructeur d'un monde ne contenant que des archers
+     * utilisé pour créer un monde dont on connait le nombre de créature
+     * @param nbrPersonnage nombre d'archer dans le monde
+     */
+    public World(int nbrPersonnage){
+        if (nbrPersonnage>tailleMonde*tailleMonde){
+            System.out.println("Trop de personnage, monde trop petit");
+            nbrPersonnage=0;
+        }
+        this.creatures = new ArrayList<Creature>();
+        for(int i=0;i<nbrPersonnage;i++){
+              creatures.add(new Archer());
+          }
+    }
+            
+            
+            
+            
+            
+            
+    /**
      * crée un monde aléatoire contenant des éléments donnés,
      * fixe les positions des elements et s'assure qu'il n'y a pas plusieurs éléments sur la même case
      * créé des objets et les pose sur des cases vide du monde
      */
     public void creerMondeAlea(){
         //positionner les creatures dans le monde
-        int nbrElements = creatures.size();
         Random generateurAleatoire = new Random();
-        Point2D[] positions = new Point2D[nbrElements];
         boolean testPosDifferents;
         
-        for(int i=0;i<nbrElements;i++){
+        for(Creature creature :creatures){
             testPosDifferents=false;
             
             while(testPosDifferents==false){
-                positions[i]=generePoint2DAleatoire(generateurAleatoire);
-                testPosDifferents=true;
-                
-                for(int j=0; j<i;j++){
-                    if (positions[i].equals(positions[j])){
-                        testPosDifferents=false;
-                    }
-                }
+                int creatureX=generateurAleatoire.nextInt(tailleMonde);
+                int creatureY=generateurAleatoire.nextInt(tailleMonde);
+                if (carte[creatureX][creatureY]==null){
+                    testPosDifferents=true;
+                    creature.setPos(new Point2D(creatureX, creatureY));
+                    carte[creatureX][creatureY]= new Case(creature);
+                } 
             }
         }
         
-        for (int creatureIndex = 0; creatureIndex < nbrElements; creatureIndex++){
-            creatures.get(creatureIndex).setPos(positions[creatureIndex]);
-        }
-        for (Creature creature : creatures){
-            carte[creature.getPos().getX()][creature.getPos().getY()] = new Case(creature);
-        }
-        
-        int NbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/2;
-        int nbrObjet=generateurAleatoire.nextInt(NbrEntiteMaxObjet);
-        for(int i=0;i<nbrObjet;i++){
+        int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/2;
+        int nbrObjet=generateurAleatoire.nextInt(nbrEntiteMaxObjet);
+        System.out.println("Nombre d'objet -1 : "+ nbrObjet );
+        for(int i=0;i<=nbrObjet;i++){
             testPosDifferents=false;
             
             while(testPosDifferents==false){
@@ -218,5 +230,23 @@ public class World {
             }
         }
         System.out.println();
+    }
+    
+    /**
+     * Calcule les pv de toutes les créature du monde et affiche leur somme
+     */
+    public void afficherNbrPvTotIterateur(){
+        int somme=0;
+        for(Creature creature:creatures){
+            somme+=creature.getPtVie();
+        }
+        System.out.println("Le nombre de point de vie total de l'ensemble des creatures est :"+ somme);
+    }
+    public void afficherNbrPvTotTaille(){
+            int somme=0;
+            for(int i=0;i<creatures.size();i++){
+                  somme+=creatures.get(i).getPtVie();
+            }
+            System.out.println("Le nombre de point de vie total de l'ensemble des creatures est :"+ somme);
     }
 }
