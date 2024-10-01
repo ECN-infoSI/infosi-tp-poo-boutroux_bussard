@@ -29,7 +29,9 @@ public class Case {
     public Case(){
         
     }
-    
+    /**
+     * Remets les attributs creature et objet de la case à null
+     */
     public void viderCase(){
         this.creature = null;
         this.objet = null;

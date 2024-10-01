@@ -46,10 +46,18 @@ public class Point2D {
         this.y=y;
     } 
     
+    /**
+     * Affiche les deux coordonées de la position dans la console
+     */
     public void affiche(){
         System.out.println("["+x+";"+y+"]");
     }
     
+    /**
+     * modifie la position en lui additionnant les déplacements
+     * @param dx déplacement selon x
+     * @param dy dplacement selon y
+     */
     public void translate(int dx, int dy){
         this.x +=dx;
         this.y +=dy;
