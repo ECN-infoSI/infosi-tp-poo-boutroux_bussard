@@ -10,7 +10,7 @@ import java.util.Random;
  * Classe abstraite que possèdent tous les etres vivants du monde. 
  * @author Quent
  */
-public abstract class Creature implements AffichableCarte{
+public abstract class Creature implements AffichableCarte, Deplacable{
     private int ptVie;
     private int degAtt;
     private int ptPar;
@@ -125,7 +125,7 @@ public abstract class Creature implements AffichableCarte{
      * si la creature veut se deplacer sur une case hors de la carte elle fait le mouvement opposé
      * @param carte le tableau représentant contenant les differents objets du monde et leur positions 
      */
-    public void deplace(Case[][] carte){
+    public void deplacer(Case[][] carte){
         
         Random generateurAleatoire = new Random();
         

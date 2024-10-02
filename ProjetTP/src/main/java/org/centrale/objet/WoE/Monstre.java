@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  * Les monstres sont toutes les creatures non humanoides. 
  * @author Quent
  */
-public class Monstre extends Creature {
+public abstract class Monstre extends Creature {
     
     /**constructeur sans parametre*/
     public Monstre() {

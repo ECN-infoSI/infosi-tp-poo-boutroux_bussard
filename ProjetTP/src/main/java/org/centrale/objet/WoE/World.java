@@ -201,7 +201,7 @@ public class World {
      */
     public void tourDeJeu(){
         for (Creature creature : creatures){
-            creature.deplace(carte);
+            creature.deplacer(carte);
             creature.agir(carte);
         }
     }

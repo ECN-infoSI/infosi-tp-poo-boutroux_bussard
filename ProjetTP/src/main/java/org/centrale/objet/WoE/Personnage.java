@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  * Tous les types de créature humaine du jeu, pnj ou joueur. 
  * @author Quent
  */
-public class Personnage extends Creature {
+public abstract class Personnage extends Creature {
     /** distance d'attaque maximale*/
     public int distAttMax; 
 
