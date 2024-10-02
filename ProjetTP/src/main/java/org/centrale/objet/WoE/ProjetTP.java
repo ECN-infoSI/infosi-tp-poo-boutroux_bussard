@@ -16,6 +16,7 @@ public class ProjetTP {
         world.afficheWorld();
         for (int i = 0; i < 10; i++){
             world.tourDeJeu();
+            world.afficheWorld();
         }
     }
 }

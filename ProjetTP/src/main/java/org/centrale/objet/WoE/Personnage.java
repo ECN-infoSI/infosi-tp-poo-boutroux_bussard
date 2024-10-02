@@ -106,7 +106,10 @@ public abstract class Personnage extends Creature {
             for (int i=k ; i >= -k; i--){
                 if (i == k || i == -k){//si on se trouve à une des extrémités, on parcourt toute la colonne
                     for (int j=-k ; j <= k; j++){
-                        if(!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte) || carte[posX+i][posY+j] == null){
+                        if(!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte)){
+                            continue;
+                        }
+                        if (carte[posX+i][posY+j] == null){
                             continue;
                         }
                         Case caseATester = carte[posX+i][posY+j];
@@ -117,14 +120,20 @@ public abstract class Personnage extends Creature {
                     }
                 }
                 else {
-                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY+k), carte) && carte[posX+i][posY+k] != null){
+                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY+k), carte)){
+                        if (carte[posX+i][posY+k] == null){
+                            continue;
+                        }
                         Case caseATester = carte[posX+i][posY+k];
                         if (caseATester.creature == null){
                             continue;
                         }
                         return caseATester.creature;
                     }
-                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY-k), carte) && carte[posX+i][posY-k] != null){
+                    if (Util.verifierSiPositionExiste(new Point2D(posX+i,posY-k), carte)){
+                        if (carte[posX+i][posY-k] == null){
+                            continue;
+                        }
                         Case caseATester = carte[posX+i][posY-k];
                         if (caseATester.creature == null){
                             continue;

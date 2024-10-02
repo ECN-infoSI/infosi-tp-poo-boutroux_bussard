@@ -72,7 +72,10 @@ public abstract class Monstre extends Creature {
         
         for (int i=1 ; i >= -1; i--){
             for (int j=-1 ; j <= 1; j++){
-                if (!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte) || carte[posX+i][posY+j] == null || (i == 0 && j == 0)){
+                if (!Util.verifierSiPositionExiste(new Point2D(posX+i,posY+j), carte) || (i == 0 && j == 0)){
+                    continue;
+                }
+                if (carte[posX+i][posY+j] == null){
                     continue;
                 }
                 Case caseATester = carte[posX+i][posY+j];
