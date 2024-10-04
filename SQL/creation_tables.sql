@@ -1,4 +1,4 @@
-DROP TABLE creature,humanoide,type_monstre,type_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,type_humanoide;
+DROP TABLE creature,humanoide,nomenclature_monstre,nomenclature_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,nomenclature_humanoide;
 
 
 CREATE TABLE public.nomenclature_objet (
