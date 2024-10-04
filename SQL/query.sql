@@ -39,3 +39,14 @@ INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom)
 VALUES ('m1','p1','2024-04-10 00:00:00','Sauvegarde_1'),('m2','p1','2024-04-10 03:00:00','Sauvegarde_2'),('m5','p3','2024-04-10 00:00:00','Sauvegarde_1');
 
 --UPDATE partie SET date_derniere_sauvegarde_rapide='2024-04-01 00'
+INSERT INTO creature (id_creature,point_de_vie,est_le_joueur,position_x,position_y,id_monde,id_humanoide,id_monstre,id_inventaire) VALUES 
+-- monde 1
+('c1',100,FALSE,10,10,'m1','g1',NULL,NULL), ('c2',100,FALSE,10,10,'m1',NULL,'m1',NULL), ('c3',100,FALSE,10,10,'m1',NULL,'m2',NULL), 
+-- monde 2
+('c4',100,FALSE,10,10,'m2',NULL,'m3',NULL), ('c5',100,TRUE,10,10,'m2','g2',NULL,'i2'), 
+-- monde 3
+('c6',100,FALSE,10,10,'m3','a1',NULL,NULL), ('c7',100,FALSE,10,10,'m3','g3',NULL,NULL), ('c8',100,FALSE,10,10,'m3','g4',NULL,NULL), ('c9',100,FALSE,10,10,'m3',NULL,'m4',NULL), 
+--monde 4
+('c10',100,FALSE,10,10,'m4',NULL,'m5',NULL), ('c11',100,FALSE,10,10,'m4',NULL,'m6',NULL), ('c12',100,FALSE,10,10,'m4',NULL,'m7',NULL), ('c13',100,FALSE,10,10,'m4','a2',NULL,NULL), ('c14',100,FALSE,10,10,'m4','g5',NULL,NULL),
+-- monde 5
+('c15',100,FALSE,10,10,'m5','g6',NULL,'i3'), ('c16',100,FALSE,10,10,'m5',NULL,'m8','i4');
