@@ -35,4 +35,7 @@ INSERT INTO monstre (id_monstre,page_esquive,page_attaque_arme_naturelle,pt_att_
 VALUES ('m1',20,70,8,'Loup'),('m2',20,70,8,'Loup'),('m3',8,15,2,'Lapin'),('m4',8,15,2,'Lapin'),
 ('m5',20,70,8,'Loup'),('m6',20,70,8,'Loup'),('m7',20,70,8,'Loup'),('m8',8,15,2,'Lapin');
 
+INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom) 
+VALUES ('m1','p1','2024-04-10 00:00:00','Sauvegarde_1'),('m2','p1','2024-04-10 03:00:00','Sauvegarde_2'),('m5','p3','2024-04-10 00:00:00','Sauvegarde_1');
 
+--UPDATE partie SET date_derniere_sauvegarde_rapide='2024-04-01 00'

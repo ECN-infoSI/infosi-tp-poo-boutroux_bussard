@@ -92,7 +92,7 @@ CREATE TABLE public.partie (
                 id_partie VARCHAR(40) NOT NULL,
                 id_monde_sauvegarde_rapide VARCHAR(50),
                 id_monde_initial VARCHAR(50) NOT NULL,
-                date_derniere_sauvegarde_rapide DATE,
+                date_derniere_sauvegarde_rapide TIMESTAMP,
                 nom_de_code VARCHAR(40) NOT NULL,
                 nom VARCHAR(30) NOT NULL,
                 CONSTRAINT pk_partie PRIMARY KEY (id_partie)
@@ -102,7 +102,7 @@ CREATE TABLE public.partie (
 CREATE TABLE public.sauvegarde (
                 id_monde VARCHAR(50) NOT NULL,
                 id_partie VARCHAR(40) NOT NULL,
-                date DATE NOT NULL,
+                date_sauvegarde TIMESTAMP NOT NULL,
                 nom VARCHAR(40) NOT NULL,
                 CONSTRAINT pk_sauvegarde PRIMARY KEY (id_monde, id_partie)
 );
