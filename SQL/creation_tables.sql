@@ -1,3 +1,4 @@
+DROP TABLE creature,humanoide,type_monstre,type_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,type_humanoide;
 
 CREATE TABLE public.type_objet (
                 type_objet VARCHAR(15) NOT NULL,
