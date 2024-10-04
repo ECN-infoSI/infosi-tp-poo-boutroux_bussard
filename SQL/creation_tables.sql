@@ -1,18 +1,19 @@
 DROP TABLE creature,humanoide,type_monstre,type_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,type_humanoide;
 
-CREATE TABLE public.type_objet (
+
+CREATE TABLE public.nomenclature_objet (
                 type_objet VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_objet PRIMARY KEY (type_objet)
 );
 
 
-CREATE TABLE public.type_monstre (
+CREATE TABLE public.nomenclature_monstre (
                 type_monstre VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_monstre PRIMARY KEY (type_monstre)
 );
 
 
-CREATE TABLE public.type_humanoide (
+CREATE TABLE public.nomenclature_humanoide (
                 type_humanoide VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_humanoide PRIMARY KEY (type_humanoide)
 );
@@ -109,21 +110,21 @@ CREATE TABLE public.sauvegarde (
 
 ALTER TABLE public.objet ADD CONSTRAINT type_objet_objet_fk
 FOREIGN KEY (type_objet)
-REFERENCES public.type_objet (type_objet)
+REFERENCES public.nomenclature_objet (type_objet)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.monstre ADD CONSTRAINT type_monstre_monstre_fk
 FOREIGN KEY (type_monstre)
-REFERENCES public.type_monstre (type_monstre)
+REFERENCES public.nomenclature_monstre (type_monstre)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.humanoide ADD CONSTRAINT type_humanoide_humanoide_fk
 FOREIGN KEY (type_humanoide)
-REFERENCES public.type_humanoide (type_humanoide)
+REFERENCES public.nomenclature_humanoide (type_humanoide)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
