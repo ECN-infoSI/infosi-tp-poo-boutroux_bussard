@@ -20,11 +20,13 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     protected char symboleCarte;  
 
     public Creature() {
-        this.ptVie = 100;
-        this.degAtt = 10;
-        this.ptPar = 5;
-        this.pageAtt = 100;
-        this.pagePar = 100;
+        Random generateurAleatoire = new Random();
+        
+        this.ptVie = generateurAleatoire.nextInt(21);
+        this.degAtt = generateurAleatoire.nextInt(3);
+        this.ptPar = generateurAleatoire.nextInt(3);
+        this.pageAtt = generateurAleatoire.nextInt(6);
+        this.pagePar = generateurAleatoire.nextInt(11);
         this.pos = new Point2D();
         definirSymboleCarte();
     }

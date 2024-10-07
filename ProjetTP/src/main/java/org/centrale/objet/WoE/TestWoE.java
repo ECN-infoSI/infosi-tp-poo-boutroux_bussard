@@ -17,7 +17,8 @@ public class TestWoE {
         World mondeTest=new World();
         mondeTest.creerMondeAlea();
         mondeTest.afficheWorld();
-        mondeTest.afficherNbrPvTotTaille();
+        
+//
 //        mondeTest.bugs1.affiche();
 //        mondeTest.robin.affiche();
 //        mondeTest.peon.affiche();

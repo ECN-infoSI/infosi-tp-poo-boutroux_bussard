@@ -11,10 +11,21 @@ package org.centrale.objet.WoE;
 public class Loup extends Monstre implements Combattant {
 
     public Loup() {
+        super();
+        this.setPtVie(this.getPtVie()+40);
+        this.setDegAtt(this.getDegAtt()+9);
+        this.setPtPar(this.getPtPar()+2);
+        this.setPageAtt(this.getPageAtt()+70);
+        this.setPagePar((this.getPagePar())+10);
     }
 
     public Loup(Point2D pos) {
         super(pos);
+        this.setPtVie(this.getPtVie()+40);
+        this.setDegAtt(this.getDegAtt()+9);
+        this.setPtPar(this.getPtPar()+2);
+        this.setPageAtt(this.getPageAtt()+70);
+        this.setPagePar((this.getPagePar())+10);
     }
 
     public Loup(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {

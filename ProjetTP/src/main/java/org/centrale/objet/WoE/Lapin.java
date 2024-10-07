@@ -12,10 +12,20 @@ public class Lapin extends Monstre {
 
     public Lapin() {
         super();
+        this.setPtVie(this.getPtVie()+1);
+        this.setDegAtt(this.getDegAtt()+1);
+        this.setPtPar(this.getPtPar()+1);
+        this.setPageAtt(this.getPageAtt()+45);
+        this.setPagePar((this.getPagePar())/2);
     }
 
     public Lapin(Point2D pos) {
         super(pos);
+        this.setPtVie(this.getPtVie()+1);
+        this.setDegAtt(this.getDegAtt()+1);
+        this.setPtPar(this.getPtPar()+1);
+        this.setPageAtt(this.getPageAtt()+45);
+        this.setPagePar((this.getPagePar())/2);
     }
 
     public Lapin(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {

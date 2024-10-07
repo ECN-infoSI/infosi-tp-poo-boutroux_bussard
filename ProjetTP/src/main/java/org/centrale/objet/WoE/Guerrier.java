@@ -16,10 +16,20 @@ public class Guerrier extends Personnage implements Combattant {
 
     public Guerrier() {
         super();
+        this.setPtVie(this.getPtVie()+80);
+        this.setDegAtt(this.getDegAtt()+10);
+        this.setPtPar(this.getPtPar()+5);
+        this.setPageAtt(this.getPageAtt()+70);
+        this.setPagePar((this.getPagePar())+20);
     }
 
     public Guerrier(Point2D pos) {
         super(pos);
+        this.setPtVie(this.getPtVie()+80);
+        this.setDegAtt(this.getDegAtt()+10);
+        this.setPtPar(this.getPtPar()+5);
+        this.setPageAtt(this.getPageAtt()+70);
+        this.setPagePar((this.getPagePar())+20);
     }
 
     public Guerrier(Guerrier guerrier) {

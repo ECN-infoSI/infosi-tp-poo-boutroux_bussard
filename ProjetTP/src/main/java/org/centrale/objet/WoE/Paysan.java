@@ -15,10 +15,21 @@ public class Paysan extends Personnage {
     }
 
     public Paysan() {
+        super();
+        this.setPtVie(this.getPtVie()+60);
+        this.setDegAtt(this.getDegAtt()+4);
+        this.setPtPar(this.getPtPar()+1);
+        this.setPageAtt(this.getPageAtt()+50);
+        this.setPagePar((this.getPagePar())+10);
     }
 
     public Paysan(Point2D pos) {
         super(pos);
+        this.setPtVie(this.getPtVie()+60);
+        this.setDegAtt(this.getDegAtt()+4);
+        this.setPtPar(this.getPtPar()+1);
+        this.setPageAtt(this.getPageAtt()+50);
+        this.setPagePar((this.getPagePar())+10);
     }
 
     public Paysan(Paysan paysan) {

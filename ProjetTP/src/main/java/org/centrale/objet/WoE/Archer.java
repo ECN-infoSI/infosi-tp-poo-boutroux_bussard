@@ -4,6 +4,8 @@
  */
 package org.centrale.objet.WoE;
 
+import java.util.Random;
+
 /**
  * L'archer est un personnage se battant à longue portee. 
  * @author Quent
@@ -18,11 +20,21 @@ public class Archer extends Personnage implements Combattant {
 
     public Archer() {
         super();
+        this.setPtVie(this.getPtVie()+50);
+        this.setDegAtt(this.getDegAtt()+8);
+        this.setPtPar(this.getPtPar()+3);
+        this.setPageAtt(this.getPageAtt()+75);
+        this.setPagePar((this.getPagePar())+10);
         this.initialisefleche();
     }
 
     public Archer(Point2D pos) {
         super(pos);
+        this.setPtVie(this.getPtVie()+50);
+        this.setDegAtt(this.getDegAtt()+8);
+        this.setPtPar(this.getPtPar()+3);
+        this.setPageAtt(this.getPageAtt()+75);
+        this.setPagePar((this.getPagePar())+10);
         this.initialisefleche();
     }
 
@@ -32,7 +44,7 @@ public class Archer extends Personnage implements Combattant {
     }
     
     @Override protected void initialiseDistAttMax(){
-        this.distAttMax = 10;
+        this.distAttMax = 3;
     }
     
     @Override public void definirSymboleCarte(){
@@ -40,7 +52,8 @@ public class Archer extends Personnage implements Combattant {
     }
     
     private void initialisefleche(){
-        this.nbFleche=5;
+        Random generateurAleatoire = new Random();
+        this.nbFleche=generateurAleatoire.nextInt(25)+1;
     }
     
     public void setNbFleche(int nbFleche) {
