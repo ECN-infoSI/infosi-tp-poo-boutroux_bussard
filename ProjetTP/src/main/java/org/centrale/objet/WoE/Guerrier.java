@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  * Le guerrier est un personnage se battant à courte portee. 
  * @author remib
  */
-public class Guerrier extends Personnage implements Combattant {
+public class Guerrier extends Personnage implements Combattant, Jouable {
 
     public Guerrier(int distAttMax, int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
         super(distAttMax, ptVie, degAtt, ptPar, pageAtt, pagePar, pos);

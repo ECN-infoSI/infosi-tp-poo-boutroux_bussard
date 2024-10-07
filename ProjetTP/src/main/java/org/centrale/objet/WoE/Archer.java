@@ -10,7 +10,7 @@ import java.util.Random;
  * L'archer est un personnage se battant à longue portee. 
  * @author Quent
  */
-public class Archer extends Personnage implements Combattant {
+public class Archer extends Personnage implements Combattant, Jouable {
     private int nbFleche;
 
     public Archer(int distAttMax, int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos,int nbFleche) {

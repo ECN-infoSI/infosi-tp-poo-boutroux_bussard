@@ -9,12 +9,14 @@ package org.centrale.objet.WoE;
  * @author remib
  */
 public class Joueur {
-    public Personnage perso; 
+    public Personnage personnageJoue; 
+    public String nomPersonnage;
 
     public Joueur() {
     }
 
-    public Joueur(Personnage perso) {
-        this.perso = perso;
+    public Joueur(Personnage perso, String nom) {
+        this.personnageJoue = perso;
+        this.nomPersonnage = nom;
     }
 }

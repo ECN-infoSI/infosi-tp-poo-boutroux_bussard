@@ -5,6 +5,8 @@
 package org.centrale.objet.WoE;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 /**
  * Le monde est la classe principale qui contient des references vers toutes les creatures s'y trouvant et les faisant agir a chaque tour. 
  * @author remib
@@ -230,6 +232,25 @@ public class World {
             }
         }
         System.out.println();
+    }
+    
+    
+    public void creerJoueur(){
+        System.out.println("Choisissez une classe a jouer parmi la liste suivante : ");
+        List<Class<? extends Jouable>> classesChoisissables = new ArrayList<Class<? extends Jouable>>();
+        int i = 1;
+        for (Class classeAChoisir : classesChoisissables){
+            System.out.println(i + " : " + classeAChoisir.getName());
+            i++;
+        }
+//        Scanner scanner = new Scanner(System.in);
+//        int choix = scanner.nextInt();
+//        while (choix <= 0 || choix > i){
+//            System.out.println("Donnez un nomber entier entre 1 et " + i + " svp. ");
+//            choix = scanner.nextInt();
+//        }
+//        System.in.reset();
+        
     }
     
     /**
