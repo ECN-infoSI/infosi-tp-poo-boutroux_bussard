@@ -1,6 +1,7 @@
 DROP TABLE creature,humanoide,nomenclature_monstre,nomenclature_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,nomenclature_humanoide;
 
 
+
 CREATE TABLE public.nomenclature_objet (
                 type_objet VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_objet PRIMARY KEY (type_objet)
@@ -52,6 +53,8 @@ CREATE TABLE public.monde (
                 largeur INTEGER NOT NULL,
                 longueur INTEGER NOT NULL,
                 id_creature VARCHAR(50),
+                icone BYTEA NOT NULL,
+                nom_personnage VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_monde PRIMARY KEY (id_monde)
 );
 
@@ -59,6 +62,7 @@ CREATE TABLE public.monde (
 CREATE TABLE public.creature (
                 id_creature VARCHAR(50) NOT NULL,
                 point_de_vie INTEGER NOT NULL,
+                est_male BOOLEAN NOT NULL,
                 position_x INTEGER NOT NULL,
                 position_y INTEGER NOT NULL,
                 id_monde VARCHAR(50) NOT NULL,
