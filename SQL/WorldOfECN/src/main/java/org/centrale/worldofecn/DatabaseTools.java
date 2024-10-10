@@ -10,6 +10,8 @@ package org.centrale.worldofecn;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -86,11 +88,48 @@ public class DatabaseTools {
      * @param nomJoueur
      * @param password
      * @return
+     * @throws java.sql.SQLException
      */
-    public Integer getPlayerID(String nomJoueur, String password) {
+    public Integer getPlayerID(String nomJoueur, String password){
+        
+        try{
+            String query = "SELECT id_joueur FROM Joueur WHERE nom_de_code=? AND mot_de_passe=?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setString(1, nomJoueur);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            return processId(rs);
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
         return null;
     }
 
+    
+    /**
+     * test result of SQL request
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
+    private Integer processId(ResultSet rs) throws SQLException{
+        if(rs.next()){
+            int resultat=rs.getInt("id_joueur");
+            System.out.println("var:"+resultat);
+            if (rs.next()){
+                System.out.println("erreur plusieurs compte identifiés");
+                return null;
+            }
+            else{
+                return resultat;
+            }
+        }
+        else{
+            System.out.println("ce compte n'existe pas"); 
+            return null;
+        }
+    }
     /**
      * save world to database
      * @param idJoueur
