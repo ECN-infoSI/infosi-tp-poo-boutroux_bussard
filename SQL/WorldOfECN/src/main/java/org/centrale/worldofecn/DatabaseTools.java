@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,7 @@ public class DatabaseTools {
         try {
             // Get Properties file
             ResourceBundle properties = ResourceBundle.getBundle(DatabaseTools.class.getPackage().getName() + ".database");
-
+     
             // USE config parameters
             login = properties.getString("login");
             password = properties.getString("password");
@@ -137,8 +138,24 @@ public class DatabaseTools {
      * @param nomSauvegarde
      * @param monde
      */
-    public void saveWorld(Integer idJoueur, String nomPartie, String nomSauvegarde, World monde) {
+    public void saveWorld(Integer idJoueur, Integer idPartie, String nomPartie, String nomSauvegarde, World monde){
+        monde.saveToDatabase(connection, idPartie, nomPartie, nomSauvegarde);
 
+//INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom) 
+//VALUES ('m1','p1','2024-04-10 00:00:00','Sauvegarde_1'),('m2','p1','2024-04-10 03:00:00','Sauvegarde_2'),('m5','p3','2024-04-10 00:00:00','Sauvegarde_1');
+//
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println("timestamp" + timestamp);
+
+        String query = "INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom) "
+                + "VALUES ('1','1'," + timestamp + ",'Sauvegarde_1');";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+//            Logger.getLogger(DatabaseTools.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -148,7 +165,7 @@ public class DatabaseTools {
      * @param nomSauvegarde
      * @param monde
      */
-    public void readWorld(Integer idJoueur, String nomPartie, String nomSauvegarde, World monde) {
+    public void readWorld(Integer idJoueur, Integer idPartie, String nomPartie, String nomSauvegarde, World monde) {
 
     }
 }

@@ -238,11 +238,27 @@ public class World {
      * @param gameName
      * @param saveName
      */
-    public void saveToDatabase(Connection connection, String gameName, String saveName) {
+    public void saveToDatabase(Connection connection, Integer idPartie, String gameName, String saveName) {
         if (connection != null) {
             // Get Player ID
-
+            
             // Save world for Player ID
+            //        INSERT INTO monde (id_monde, largeur, longueur) 
+//        VALUES ('m1', 50, 50), ('m2', 55, 100),
+//        ('m3', 60, 10), ('m4', 20, 50), ('m5', 50, 50);
+//
+//        INSERT INTO inventaire (id_inventaire) VALUES ('i2'), ('i3'), ('i4');
+//        INSERT INTO humanoide (id_humanoide, type_humanoide, page_att_arme_poing, page_par, dist_att_max, pt_degats_arme_poing, nombre_de_fleche) VALUES ('g1', 'Guerrier', 10, 10, 10, 10, NULL), ('a1', 'Archer', 15, 15, 15, 15, 10), ('g2', 'Guerrier', 10, 10, 10, 10, NULL), ('g3', 'Guerrier', 10, 10, 10, 10, NULL), ('g4', 'Guerrier', 10, 10, 10, 10, NULL), ('g5', 'Guerrier', 10, 10, 10, 10, NULL), ('g6', 'Guerrier', 10, 10, 10, 10, NULL), ('a2', 'Archer', 15, 15, 15, 15, 10);
+//        INSERT INTO objet (id_objet,position_x,position_y,id_monde,type_objet) VALUES ('ps1',10,1,'m1','PotionSoin'),('ps2',15,11,'m2','PotionSoin'),('ps3',12,5,'m4','PotionSoin');
+//
+//        INSERT INTO objet (id_objet,id_monde,id_inventaire,type_objet) VALUES ('e1','m2','i2','Epee'),('e2','m5','i3','Epee'),('e3','m5','i4','Epee'),('ps4','m5','i3','PotionSoin');
+//        INSERT INTO monstre (id_monstre,page_esquive,page_attaque_arme_naturelle,pt_att_arme_naturelle,type_monstre)
+//VALUES ('m1',20,70,8,'Loup'),('m2',20,70,8,'Loup'),('m3',8,15,2,'Lapin'),('m4',8,15,2,'Lapin'),
+//('m5',20,70,8,'Loup'),('m6',20,70,8,'Loup'),('m7',20,70,8,'Loup'),('m8',8,15,2,'Lapin');
+//
+//INSERT INTO creature (id_creature,point_de_vie,position_x,position_y,id_monde,id_humanoide,id_monstre,id_inventaire,est_male) VALUES 
+//-- monde 1
+//('c1',100,10,10,'m1','g1',NULL,NULL,TRUE);
         }
     }
 
