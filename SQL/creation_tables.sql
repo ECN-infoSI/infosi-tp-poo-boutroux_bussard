@@ -19,14 +19,20 @@ CREATE TABLE public.nomenclature_humanoide (
 );
 
 
+CREATE SEQUENCE public.inventaire_id_inventaire_seq;
+
 CREATE TABLE public.inventaire (
-                id_inventaire VARCHAR(40) NOT NULL,
+                id_inventaire INTEGER NOT NULL DEFAULT nextval('public.inventaire_id_inventaire_seq'),
                 CONSTRAINT pk_inventaire PRIMARY KEY (id_inventaire)
 );
 
 
+ALTER SEQUENCE public.inventaire_id_inventaire_seq OWNED BY public.inventaire.id_inventaire;
+
+CREATE SEQUENCE public.monstre_id_monstre_seq;
+
 CREATE TABLE public.monstre (
-                id_monstre VARCHAR(40) NOT NULL,
+                id_monstre INTEGER NOT NULL DEFAULT nextval('public.monstre_id_monstre_seq'),
                 page_esquive INTEGER NOT NULL,
                 page_attaque_arme_naturelle INTEGER NOT NULL,
                 pt_att_arme_naturelle INTEGER NOT NULL,
@@ -35,8 +41,12 @@ CREATE TABLE public.monstre (
 );
 
 
+ALTER SEQUENCE public.monstre_id_monstre_seq OWNED BY public.monstre.id_monstre;
+
+CREATE SEQUENCE public.humanoide_id_humanoide_seq;
+
 CREATE TABLE public.humanoide (
-                id_humanoide VARCHAR NOT NULL,
+                id_humanoide INTEGER NOT NULL DEFAULT nextval('public.humanoide_id_humanoide_seq'),
                 page_att_arme_poing INTEGER NOT NULL,
                 page_par INTEGER NOT NULL,
                 dist_att_max INTEGER NOT NULL,
@@ -47,41 +57,55 @@ CREATE TABLE public.humanoide (
 );
 
 
+ALTER SEQUENCE public.humanoide_id_humanoide_seq OWNED BY public.humanoide.id_humanoide;
+
+CREATE SEQUENCE public.monde_id_monde_seq;
+
 CREATE TABLE public.monde (
-                id_monde VARCHAR(50) NOT NULL,
+                id_monde INTEGER NOT NULL DEFAULT nextval('public.monde_id_monde_seq'),
                 largeur INTEGER NOT NULL,
                 longueur INTEGER NOT NULL,
-                id_creature VARCHAR(50),
+                id_creature INTEGER,
                 icone BYTEA,
                 nom_personnage VARCHAR(15),
                 CONSTRAINT pk_monde PRIMARY KEY (id_monde)
 );
 
 
+ALTER SEQUENCE public.monde_id_monde_seq OWNED BY public.monde.id_monde;
+
+CREATE SEQUENCE public.creature_id_creature_seq;
+
 CREATE TABLE public.creature (
-                id_creature VARCHAR(50) NOT NULL,
+                id_creature INTEGER NOT NULL DEFAULT nextval('public.creature_id_creature_seq'),
                 point_de_vie INTEGER NOT NULL,
                 est_male BOOLEAN NOT NULL,
                 position_x INTEGER NOT NULL,
                 position_y INTEGER NOT NULL,
-                id_monde VARCHAR(50) NOT NULL,
-                id_humanoide VARCHAR,
-                id_monstre VARCHAR(40),
-                id_inventaire VARCHAR(40),
+                id_monde INTEGER NOT NULL,
+                id_humanoide INTEGER,
+                id_monstre INTEGER,
+                id_inventaire INTEGER,
                 CONSTRAINT pk_creature PRIMARY KEY (id_creature)
 );
 
 
+ALTER SEQUENCE public.creature_id_creature_seq OWNED BY public.creature.id_creature;
+
+CREATE SEQUENCE public.objet_id_objet_seq;
+
 CREATE TABLE public.objet (
-                id_objet VARCHAR(50) NOT NULL,
+                id_objet INTEGER NOT NULL DEFAULT nextval('public.objet_id_objet_seq'),
                 position_x INTEGER,
                 position_y INTEGER,
-                id_monde VARCHAR(50) NOT NULL,
-                id_inventaire VARCHAR(40),
+                id_monde INTEGER NOT NULL,
+                id_inventaire INTEGER,
                 type_objet VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_objet PRIMARY KEY (id_objet)
 );
 
+
+ALTER SEQUENCE public.objet_id_objet_seq OWNED BY public.objet.id_objet;
 
 CREATE SEQUENCE public.joueur_id_joueur_seq;
 
@@ -95,10 +119,12 @@ CREATE TABLE public.joueur (
 
 ALTER SEQUENCE public.joueur_id_joueur_seq OWNED BY public.joueur.id_joueur;
 
+CREATE SEQUENCE public.partie_id_partie_seq;
+
 CREATE TABLE public.partie (
-                id_partie VARCHAR(40) NOT NULL,
-                id_monde_sauvegarde_rapide VARCHAR(50),
-                id_monde_initial VARCHAR(50) NOT NULL,
+                id_partie INTEGER NOT NULL DEFAULT nextval('public.partie_id_partie_seq'),
+                id_monde_sauvegarde_rapide INTEGER,
+                id_monde_initial INTEGER NOT NULL,
                 date_derniere_sauvegarde_rapide TIMESTAMP,
                 nom VARCHAR(30) NOT NULL,
                 id_joueur INTEGER NOT NULL,
@@ -106,14 +132,20 @@ CREATE TABLE public.partie (
 );
 
 
+ALTER SEQUENCE public.partie_id_partie_seq OWNED BY public.partie.id_partie;
+
+CREATE SEQUENCE public.monde_id_monde_seq;
+
 CREATE TABLE public.sauvegarde (
-                id_monde VARCHAR(50) NOT NULL,
-                id_partie VARCHAR(40) NOT NULL,
+                id_monde INTEGER NOT NULL DEFAULT nextval('public.monde_id_monde_seq'),
+                id_partie INTEGER NOT NULL,
                 date_sauvegarde TIMESTAMP NOT NULL,
                 nom VARCHAR(40) NOT NULL,
                 CONSTRAINT pk_sauvegarde PRIMARY KEY (id_monde, id_partie)
 );
 
+
+ALTER SEQUENCE public.monde_id_monde_seq OWNED BY public.sauvegarde.id_monde;
 
 ALTER TABLE public.objet ADD CONSTRAINT type_objet_objet_fk
 FOREIGN KEY (type_objet)
