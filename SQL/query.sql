@@ -53,3 +53,7 @@ INSERT INTO creature (id_creature,point_de_vie,est_le_joueur,position_x,position
 
 UPDATE partie SET date_derniere_sauvegarde_rapide='2024-04-01 00:00:10', id_monde_sauvegarde_rapide='m4'
 WHERE id_partie='p2';
+
+UPDATE monde SET id_creature='c1' WHERE id_monde='m2';
+UPDATE monde SET id_creature='c14' WHERE id_monde='m4';
+UPDATE monde SET id_creature='c16' WHERE id_monde='m5';
