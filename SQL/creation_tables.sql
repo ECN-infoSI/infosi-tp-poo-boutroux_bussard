@@ -59,7 +59,6 @@ CREATE TABLE public.monde (
 CREATE TABLE public.creature (
                 id_creature VARCHAR(50) NOT NULL,
                 point_de_vie INTEGER NOT NULL,
-                est_le_joueur BOOLEAN NOT NULL,
                 position_x INTEGER NOT NULL,
                 position_y INTEGER NOT NULL,
                 id_monde VARCHAR(50) NOT NULL,
