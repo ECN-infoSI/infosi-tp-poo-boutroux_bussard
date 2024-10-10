@@ -25,7 +25,7 @@ INSERT INTO inventaire (id_inventaire) VALUES ('i2'), ('i3'), ('i4');
 
 INSERT INTO joueur (nom_de_code, mot_de_passe) VALUES ('j1', 'mdpj1'), ('j2', 'mdpj2');
 
-INSERT INTO partie (id_partie, id_monde_initial, nom_de_code, nom) VALUES ('p1', 'm1', 'j1', 'partie1'), ('p2', 'm3', 'j2', 'partie2'), ('p3', 'm3', 'j2', 'partie3');
+INSERT INTO partie (id_partie, id_monde_initial, id_joueur, nom) VALUES ('p1', 'm1', '1', 'partie1'), ('p2', 'm3', '2', 'partie2'), ('p3', 'm3', '2', 'partie3');
 
 INSERT INTO humanoide (id_humanoide, type_humanoide, page_att_arme_poing, page_par, dist_att_max, pt_degats_arme_poing, nombre_de_fleche) VALUES ('g1', 'Guerrier', 10, 10, 10, 10, NULL), ('a1', 'Archer', 15, 15, 15, 15, 10), ('g2', 'Guerrier', 10, 10, 10, 10, NULL), ('g3', 'Guerrier', 10, 10, 10, 10, NULL), ('g4', 'Guerrier', 10, 10, 10, 10, NULL), ('g5', 'Guerrier', 10, 10, 10, 10, NULL), ('g6', 'Guerrier', 10, 10, 10, 10, NULL), ('a2', 'Archer', 15, 15, 15, 15, 10);
 

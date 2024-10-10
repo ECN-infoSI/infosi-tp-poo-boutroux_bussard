@@ -83,20 +83,25 @@ CREATE TABLE public.objet (
 );
 
 
+CREATE SEQUENCE public.joueur_id_joueur_seq;
+
 CREATE TABLE public.joueur (
+                id_joueur INTEGER NOT NULL DEFAULT nextval('public.joueur_id_joueur_seq'),
                 nom_de_code VARCHAR(40) NOT NULL,
                 mot_de_passe VARCHAR(40) NOT NULL,
-                CONSTRAINT pk_joueur PRIMARY KEY (nom_de_code)
+                CONSTRAINT pk_joueur PRIMARY KEY (id_joueur)
 );
 
+
+ALTER SEQUENCE public.joueur_id_joueur_seq OWNED BY public.joueur.id_joueur;
 
 CREATE TABLE public.partie (
                 id_partie VARCHAR(40) NOT NULL,
                 id_monde_sauvegarde_rapide VARCHAR(50),
                 id_monde_initial VARCHAR(50) NOT NULL,
                 date_derniere_sauvegarde_rapide TIMESTAMP,
-                nom_de_code VARCHAR(40) NOT NULL,
                 nom VARCHAR(30) NOT NULL,
+                id_joueur INTEGER NOT NULL,
                 CONSTRAINT pk_partie PRIMARY KEY (id_partie)
 );
 
@@ -202,8 +207,8 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.partie ADD CONSTRAINT joueur_partie_fk
-FOREIGN KEY (nom_de_code)
-REFERENCES public.joueur (nom_de_code)
+FOREIGN KEY (id_joueur)
+REFERENCES public.joueur (id_joueur)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
