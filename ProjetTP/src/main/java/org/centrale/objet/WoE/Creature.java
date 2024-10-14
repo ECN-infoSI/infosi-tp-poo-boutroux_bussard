@@ -17,11 +17,11 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     private int pageAtt;
     private int pagePar;
     private Point2D pos;
-    protected char symboleCarte;  
+    protected char symboleCarte;
+    protected int distAttMax; 
 
     public Creature() {
         Random generateurAleatoire = new Random();
-        
         this.ptVie = generateurAleatoire.nextInt(21);
         this.degAtt = generateurAleatoire.nextInt(3);
         this.ptPar = generateurAleatoire.nextInt(3);
@@ -29,13 +29,14 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         this.pagePar = generateurAleatoire.nextInt(11);
         this.pos = new Point2D();
         definirSymboleCarte();
+        initialiseDistAttMax();
     }
 
     public Creature(Point2D pos) {
         this();
         this.pos = new Point2D(pos);
     }
-    
+   
     public Creature(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
         this.ptVie = ptVie;
         this.degAtt = degAtt;
@@ -44,12 +45,37 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         this.pagePar = pagePar;
         this.pos = new Point2D(pos);
         definirSymboleCarte();
-    }
-    
-    public Creature(Creature m) {
-        this(m.ptVie,m.degAtt,m.ptPar,m.pageAtt,m.pagePar,m.pos);
+        initialiseDistAttMax();
     }
 
+    public Creature(int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos, int distAttMax) {
+        this.ptVie = ptVie;
+        this.degAtt = degAtt;
+        this.ptPar = ptPar;
+        this.pageAtt = pageAtt;
+        this.pagePar = pagePar;
+        this.pos = pos;
+        this.distAttMax = distAttMax;
+        definirSymboleCarte();
+    }
+
+    protected void initialiseDistAttMax(){
+        this.distAttMax=1;
+    }
+    public int getDistAttMax() {
+        return distAttMax;
+    }
+
+    public void setDistAttMax(int distAttMax) {
+        this.distAttMax = distAttMax;
+    }
+    
+    
+    public Creature(Creature m) {
+        this(m.ptVie,m.degAtt,m.ptPar,m.pageAtt,m.pagePar,m.pos,m.distAttMax);
+    }
+
+    
     public int getPtVie() {
         return ptVie;
     }
@@ -116,6 +142,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     System.out.println("Point de Parade : "+ptVie);
     System.out.println("% d'attaque     : "+ pageAtt);
     System.out.println("% de parade     : "+ pagePar);
+    System.out.println("Dist d'att max  : "+distAttMax);
     System.out.print("Position        :");
     pos.affiche();
     }
@@ -164,7 +191,20 @@ public abstract class Creature implements AffichableCarte, Deplacable{
             }
         }
         System.out.println("avance final  : "+avanceX+";"+avanceY);
-        
+        this.gererDeplacement(carte, oldX, oldY, newX, newY);
+    }
+    
+    /**
+     * change les coordonnées de la créature sur la carte et dans créature
+     * !!Neccessite d'avoir vérifier que la case d'arrivée est possible!!
+     * (case vide et dans la carte)
+     * @param carte tableau de case contenant les objets
+     * @param oldX abscisse de la position avant déplacement
+     * @param oldY ordonnée de la position avant déplacement
+     * @param newX abscisse de la position après déplacement
+     * @param newY ordonnée de la position après déplacement
+     */
+    public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY){
         //vider case oldX,oldY;
         if (carte[oldX][oldY].objet != null ){
             carte[oldX][oldY].creature=null;
@@ -181,14 +221,13 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         }
         
         //modifier la position de la créature
-        this.pos.translate(avanceX, avanceY);
+        this.pos.SetPosition(newX, newY);
         
         //utiliser les objets de la case d'arrivée
         if (carte[newX][newY].objet!=null){
             carte[newX][newY].objet.utiliser(this);
             carte[newX][newY].objet=null;
         }
-       
     }
     
     /**

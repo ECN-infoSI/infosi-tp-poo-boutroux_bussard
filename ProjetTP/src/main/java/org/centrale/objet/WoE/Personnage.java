@@ -10,7 +10,7 @@ package org.centrale.objet.WoE;
  */
 public abstract class Personnage extends Creature {
     /** distance d'attaque maximale*/
-    public int distAttMax; 
+    
 
     /**
      * Constructeur avec tous les parametres
@@ -22,9 +22,8 @@ public abstract class Personnage extends Creature {
      * @param pagePar pourcentage de parade
      * @param pos position en 2D
      */
-    public Personnage(int distAttMax, int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
-        super(ptVie, degAtt, ptPar, pageAtt, pagePar, pos);
-        this.distAttMax = distAttMax;
+    public Personnage(int distAttMax,int ptVie, int degAtt, int ptPar, int pageAtt, int pagePar, Point2D pos) {
+        super(ptVie, degAtt, ptPar, pageAtt, pagePar, pos,distAttMax);
     }
 
     /**
@@ -32,7 +31,6 @@ public abstract class Personnage extends Creature {
      */
     public Personnage() {
         super();
-        this.initialiseDistAttMax();
     }
 
     /**
@@ -41,7 +39,6 @@ public abstract class Personnage extends Creature {
      */
     public Personnage(Point2D pos) {
         super(pos);
-        this.initialiseDistAttMax();
     }
 
     /**
@@ -50,28 +47,26 @@ public abstract class Personnage extends Creature {
      */
     public Personnage(Personnage perso) {
         super(perso);
-        this.distAttMax = perso.distAttMax;
     }
     
-    protected void initialiseDistAttMax(){
-        this.distAttMax=1;
-    }
-
     /**
      * Getter de la distance d'attaque max
      * @return la distance d'attaque maximale du personnage
      */
+    @Override
     public int getDistAttMax() {
-        return distAttMax;
+        return super.getDistAttMax();
     }
 
     /**
      * Setter de la distance d'attaque maximale
      * @param distAttMax nouvelle valeur de la distance d'attaque maximale
      */
+    @Override
     public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
+        super.setDistAttMax(distAttMax);
     }
+    
     
     @Override public void definirSymboleCarte(){
         symboleCarte = 'T';
@@ -81,8 +76,7 @@ public abstract class Personnage extends Creature {
      * Affiche tous les composants du personnage
      */
     @Override public void affiche(){
-        super.affiche();
-        System.out.println("Dist d'att max  : "+distAttMax);
+        super.affiche(); 
     }
 
     /**

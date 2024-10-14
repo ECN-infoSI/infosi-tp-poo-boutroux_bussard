@@ -4,6 +4,8 @@
  */
 package org.centrale.objet.WoE;
 
+
+
 /**
  * Classe de test pour toutes les autres classes. 
  * @author remib
@@ -16,8 +18,14 @@ public class TestWoE {
     public static void main(String[] args){
         World mondeTest=new World();
         mondeTest.creerMondeAlea();
-        mondeTest.afficheWorld();
+        mondeTest.creerJoueur();
         
+        for(int i=0;i<10;i++){
+            mondeTest.tourDeJeu();
+            mondeTest.afficheWorld();
+        }
+        
+
 //
 //        mondeTest.bugs1.affiche();
 //        mondeTest.robin.affiche();

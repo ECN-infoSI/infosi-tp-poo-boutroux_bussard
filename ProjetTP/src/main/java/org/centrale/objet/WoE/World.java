@@ -5,7 +5,6 @@
 package org.centrale.objet.WoE;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.lang.String;
 /**
@@ -189,14 +188,24 @@ public class World {
     }
     
     /**
+     * le joueur se déplace (ou pas) puis choisi s'il veut combattre
+     * s'il veut combattre il choisit sa cible puis combat
      * Chaque creature bouge puis agit, 
      * l'action va dépendre de la créature appelée.
      * Certaines crétures ne font rien d'autre que se déplacer. 
      */
     public void tourDeJeu(){
+        afficheWorld();
+        //joueur.affichagestat();
+        joueur.deplacerJoueur(carte);
+        afficheWorld();
+            joueur.choixCombat(carte);
+        //joueur.choixsauvegarde();
+        
         for (Creature creature : creatures){
             creature.deplacer(carte);
             creature.agir(carte);
+            //condition d'affichage si le joueur est attaqué a rajouter
         }
     }
     
@@ -242,7 +251,7 @@ public class World {
             choix = scanner.nextInt();
         }
         
-        Jouable personnageJoueur = null;
+        Creature personnageJoueur = null;
         ClassesJouable classeChoisie = ClassesJouable.values()[choix-1];
         switch(classeChoisie){
             case GUERRIER : 
@@ -266,7 +275,7 @@ public class World {
             choixNom = scannerString.nextLine();
         }
         
-        joueur = new Joueur((Jouable) personnageJoueur, choixNom);
+        joueur = new Joueur( personnageJoueur, choixNom);
         
         // Placer le joueur aleatoirement sur la carte
         boolean positionPasEncoreUtilisee = false;
