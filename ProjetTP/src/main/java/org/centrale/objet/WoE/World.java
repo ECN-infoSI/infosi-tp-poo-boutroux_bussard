@@ -255,7 +255,7 @@ public class World {
         Scanner scannerString = new Scanner(System.in);
         System.out.println("Choisissez un nom pour votre personnage. ");
         String choixNom = scannerString.nextLine();
-        while (choixNom  == ""){
+        while (choixNom.isEmpty()){
             System.out.println("Choisissez un nom pour votre personnage. ");
             choixNom = scannerString.nextLine();
         }
