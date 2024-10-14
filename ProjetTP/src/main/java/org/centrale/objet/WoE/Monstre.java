@@ -57,7 +57,7 @@ public abstract class Monstre extends Creature {
     }
 
     @Override
-    public void agir(Case[][] carte) {
+    public void agir(Case[][] carte,World monde) {
     }
 
     /**

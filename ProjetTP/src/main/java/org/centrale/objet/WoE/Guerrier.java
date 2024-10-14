@@ -57,18 +57,19 @@ public class Guerrier extends Personnage implements Combattant, Jouable {
      * @param carte 
      */
     @Override
-    public void agir(Case[][] carte) {
+    public void agir(Case[][] carte,World monde) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
         if (creatureAAttaquer != null){
-            combattre(creatureAAttaquer);
+            combattre(creatureAAttaquer,monde);
         }
     }
     
     /**
      * le guerrier ne se bat qu'au corps a corps
      * @param creature 
+     * @param monde 
      */
-    @Override public void combattre(Creature creature) {
-        combatCorpsACorps(creature);
+    @Override public void combattre(Creature creature,World monde) {
+        combatCorpsACorps(creature,monde);
     }
 }

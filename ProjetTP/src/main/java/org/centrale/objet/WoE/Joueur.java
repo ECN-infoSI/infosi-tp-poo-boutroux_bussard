@@ -26,8 +26,9 @@ public class Joueur {
     /**
      * propose au joueur de combattre puis lance le combat si le joueur en fait le choix
      * @param carte position de tous les ennemis
+     * @param monde
      */
-    public void choixCombat(Case[][] carte){
+    public void choixCombat(Case[][] carte,World monde){
         System.out.println("Voulez-vous combattre ?");
         System.out.println("o-oui   ; n-non");
         Scanner lectureClavier=new Scanner(System.in);
@@ -44,7 +45,7 @@ public class Joueur {
                     choixValable=true;
                     break;
                 case "O":
-                    choixAdversaire(carte);
+                    choixAdversaire(carte,monde);
                     choixValable=true;
                     break;
                 default :
@@ -59,26 +60,34 @@ public class Joueur {
      * propose la liste des adversaires à portée
      * @param carte 
      */
-    private void choixAdversaire(Case[][] carte){
+    private void choixAdversaire(Case[][] carte,World monde){
         ArrayList<Creature> ennemis = new ArrayList<Creature>();
         ennemis= verifierPresenceCreatureProches(carte);
         System.out.println("choisissez votre adversaire");
         for(int i=0; i<ennemis.size();i++){
-            System.out.println((i+1)+" :  "+ennemis.getClass().getSimpleName() +"   "+ennemis.get(i).getPtVie()+" points de vie");
+            System.out.println((i+1)+" :  "+ennemis.get(i).getClass().getSimpleName() +"   "+ennemis.get(i).getPtVie()+" points de vie, " +ennemis.get(i).getPos().distance(personnageJoue.getPos())+ " cases de distance");
         }
         Scanner lectureEntier=new Scanner(System.in);
         boolean choixValable = false;
-        
+        int choix=0;
         while (!choixValable){
-            int choix =lectureEntier.nextInt();
+            choix =lectureEntier.nextInt();
             if(choix<= ennemis.size() && choix>0){
-                attaquer(ennemis.get(choix-1));
+                choixValable=true;
+            }else {
+                System.out.println("mauvaise entrée veuillez reessayer");
             }
         }
+        attaquer(ennemis.get(choix-1),monde);
     }
        
-    private void attaquer(Creature creature){
-        
+    private void attaquer(Creature ennemi,World monde){
+        int ecart = ennemi.getPos().distance(personnageJoue.getPos());
+        if(ecart==1){
+            personnageJoue.attaqueCorpsACorps(ennemi,monde);
+        }else{
+            personnageJoue.attaqueDistance(ennemi,monde);
+        }
     }
         
         
@@ -139,7 +148,7 @@ public class Joueur {
         int[] deplacement=new int[2];
         boolean deplacementValide= false;
         int x=personnageJoue.getPos().getX();
-        int y=personnageJoue.getPos().getX();
+        int y=personnageJoue.getPos().getY();
         int newX=0;
         int newY=0;
         
@@ -155,7 +164,7 @@ public class Joueur {
                 deplacementValide=false;
                 System.out.println("le déplacement sort de la carte, veuillez recommencer");
             }
-            else if (carte[newX][newY]!=null){
+            else if ((carte[newX][newY]!=null) && (deplacement[0]!=0 || deplacement[1]!=0) ){
                 if (carte[newX][newY].creature!=null){
                     deplacementValide=false;
                     System.out.println("il y a deja une creature sur cette case, veuillez recommencer");
@@ -167,11 +176,11 @@ public class Joueur {
     
     private void affiche_boussole(){
         System.out.println();
-        System.out.println("NO N NE");
-        System.out.println("  \\|/");
-        System.out.println("O -x- E");
-        System.out.println("  /|\\");
-        System.out.println("SO S SE");
+        System.out.println("   NO N NE");
+        System.out.println("     \\|/");
+        System.out.println("   O -x- E");
+        System.out.println("     /|\\");
+        System.out.println("   SO S SE");
         System.out.println("x to stay here");
     }
     

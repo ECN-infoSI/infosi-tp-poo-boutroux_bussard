@@ -238,16 +238,16 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * La méthode à appeler pour que la créature fasse ses actions spécifiques
      * @param carte 
      */
-    public abstract void agir(Case[][] carte);
+    public abstract void agir(Case[][] carte,World monde);
     
     /**
      * Verfie que la creature est adjacente puis l'attaque. 
      * @param creature 
      */
-    protected void combatCorpsACorps(Creature creature){
+    protected void combatCorpsACorps(Creature creature, World monde){
         if (this.getPos().distance(creature.getPos()) <= 1){
             System.out.println("combat corps a corps");
-            attaqueCorpsACorps(creature);
+            attaqueCorpsACorps(creature,monde);
             
         }
     }
@@ -256,36 +256,41 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * Attaque pouvant etre paree. 
      * @param creature 
      */
-    protected void attaqueCorpsACorps(Creature creature){
+    protected void attaqueCorpsACorps(Creature creature,World monde){
+        boolean joueurImplique=true;
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
-        System.out.println("jet d'attaque : "+jetDe);
+        if(joueurImplique){System.out.println("jet d'attaque : "+jetDe);}
         if (getPageAtt() >= jetDe){
+            if(joueurImplique){System.out.println("l'attaque réussi !");}
             jetDe = generateurAleatoire.nextInt(100) + 1;
-            System.out.println("jet de parade : "+jetDe);
+            if(joueurImplique){System.out.println("jet de parade : "+jetDe);}
             int degats;
             if (creature.getPagePar() >= jetDe){
                 degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);
+                if(joueurImplique){System.out.println("la parade est réussie, vous infligez "+degats+" degats");}
             }else{
                 degats =this.getDegAtt();
+                if(joueurImplique){System.out.println("la parade est manquée, vous infligez "+degats+" degats");}
             }
             int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
             creature.setPtVie(nouveauPointVie);
             
-        }
+        }else if(joueurImplique){System.out.println("l'attaque manque !");}
     }
     
     /**
      * Attaque ne pouvant pas etre paree. 
      * @param creature 
      */
-    protected void attaqueDistance(Creature creature){
+    protected void attaqueDistance(Creature creature,World monde){
+        boolean joueurImplique=true;
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
-        System.out.println("jet d'attaque"+jetDe);
+        if(joueurImplique){System.out.println("jet d'attaque : "+jetDe);}
         if (getPageAtt() >= jetDe){
-            jetDe = generateurAleatoire.nextInt(100) + 1;
             int degats =this.getDegAtt();
+            if(joueurImplique){System.out.println("l'attaque réussi ! Vous infligez "+degats+" degats");}
             int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
             creature.setPtVie(nouveauPointVie);
             

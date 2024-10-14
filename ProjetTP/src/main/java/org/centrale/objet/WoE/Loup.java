@@ -45,10 +45,10 @@ public class Loup extends Monstre implements Combattant {
      * @param carte 
      */
     @Override
-    public void agir(Case[][] carte) {
+    public void agir(Case[][] carte,World monde) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
         if (creatureAAttaquer != null){
-            combattre(creatureAAttaquer);
+            combattre(creatureAAttaquer,monde);
         }
     }
     
@@ -56,8 +56,8 @@ public class Loup extends Monstre implements Combattant {
      * Le loup est un animal qui ne peut tirer à l'arc donc sa portée est de 1. 
      * @param creature la creature a combattre
      */
-    @Override public void combattre(Creature creature) {
-        combatCorpsACorps(creature);
+    @Override public void combattre(Creature creature,World monde) {
+        combatCorpsACorps(creature,monde);
     }
     
 }

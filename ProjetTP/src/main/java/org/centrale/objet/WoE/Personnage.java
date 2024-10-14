@@ -84,7 +84,7 @@ public abstract class Personnage extends Creature {
      * @param carte 
      */
     @Override
-    public void agir(Case[][] carte) {
+    public void agir(Case[][] carte,World monde) {
     }
     
     /**

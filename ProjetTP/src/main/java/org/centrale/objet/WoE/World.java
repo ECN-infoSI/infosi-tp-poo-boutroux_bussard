@@ -184,12 +184,12 @@ public class World {
         //joueur.affichagestat();
         joueur.deplacerJoueur(carte);
         afficheWorld();
-            joueur.choixCombat(carte);
+            joueur.choixCombat(carte,this);
         //joueur.choixsauvegarde();
         
         for (Creature creature : creatures){
             creature.deplacer(carte);
-            creature.agir(carte);
+            creature.agir(carte,this);
             //condition d'affichage si le joueur est attaqué a rajouter
         }
     }

@@ -73,12 +73,13 @@ public class Archer extends Personnage implements Combattant, Jouable {
     /**
      * L'archer attaque s'il voit une creature a sa portee. 
      * @param carte 
+     * @param joueurImpliqué 
      */
     @Override
-    public void agir(Case[][] carte) {
+    public void agir(Case[][] carte,World monde) {
         Creature creatureAAttaquer = verifierPresenceCreatureProches(carte);
         if (creatureAAttaquer != null){
-            combattre(creatureAAttaquer);
+            combattre(creatureAAttaquer,monde);
         }
     }
     
@@ -88,23 +89,23 @@ public class Archer extends Personnage implements Combattant, Jouable {
      * @param creature 
      */
     @Override
-    public void combattre(Creature creature) {
-        combatCorpsACorps(creature);
-        combatADistance(creature);
+    public void combattre(Creature creature,World monde) {
+        combatCorpsACorps(creature,monde);
+        combatADistance(creature,monde);
     }
     
     /**
      * Tire une flèche sur une créature
      * @param creature 
      */
-    private void combatADistance(Creature creature){
+    private void combatADistance(Creature creature,World monde){
         if (getNbFleche() <=0){
             System.out.println("pas de fleches");
             return;
         }
         int distance = this.getPos().distance(creature.getPos());
         if (distance <= getDistAttMax() && distance > 1){
-            attaqueDistance(creature);
+            attaqueDistance(creature,monde);
             nbFleche -=1; 
         }
     }
