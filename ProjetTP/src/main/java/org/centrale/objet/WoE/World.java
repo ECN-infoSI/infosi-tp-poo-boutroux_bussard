@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.String;
 /**
  * Le monde est la classe principale qui contient des references vers toutes les creatures s'y trouvant et les faisant agir a chaque tour. 
  * @author remib
@@ -32,6 +33,8 @@ public class World {
     public final int tailleMonde = 5;
     
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
+    
+    Joueur joueur;
     
     
     /** constructeur sans parametre
@@ -234,23 +237,63 @@ public class World {
         System.out.println();
     }
     
-    
+    /**
+     * Permet d'initialiser l'objet Joueur avec des inputs demandes a l'utilisateur. 
+     * On recoit la classe et le nom du personnage joueur. 
+     */
     public void creerJoueur(){
         System.out.println("Choisissez une classe a jouer parmi la liste suivante : ");
-        List<Class<? extends Jouable>> classesChoisissables = new ArrayList<Class<? extends Jouable>>();
+        afficherListeClassesJouables();
+        int nombreClassesJouables = ClassesJouable.values().length;
+        Scanner scanner = new Scanner(System.in);
+        int choix = -1;
+        while (choix <= 0 || choix > nombreClassesJouables){
+            System.out.println("Donnez un nomber entier entre 1 et " + nombreClassesJouables + " svp. ");
+            choix = scanner.nextInt();
+        }
+        
+        Jouable personnageJoueur = null;
+        ClassesJouable classeChoisie = ClassesJouable.values()[choix-1];
+        switch(classeChoisie){
+            case GUERRIER : 
+                personnageJoueur = new Guerrier();
+                break;
+            case ARCHER : 
+                personnageJoueur = new Archer();
+                break;
+            default : 
+                System.out.println("Il manque un case pour une des classes jouables, nous instancions un guerrier à la place. ");
+                personnageJoueur = new Guerrier();
+                break;     
+        }
+        Scanner scannerString = new Scanner(System.in);
+        System.out.println("Choisissez un nom pour votre personnage. ");
+        String choixNom = scannerString.nextLine();
+        while (choixNom  == ""){
+            System.out.println("Choisissez un nom pour votre personnage. ");
+            choixNom = scannerString.nextLine();
+        }
+        
+        joueur = new Joueur((Jouable) personnageJoueur, choixNom);
+    }
+    
+    public enum ClassesJouable{
+        GUERRIER("Guerrier"),
+        ARCHER("Archer");
+        
+        private final String classe;
+        
+        ClassesJouable(String classeJouable){
+            this.classe = classeJouable; 
+        }
+    }
+    
+    private void afficherListeClassesJouables(){
         int i = 1;
-        for (Class classeAChoisir : classesChoisissables){
-            System.out.println(i + " : " + classeAChoisir.getName());
+        for (ClassesJouable classe : ClassesJouable.values()){
+            System.out.println(i + " : " + classe.toString());
             i++;
         }
-//        Scanner scanner = new Scanner(System.in);
-//        int choix = scanner.nextInt();
-//        while (choix <= 0 || choix > i){
-//            System.out.println("Donnez un nomber entier entre 1 et " + i + " svp. ");
-//            choix = scanner.nextInt();
-//        }
-//        System.in.reset();
-        
     }
     
     /**

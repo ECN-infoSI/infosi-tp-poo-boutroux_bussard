@@ -13,10 +13,14 @@ public class ProjetTP {
     public static void main(String[] args) {
         World world = new World();
         world.creerMondeAlea();
+        world.creerJoueur();
+        System.out.println("world.joueur.nomPersonnage : " + world.joueur.nomPersonnage);
+        System.out.println("world.joueur.getClass : " + world.joueur.personnageJoue.getClass().getName());
+        
         world.afficheWorld();
-        for (int i = 0; i < 10; i++){
-            world.tourDeJeu();
-            world.afficheWorld();
-        }
+//        for (int i = 0; i < 10; i++){
+//            world.tourDeJeu();
+//            world.afficheWorld();
+//        }
     }
 }
