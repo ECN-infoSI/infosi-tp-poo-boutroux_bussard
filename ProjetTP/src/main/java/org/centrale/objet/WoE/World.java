@@ -32,8 +32,10 @@ public class World {
     /** valeur de la longeur d'un coté du monde carré */
     public final int tailleMonde = 5;
     
+    /** La carte dans laquelle est sauvegardé les objets et les creatures presents dans le monde. */
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
     
+    /** L'objet joueur est instancié au debut du monde et gere les inputs envoyes par le vrai joueur. */
     Joueur joueur;
     
     
@@ -43,22 +45,9 @@ public class World {
     public World() {
         this.creatures = new ArrayList<Creature>();
         
-//        this.robin=new Archer();
-//        creatures.add(robin);
-//        this.guillaumeT = new Archer();
-//        creatures.add(guillaumeT);
-//        this.peon=new Paysan();
-//        creatures.add(peon);
-//        this.bugs1=new Lapin();
-//        creatures.add(bugs1);
-//        this.bugs2=new Lapin();
-//        creatures.add(bugs2);
-//        this.grosBill=new Guerrier();
-//        creatures.add(grosBill);
-//        this.wolfie=new Loup();
-//        creatures.add(wolfie);
-          //5 est le nombre d'entité différentes (Archer,Guerrier,Paysan,lapin, Loup)
-          int nbrMaxParElement=tailleMonde*tailleMonde/5;
+
+          // On divise par 15 pour ne pas saturer la carte avec des personnages. 
+          int nbrMaxParElement=tailleMonde*tailleMonde/15;
           Random generateurAleatoire = new Random();
           
           int nbrArcher=generateurAleatoire.nextInt(nbrMaxParElement);
@@ -112,34 +101,34 @@ public class World {
     /**
      * crée un monde aléatoire contenant des éléments donnés,
      * fixe les positions des elements et s'assure qu'il n'y a pas plusieurs éléments sur la même case
-     * créé des objets et les pose sur des cases vide du monde
+     * cree des objets et les pose sur des cases vide du monde
      */
     public void creerMondeAlea(){
         //positionner les creatures dans le monde
         Random generateurAleatoire = new Random();
-        boolean testPosDifferents;
+        boolean testPosDifferentes;
         
         for(Creature creature :creatures){
-            testPosDifferents=false;
+            testPosDifferentes = false;
             
-            while(testPosDifferents==false){
+            while(testPosDifferentes == false){
                 int creatureX=generateurAleatoire.nextInt(tailleMonde);
                 int creatureY=generateurAleatoire.nextInt(tailleMonde);
-                if (carte[creatureX][creatureY]==null){
-                    testPosDifferents=true;
+                if (carte[creatureX][creatureY] == null){
+                    testPosDifferentes = true;
                     creature.setPos(new Point2D(creatureX, creatureY));
                     carte[creatureX][creatureY]= new Case(creature);
                 } 
             }
         }
         
-        int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/2;
+        int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/12;
         int nbrObjet=generateurAleatoire.nextInt(nbrEntiteMaxObjet);
         System.out.println("Nombre d'objet : "+ (nbrObjet+1) );
         for(int i=0;i<=nbrObjet;i++){
-            testPosDifferents=false;
+            testPosDifferentes=false;
             
-            while(testPosDifferents==false){
+            while(testPosDifferentes==false){
                 int x=generateurAleatoire.nextInt(tailleMonde);
                 int y=generateurAleatoire.nextInt(tailleMonde);
                 if ( carte[x][y]==null){
@@ -155,7 +144,7 @@ public class World {
                             System.out.println("Erreur: création objet non existant");
                             break;    
                     }
-                    testPosDifferents=true;
+                    testPosDifferentes=true;
                 }
             }
         }     
@@ -242,6 +231,7 @@ public class World {
      * On recoit la classe et le nom du personnage joueur. 
      */
     public void creerJoueur(){
+        // Choisir classe
         System.out.println("Choisissez une classe a jouer parmi la liste suivante : ");
         afficherListeClassesJouables();
         int nombreClassesJouables = ClassesJouable.values().length;
@@ -266,6 +256,8 @@ public class World {
                 personnageJoueur = new Guerrier();
                 break;     
         }
+        
+        // Choisir nom personnage
         Scanner scannerString = new Scanner(System.in);
         System.out.println("Choisissez un nom pour votre personnage. ");
         String choixNom = scannerString.nextLine();
@@ -275,8 +267,24 @@ public class World {
         }
         
         joueur = new Joueur((Jouable) personnageJoueur, choixNom);
+        
+        // Placer le joueur aleatoirement sur la carte
+        boolean positionPasEncoreUtilisee = false;
+        Random generateurAleatoire = new Random();
+        while(positionPasEncoreUtilisee == false){
+            int creatureX = generateurAleatoire.nextInt(tailleMonde);
+            int creatureY = generateurAleatoire.nextInt(tailleMonde);
+            if (carte[creatureX][creatureY] == null){
+                positionPasEncoreUtilisee = true;
+                joueur.personnageJoue.setPos(new Point2D(creatureX, creatureY));
+                carte[creatureX][creatureY]= new Case(joueur.personnageJoue);
+            } 
+        }
     }
     
+    /**
+     * Enumerateur permettant de savoir quelles classes sont jouables et quel string affiche pour les presenter au joueur. 
+     */
     public enum ClassesJouable{
         GUERRIER("Guerrier"),
         ARCHER("Archer");
@@ -288,6 +296,9 @@ public class World {
         }
     }
     
+    /**
+     * Affiche toutes les classes qui sont jouables avec un numero devant permettant au joueur de les selectionner. 
+     */
     private void afficherListeClassesJouables(){
         int i = 1;
         for (ClassesJouable classe : ClassesJouable.values()){
