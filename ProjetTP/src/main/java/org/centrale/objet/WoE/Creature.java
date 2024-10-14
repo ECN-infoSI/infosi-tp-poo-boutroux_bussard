@@ -133,6 +133,10 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         symboleCarte = 'T';
     }
     
+    public void definirSymboleCarte(char symbole){
+        symboleCarte = symbole;
+    }
+    
     /**
      * Affiche tous les attributs de la créature. 
      */

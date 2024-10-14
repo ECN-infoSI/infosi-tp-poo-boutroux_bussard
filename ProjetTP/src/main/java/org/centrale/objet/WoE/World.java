@@ -261,6 +261,7 @@ public class World {
         }
         
         joueur = new Joueur( personnageJoueur, choixNom);
+        joueur.personnageJoue.definirSymboleCarte('J');
         
         // Placer le joueur aleatoirement sur la carte
         boolean positionPasEncoreUtilisee = false;
