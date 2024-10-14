@@ -18,9 +18,9 @@ public class ProjetTP {
         System.out.println("world.joueur.getClass : " + world.joueur.personnageJoue.getClass().getName());
         
         world.afficheWorld();
-//        for (int i = 0; i < 10; i++){
-//            world.tourDeJeu();
-//            world.afficheWorld();
-//        }
+        for (int i = 0; i < 10; i++){
+            world.tourDeJeu();
+            world.afficheWorld();
+        }
     }
 }

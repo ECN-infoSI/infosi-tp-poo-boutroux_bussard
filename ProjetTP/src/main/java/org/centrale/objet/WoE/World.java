@@ -14,6 +14,10 @@ import java.lang.String;
 public class World {
     /** Une liste qui contient les créatures du monde */
     private ArrayList<Creature> creatures;
+    
+    /** Une liste des objets capables d'agir */
+    private ArrayList<Objet> objetsAgissants;
+    
     /** valeur de la longeur d'un coté du monde carré */
     public final int tailleMonde = 5;
     
@@ -21,7 +25,7 @@ public class World {
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
     
     /** L'objet joueur est instancié au debut du monde et gere les inputs envoyes par le vrai joueur. */
-    Joueur joueur;
+    public Joueur joueur;
     
     
     /** constructeur sans parametre
@@ -59,6 +63,8 @@ public class World {
         for(int i=0;i<=nbrLapin;i++){
             creatures.add(new Lapin());
         }
+        
+        objetsAgissants = new ArrayList<Objet>();
     }
     
     /**
@@ -74,7 +80,8 @@ public class World {
         this.creatures = new ArrayList<Creature>();
         for(int i=0;i<nbrPersonnage;i++){
               creatures.add(new Archer());
-          }
+        }
+        objetsAgissants = new ArrayList<Objet>();
     }
             
             
@@ -116,7 +123,7 @@ public class World {
                 int x=generateurAleatoire.nextInt(tailleMonde);
                 int y=generateurAleatoire.nextInt(tailleMonde);
                 if ( carte[x][y]==null){
-                    int typeAleatoire = generateurAleatoire.nextInt(2);
+                    int typeAleatoire = generateurAleatoire.nextInt(3);
                     switch(typeAleatoire){
                         case 0:
                            carte[x][y]=new Case(new PotionSoin());
@@ -124,6 +131,10 @@ public class World {
                         case 1:
                            carte[x][y]=new Case(new Epee());
                            break;
+                        case 2:
+                           carte[x][y]=new Case(new NuageToxique());
+                           objetsAgissants.add(carte[x][y].objet);
+                           break; 
                         default:
                             System.out.println("Erreur: création objet non existant");
                             break;    
@@ -191,6 +202,18 @@ public class World {
             creature.deplacer(carte);
             creature.agir(carte,this);
             //condition d'affichage si le joueur est attaqué a rajouter
+        }
+        
+        for (Objet objet: objetsAgissants){
+            if (objet instanceof Deplacable){
+                ((Deplacable) objet).deplacer(carte);
+            }
+            if (objet instanceof Combattant){
+                Point2D positionObjet = objet.getPos();
+                if (carte[positionObjet.getX()][positionObjet.getY()].creature !=null){
+                    ((Combattant) objet).combattre(carte[positionObjet.getX()][positionObjet.getY()].creature, this);
+                }
+            }
         }
     }
     
