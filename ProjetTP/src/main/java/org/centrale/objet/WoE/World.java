@@ -252,11 +252,16 @@ public class World {
         System.out.println("Choisissez une classe a jouer parmi la liste suivante : ");
         afficherListeClassesJouables();
         int nombreClassesJouables = ClassesJouable.values().length;
-        Scanner scanner = new Scanner(System.in);
         int choix = -1;
         while (choix <= 0 || choix > nombreClassesJouables){
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Donnez un nomber entier entre 1 et " + nombreClassesJouables + " svp. ");
-            choix = scanner.nextInt();
+            try{
+                choix = scanner.nextInt();
+            }
+            catch(Exception e){
+                choix=-1;
+            }
         }
         
         Creature personnageJoueur = null;
