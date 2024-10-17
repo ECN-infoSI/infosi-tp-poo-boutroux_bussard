@@ -10,8 +10,24 @@ package org.centrale.objet.WoE;
  */
 public final class Util {
     
+    /**
+     * verifie si un point2D peut etre stocké dans une carte ou est hors limite
+     * @param pos le point2D
+     * @param carte la carte
+     * @return true si il peut appartenir a la carte
+     */
     public static boolean verifierSiPositionExiste(Point2D pos, Case[][] carte){
-        if (pos.getX() < 0 || pos.getX() >= carte.length || pos.getY() < 0 || pos.getY() >= carte[0].length){
+        return verifierSiCaseExiste(pos.getX(), pos.getY(), carte);
+    }
+    /**
+     * verifie si un couple d'entier (x,y) peut etre stocké dans une carte ou est hors limite
+     * @param x
+     * @param y
+     * @param carte
+     * @return true si il peut appartenir a la carte
+     */
+    public static boolean verifierSiCaseExiste(int x,int y, Case[][] carte){
+        if (x < 0 || x >= carte.length || y < 0 || y >= carte[0].length){
             return false;
         }
         return true;

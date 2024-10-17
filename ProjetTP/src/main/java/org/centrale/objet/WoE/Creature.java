@@ -195,7 +195,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
             }
         }
 //        System.out.println("avance final  : "+avanceX+";"+avanceY);
-        this.gererDeplacement(carte, oldX, oldY, newX, newY);
+        this.gererDeplacement(carte, oldX, oldY, newX, newY,false);
     }
     
     /**
@@ -207,8 +207,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * @param oldY ordonnée de la position avant déplacement
      * @param newX abscisse de la position après déplacement
      * @param newY ordonnée de la position après déplacement
+     * @param estLeJoueur
      */
-    public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY){
+    public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY,boolean estLeJoueur){
         //vider case oldX,oldY;
         if (carte[oldX][oldY].objet != null ){
             carte[oldX][oldY].creature=null;
@@ -229,6 +230,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         
         //utiliser les objets de la case d'arrivée
         if (carte[newX][newY].objet!=null){
+            if (estLeJoueur){
+                System.out.println("Vous avez trouver une "+carte[newX][newY].objet.getClass().getSimpleName());
+            }
             carte[newX][newY].objet.utiliser(this);
             carte[newX][newY].objet=null;
         }

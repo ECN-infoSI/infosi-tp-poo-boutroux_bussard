@@ -186,7 +186,8 @@ public class Joueur {
                 }   
             }
         }
-    personnageJoue.gererDeplacement(carte, x, y, newX, newY);
+        
+    personnageJoue.gererDeplacement(carte, x, y, newX, newY,true);
     }
     
     private void affiche_boussole(){

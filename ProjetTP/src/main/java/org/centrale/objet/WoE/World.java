@@ -220,7 +220,7 @@ public class World {
     /**
      * Affiche les toutes les cases avec un caractere adapte à l'element present sur la case
      */
-    public void afficheWorld(){
+    public void afficheWorldTotal(){
         for (int indiceColonne = 0; indiceColonne < tailleMonde; indiceColonne++){
             System.out.println("");
             for (int indiceLigne = 0; indiceLigne < tailleMonde; indiceLigne++){
@@ -242,6 +242,41 @@ public class World {
         }
         System.out.println();
     }
+    
+    
+    /**
+     * permet d'afficher le carré de 5 case centré sur le Joueur
+     */
+    public void afficheWorld(){
+        for (int indiceX = joueur.personnageJoue.getPos().getX()-2; indiceX<= joueur.personnageJoue.getPos().getX()+2; indiceX++){
+            System.out.println("");
+            for (int indiceY = joueur.personnageJoue.getPos().getY()-2; indiceY <= joueur.personnageJoue.getPos().getY()+2; indiceY++){
+                
+                if(!Util.verifierSiCaseExiste(indiceX, indiceY, carte)){
+                    System.out.print(" " + " " + " ");
+                    continue;
+                }
+                if (carte[indiceX][indiceY] == null){
+                    System.out.print(" " + "." + " ");
+                    continue;
+                }
+                Case caseActuelle = carte[indiceX][indiceY];
+                if (caseActuelle.creature != null){
+                    System.out.print(" " + caseActuelle.creature.getSymboleCarte() + " ");
+                    continue;
+                }
+                if (caseActuelle.objet != null){
+                    System.out.print(" " + caseActuelle.objet.getSymboleCarte() + " ");
+                    continue;
+                }
+                System.out.print(" " + "." + " ");
+            }
+        }
+        System.out.println();
+    }
+    
+    
+    
     
     /**
      * Permet d'initialiser l'objet Joueur avec des inputs demandes a l'utilisateur. 
