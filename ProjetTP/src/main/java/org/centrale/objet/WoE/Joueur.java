@@ -63,22 +63,37 @@ public class Joueur {
     private void choixAdversaire(Case[][] carte,World monde){
         ArrayList<Creature> ennemis = new ArrayList<Creature>();
         ennemis= verifierPresenceCreatureProches(carte);
+        if(ennemis.isEmpty()){
+            System.out.println("aucun ennemi a portee");
+            return;
+        }
         System.out.println("choisissez votre adversaire");
         for(int i=0; i<ennemis.size();i++){
             System.out.println((i+1)+" :  "+ennemis.get(i).getClass().getSimpleName() +"   "+ennemis.get(i).getPtVie()+" points de vie, " +ennemis.get(i).getPos().distance(personnageJoue.getPos())+ " cases de distance");
         }
-        Scanner lectureEntier=new Scanner(System.in);
+        
         boolean choixValable = false;
+        boolean estUnEntier=true;
         int choix=0;
         while (!choixValable){
-            choix =lectureEntier.nextInt();
-            if(choix<= ennemis.size() && choix>0){
+            estUnEntier=true;
+            Scanner lectureEntier=new Scanner(System.in);
+            try{
+                choix =lectureEntier.nextInt();
+            }
+            catch(Exception e){
+                estUnEntier=false;
+            }
+            
+            if(choix<= ennemis.size() && choix>0 && estUnEntier){
                 choixValable=true;
-            }else {
+            }else{
                 System.out.println("mauvaise entrée veuillez reessayer");
             }
+            
         }
         attaquer(ennemis.get(choix-1),monde);
+        System.out.println("votre ennemi n'a plus que "+ennemis.get(choix-1).getPtVie()+" points de vie");
     }
        
     private void attaquer(Creature ennemi,World monde){
@@ -181,7 +196,7 @@ public class Joueur {
         System.out.println("   O -x- E");
         System.out.println("     /|\\");
         System.out.println("   SO S SE");
-        System.out.println("x to stay here");
+        System.out.println("x pour rester sur place");
     }
     
     /*
@@ -189,6 +204,7 @@ public class Joueur {
     */
     private int[] choixDeplacement(){
         int[] direction=new int[2];
+        System.out.println("choissisez votre deplacement");
         Scanner lectureClavier=new Scanner(System.in);
         String choix =lectureClavier.nextLine();
         choix = choix.toUpperCase();

@@ -194,7 +194,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
                 newY=oldY;
             }
         }
-        System.out.println("avance final  : "+avanceX+";"+avanceY);
+//        System.out.println("avance final  : "+avanceX+";"+avanceY);
         this.gererDeplacement(carte, oldX, oldY, newX, newY);
     }
     
@@ -246,7 +246,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      */
     protected void combatCorpsACorps(Creature creature, World monde){
         if (this.getPos().distance(creature.getPos()) <= 1){
-            System.out.println("combat corps a corps");
+//            System.out.println("combat corps a corps");
             attaqueCorpsACorps(creature,monde);
             
         }
@@ -257,21 +257,24 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * @param creature 
      */
     protected void attaqueCorpsACorps(Creature creature,World monde){
-        boolean joueurImplique=true;
+        
+        boolean joueurImplique=joueurImpliqueDansCombat(creature, monde);
+        
+        
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
         if(joueurImplique){System.out.println("jet d'attaque : "+jetDe);}
         if (getPageAtt() >= jetDe){
-            if(joueurImplique){System.out.println("l'attaque réussi !");}
+            if(joueurImplique){System.out.println("l'attaque reussi !");}
             jetDe = generateurAleatoire.nextInt(100) + 1;
             if(joueurImplique){System.out.println("jet de parade : "+jetDe);}
             int degats;
             if (creature.getPagePar() >= jetDe){
                 degats = Math.max(this.getDegAtt() - creature.getPtPar(), 0);
-                if(joueurImplique){System.out.println("la parade est réussie, vous infligez "+degats+" degats");}
+                if(joueurImplique){System.out.println("la parade est reussie "+degats+" degats sont infliges");}
             }else{
                 degats =this.getDegAtt();
-                if(joueurImplique){System.out.println("la parade est manquée, vous infligez "+degats+" degats");}
+                if(joueurImplique){System.out.println("la parade est manquee "+degats+" degats sont infliges");}
             }
             int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
             creature.setPtVie(nouveauPointVie);
@@ -284,19 +287,36 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * @param creature 
      */
     protected void attaqueDistance(Creature creature,World monde){
-        boolean joueurImplique=true;
+        boolean joueurImplique=joueurImpliqueDansCombat(creature, monde);
         Random generateurAleatoire = new Random();
         int jetDe = generateurAleatoire.nextInt(100) + 1;
         if(joueurImplique){System.out.println("jet d'attaque : "+jetDe);}
         if (getPageAtt() >= jetDe){
             int degats =this.getDegAtt();
-            if(joueurImplique){System.out.println("l'attaque réussi ! Vous infligez "+degats+" degats");}
+            if(joueurImplique){System.out.println("l'attaque reussi ! "+degats+" degats sont infliges");}
             int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
             creature.setPtVie(nouveauPointVie);
             
-        }
+        }else if(joueurImplique){System.out.println("l'attaque manque !");}
     }
     
+    private boolean joueurImpliqueDansCombat(Creature creature,World monde){
+        
+        boolean joueurImplique;
+        
+        if (this.getPos().getX()==monde.joueur.personnageJoue.getPos().getX() && this.getPos().getY()==monde.joueur.personnageJoue.getPos().getY()){
+            joueurImplique=true;
+            System.out.println("Vous attaquez le "+ creature.getClass().getSimpleName()+" !");
+        }
+        else if(creature.getPos().getX()==monde.joueur.personnageJoue.getPos().getX() && creature.getPos().getY()==monde.joueur.personnageJoue.getPos().getY()){
+            joueurImplique=true;
+            System.out.println("Un "+this.getClass().getSimpleName()+" vous attaque !");
+        }
+        else{
+            joueurImplique=false;
+        }
+        return joueurImplique;
+    }
     /**
      * Permet de déterminer quelle créature est la plus proche dans le périmètre de ditance d'attaque
      * @param carte
