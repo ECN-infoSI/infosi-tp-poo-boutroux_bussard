@@ -191,16 +191,26 @@ public class World {
      * Certaines crétures ne font rien d'autre que se déplacer. 
      */
     public void tourDeJeu(){
+        joueur.afficheStat();
         afficheWorld();
-        //joueur.affichagestat();
         joueur.deplacerJoueur(carte);
         afficheWorld();
-            joueur.choixCombat(carte,this);
+        joueur.choixCombat(carte,this);
+        attendre();
         //joueur.choixsauvegarde();
-        
+        int compteur=0;
         for (Creature creature : creatures){
-            creature.deplacer(carte);
-            creature.agir(carte,this);
+            compteur+=1;
+            if(creature.getPtVie()<=0){
+                creature=null;
+                creatures.remove(compteur);
+            }
+            else{
+                creature.deplacer(carte);
+                creature.agir(carte,this); 
+            }
+             
+            
             //condition d'affichage si le joueur est attaqué a rajouter
         }
         
@@ -217,6 +227,12 @@ public class World {
         }
     }
     
+    public void attendre(){
+        System.out.println("appuyer sur entree pour continuer");
+        Scanner lectureClavier=new Scanner(System.in);
+        String entreeClavier =lectureClavier.nextLine();
+        return;
+    }
     /**
      * Affiche les toutes les cases avec un caractere adapte à l'element present sur la case
      */

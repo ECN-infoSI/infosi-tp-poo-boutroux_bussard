@@ -301,7 +301,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
             int nouveauPointVie = Math.max(creature.getPtVie() - degats, 0);
             creature.setPtVie(nouveauPointVie);
             
-        }else if(joueurImplique){System.out.println("l'attaque manque !");}
+        }else if(joueurImplique){
+            System.out.println("l'attaque manque !");
+        }
     }
     
     private boolean joueurImpliqueDansCombat(Creature creature,World monde){
@@ -314,6 +316,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         }
         else if(creature.getPos().getX()==monde.joueur.personnageJoue.getPos().getX() && creature.getPos().getY()==monde.joueur.personnageJoue.getPos().getY()){
             joueurImplique=true;
+            monde.afficheWorld();
             System.out.println("Un "+this.getClass().getSimpleName()+" vous attaque !");
         }
         else{

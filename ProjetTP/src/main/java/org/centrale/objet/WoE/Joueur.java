@@ -253,4 +253,9 @@ public class Joueur {
                 
         }
     }
+    public void afficheStat(){
+        System.out.println("stats "+nomPersonnage+" :");
+        personnageJoue.affiche();
+        System.out.println();
+    }
 }
