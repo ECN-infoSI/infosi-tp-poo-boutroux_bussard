@@ -11,6 +11,13 @@ import java.util.Random;
  * @author remib
  */
 public class NuageToxique extends Objet implements Combattant, Deplacable {
+
+    public NuageToxique() {
+    }
+
+    public NuageToxique(Point2D point) {
+        super(point);
+    }
     
     @Override public void definirSymboleCarte(){
         symboleCarte = 'N';

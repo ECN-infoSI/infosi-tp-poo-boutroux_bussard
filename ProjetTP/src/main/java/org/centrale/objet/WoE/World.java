@@ -132,7 +132,7 @@ public class World {
                            carte[x][y]=new Case(new Epee());
                            break;
                         case 2:
-                           carte[x][y]=new Case(new NuageToxique());
+                           carte[x][y]=new Case(new NuageToxique(new Point2D(x,y)));
                            objetsAgissants.add(carte[x][y].objet);
                            break; 
                         default:
