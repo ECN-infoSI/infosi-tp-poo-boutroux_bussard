@@ -199,19 +199,28 @@ public class World {
         attendre();
         //joueur.choixsauvegarde();
         int compteur=0;
+        ArrayList<Creature> creaturesASupprimer = new ArrayList<Creature>(); 
         for (Creature creature : creatures){
             compteur+=1;
             if(creature.getPtVie()<=0){
-                creature=null;
-                creatures.remove(compteur);
+                creaturesASupprimer.add(creature);
             }
             else{
                 creature.deplacer(carte,this);
                 creature.agir(carte,this); 
             }
-             
-            
             //condition d'affichage si le joueur est attaqué a rajouter
+        }
+        
+        // On supprime des différentes listes toutes les creatures qui sont mortes
+        for (Creature creature : creaturesASupprimer){
+            int posX = creature.getPos().getX();
+            int posY = creature.getPos().getY();
+            creatures.remove(creature);
+            creature = null;
+            if (carte[posX][posY].objet == null){
+                carte[posX][posY] = null;
+            }
         }
         
         for (Objet objet: objetsAgissants){
