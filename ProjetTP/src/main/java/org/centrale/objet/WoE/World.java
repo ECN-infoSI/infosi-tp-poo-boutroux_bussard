@@ -19,7 +19,7 @@ public class World {
     private ArrayList<Objet> objetsAgissants;
     
     /** valeur de la longeur d'un coté du monde carré */
-    public final int tailleMonde = 5;
+    public final int tailleMonde = 50;
     
     /** La carte dans laquelle est sauvegardé les objets et les creatures presents dans le monde. */
     public Case[][] carte = new Case[tailleMonde][tailleMonde];
