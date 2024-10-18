@@ -264,9 +264,9 @@ public class World {
      * permet d'afficher le carré de 5 case centré sur le Joueur
      */
     public void afficheWorld(){
-        for (int indiceX = joueur.personnageJoue.getPos().getX()-2; indiceX<= joueur.personnageJoue.getPos().getX()+2; indiceX++){
+        for (int indiceX = joueur.personnageJoue.getPos().getX()-4; indiceX<= joueur.personnageJoue.getPos().getX()+4; indiceX++){
             System.out.println("");
-            for (int indiceY = joueur.personnageJoue.getPos().getY()-2; indiceY <= joueur.personnageJoue.getPos().getY()+2; indiceY++){
+            for (int indiceY = joueur.personnageJoue.getPos().getY()-4; indiceY <= joueur.personnageJoue.getPos().getY()+4; indiceY++){
                 
                 if(!Util.verifierSiCaseExiste(indiceX, indiceY, carte)){
                     System.out.print(" " + " " + " ");

@@ -261,4 +261,8 @@ public class Joueur {
         personnageJoue.affiche();
         System.out.println();
     }
+    
+    public void stocker(Recoltable obj){
+        inventaire.getObjetActivable().add(obj);
+    }
 }

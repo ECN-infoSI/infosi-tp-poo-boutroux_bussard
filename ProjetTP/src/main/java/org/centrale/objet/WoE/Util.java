@@ -32,4 +32,11 @@ public final class Util {
         }
         return true;
     }
+    
+    public static boolean estLeJoueur(Creature crea, World monde){
+        if (crea.getPos().getX()==monde.joueur.personnageJoue.getPos().getX() && crea.getPos().getY()==monde.joueur.personnageJoue.getPos().getY()){
+            return true;
+        }
+        return false;
+    }
 }

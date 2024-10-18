@@ -231,9 +231,6 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         
         //utiliser les objets de la case d'arrivée
         if (carte[newX][newY].objet!=null){
-            if (estLeJoueur){
-                System.out.println("Vous avez trouver une "+carte[newX][newY].objet.getClass().getSimpleName());
-            }
             carte[newX][newY].objet.utiliser(this,monde);
             carte[newX][newY].objet=null;
         }

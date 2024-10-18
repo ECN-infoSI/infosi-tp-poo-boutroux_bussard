@@ -50,10 +50,15 @@ public class Epee extends Recoltable{
     /**
      * Augmente les degats de l'utilisateur. 
      * @param utilisateur 
+     * @param monde 
      */
     @Override
     public void utiliser(Creature utilisateur, World monde) {
-        utilisateur.setDegAtt(utilisateur.getDegAtt()+degAtt);
+        if (Util.estLeJoueur(utilisateur, monde)){
+            System.out.println("vous avez trouve une eppee !");
+            monde.joueur.stocker(this);
+        }
+        else {utilisateur.setDegAtt(utilisateur.getDegAtt()+degAtt);}
     }
     
     @Override

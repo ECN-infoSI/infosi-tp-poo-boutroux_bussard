@@ -23,6 +23,7 @@ public class TestWoE {
         for(int i=0;i<10;i++){
             mondeTest.tourDeJeu();
             mondeTest.afficheWorld();
+            mondeTest.joueur.inventaire.afficherObjetDisponibles();
         }
         
 

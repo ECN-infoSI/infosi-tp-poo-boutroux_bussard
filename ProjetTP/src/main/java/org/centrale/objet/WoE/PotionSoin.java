@@ -64,7 +64,13 @@ public class PotionSoin extends Recoltable{
      */
     @Override
     public void utiliser(Creature utilisateur, World monde) {
+        if (Util.estLeJoueur(utilisateur, monde)){
+            System.out.println("vous avez trouve une Potion !");
+            monde.joueur.stocker(this);
+        }
+        else {
         utilisateur.setPtVie(utilisateur.getPtVie()+qttSoin);
+        }
     }
     
     @Override
