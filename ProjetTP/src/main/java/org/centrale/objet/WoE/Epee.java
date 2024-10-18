@@ -9,7 +9,7 @@ import java.util.Random;
  * L'epee est un objet permettant d'augmenter les degats de celui qui l'utilise. 
  * @author Quent
  */
-public class Epee extends Objet implements Recoltable{
+public class Epee extends Recoltable{
     /**nombre de degat d'attaque que l eppee rajoute*/
     private int degAtt;
     private final int minQttDegat=1;

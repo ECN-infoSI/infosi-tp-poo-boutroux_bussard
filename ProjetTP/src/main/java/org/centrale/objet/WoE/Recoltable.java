@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.centrale.objet.WoE;
 
@@ -8,7 +8,15 @@ package org.centrale.objet.WoE;
  *
  * @author Quent
  */
-public interface Recoltable {
-    public void afficherObjet();
+public abstract class Recoltable extends Objet {
+    public abstract void afficherObjet();
+
+    public Recoltable(Point2D point) {
+        super(point);
+    }
+
+    public Recoltable() {
+        super();
+    }
     
 }

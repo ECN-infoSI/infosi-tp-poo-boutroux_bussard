@@ -57,4 +57,8 @@ public class Inventaire {
             obj.afficherObjet();
         }
     }
+    
+    private void utiliserObj(int index){
+        Objet obj= objetActif.get(index);
+    }
 }
