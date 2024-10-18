@@ -195,6 +195,7 @@ public class World {
         afficheWorld();
         joueur.deplacerJoueur(carte,this);
         afficheWorld();
+        joueur.inventaire.consulterInventaire();
         joueur.choixCombat(carte,this);
         attendre();
         //joueur.choixsauvegarde();
