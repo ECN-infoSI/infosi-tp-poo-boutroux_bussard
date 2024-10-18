@@ -232,7 +232,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         //utiliser les objets de la case d'arrivée
         if (carte[newX][newY].objet!=null){
             carte[newX][newY].objet.utiliser(this,monde);
-            carte[newX][newY].objet=null;
+            if (carte[newX][newY].objet instanceof Recoltable){
+                carte[newX][newY].objet = null;
+            }
         }
     }
     
