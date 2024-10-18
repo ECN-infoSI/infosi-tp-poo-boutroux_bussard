@@ -254,7 +254,9 @@ public class World {
             }
         }
     }
-    
+    /**
+     * permet d'attendre l'appui d'une touche par l'utilisateur avant de passer à la suite
+     */
     public void attendre(){
         System.out.println("appuyer sur entree pour continuer");
         Scanner lectureClavier=new Scanner(System.in);

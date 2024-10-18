@@ -73,11 +73,18 @@ public class PotionSoin extends Recoltable{
         }
     }
     
+    /**
+     * affiche une simple phrase présentant l'objet dans la console
+     */
     @Override
     public void afficherObjet(){
         System.out.println("Potion de Soin, restaure "+qttSoin+" points de vie");
     }
     
+    /**
+     * applique les effets au joueur
+     * @param j 
+     */
     @Override
     public void consommerDepuisInventaire(Joueur j){
         System.out.println("vous buvez la potion, vous gagnez "+qttSoin+" points de vie");

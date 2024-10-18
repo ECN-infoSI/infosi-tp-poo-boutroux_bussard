@@ -61,11 +61,18 @@ public class Epee extends Recoltable{
         else {utilisateur.setDegAtt(utilisateur.getDegAtt()+degAtt);}
     }
     
+    /**
+     * affiche une phrase descriptive de l'objet
+     */
     @Override
     public void afficherObjet(){
         System.out.println("Epee, inflige "+degAtt+" degats supplementaires");
     }
     
+    /**
+     * L'épée est sortie de l'inventaire et utilisée
+     * @param j 
+     */
     @Override
     public void consommerDepuisInventaire(Joueur j){
         System.out.println("vous equipez l'epee, vous gagnez "+degAtt+" degats supplementaires");

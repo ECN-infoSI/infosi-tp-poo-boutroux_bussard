@@ -39,6 +39,11 @@ public abstract class  Objet implements AffichableCarte{
         symboleCarte = 'O';
     }
     
+    /**
+     * Gére les interactions lorsqu'une créature tente d'utiliser l'objet
+     * @param utilisateur
+     * @param monde 
+     */
     public abstract void utiliser(Creature utilisateur, World monde);
     
     

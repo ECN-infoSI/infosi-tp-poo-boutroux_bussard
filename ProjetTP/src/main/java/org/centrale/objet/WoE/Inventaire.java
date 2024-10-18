@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ *Une classe qui stocke les éléments que le joueur rammasse
  * @author Quent
  */
 public class Inventaire {
@@ -48,6 +48,9 @@ public class Inventaire {
         return joueur;
     }
 
+    /**
+     * l'utilisateur choisi les elements de son inventaire qu'il veut utiliser 
+     */
     public void consulterInventaire(){
         System.out.println();
         if(objetActivable.size()==0){
@@ -84,6 +87,9 @@ public class Inventaire {
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+    /**
+     * affiche le contenu de l'inventaire
+     */
     public void afficherObjetDisponibles(){
         int k=1;
         for(Recoltable obj:objetActivable){
@@ -92,7 +98,10 @@ public class Inventaire {
             k++;
         }
     }
-    
+    /**
+     * utilise un objet spécifique de l'inventaire
+     * @param index indice de l'objet à tester
+     */
     private void utiliserObj(int index){
         Recoltable obj= objetActivable.get(index);
         obj.consommerDepuisInventaire(this.joueur);

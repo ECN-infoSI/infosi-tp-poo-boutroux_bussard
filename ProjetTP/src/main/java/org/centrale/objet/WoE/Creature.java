@@ -257,7 +257,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     }
     
     /**
-     * Attaque pouvant etre paree. 
+     * Attaque pouvant etre paree.
+     * Préviens l'utilisateur si le personnage joueur est attaqué
+     * Previens l'utilisateur s'il attaque une autre créature
      * @param creature 
      */
     protected void attaqueCorpsACorps(Creature creature,World monde){
@@ -287,7 +289,9 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     }
     
     /**
-     * Attaque ne pouvant pas etre paree. 
+     * Attaque ne pouvant pas etre paree.
+     * Préviens l'utilisateur si le personnage joueur est attaqué
+     * Previens l'utilisateur s'il attaque une autre créature
      * @param creature 
      */
     protected void attaqueDistance(Creature creature,World monde){
@@ -306,6 +310,12 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         }
     }
     
+    /**
+     * determine si la créature donnée en paramètre est celle du joueur de la partie en cours
+     * @param creature
+     * @param monde
+     * @return 
+     */
     private boolean joueurImpliqueDansCombat(Creature creature,World monde){
         
         boolean joueurImplique;

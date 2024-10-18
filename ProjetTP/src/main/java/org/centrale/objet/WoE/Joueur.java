@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- *
+ * La classe qui contient toutes les informations sur le personnage incarnée par l'utilisateur
  * @author remib
  */
 public class Joueur {
@@ -111,7 +111,11 @@ public class Joueur {
     }
         
         
-         
+    /**
+     * renvoie la lise de toutes les créatures a portée du personnage
+     * @param carte
+     * @return 
+     */ 
     private ArrayList<Creature> verifierPresenceCreatureProches(Case[][] carte){
         int posX = personnageJoue.getPos().getX();
         int posY = personnageJoue.getPos().getY();
@@ -162,7 +166,11 @@ public class Joueur {
     }
     
     
-    
+    /**
+     * Propose le choix de déplacement à l'utilisateur et fait en sorte qu'il ne parte que sur les cases possibles
+     * @param carte
+     * @param monde 
+     */
     public void deplacerJoueur(Case[][] carte,World monde){
         affiche_boussole();
         int[] deplacement=new int[2];
@@ -194,7 +202,9 @@ public class Joueur {
         
     personnageJoue.gererDeplacement(carte, x, y, newX, newY,true,monde);
     }
-    
+    /**
+     * affiche une boussole dans la console
+     */
     private void affiche_boussole(){
         System.out.println();
         System.out.println("   NO N NE");
@@ -258,12 +268,19 @@ public class Joueur {
                 
         }
     }
+    /**
+     * affiche les statistique du personnage incarné
+     */
     public void afficheStat(){
         System.out.println("stats "+nomPersonnage+" :");
         personnageJoue.affiche();
         System.out.println();
     }
     
+    /**
+     * stocke un objet rammassé dans l'inventaire
+     * @param obj 
+     */
     public void stocker(Recoltable obj){
         inventaire.getObjetActivable().add(obj);
     }

@@ -7,7 +7,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * Un objet toxique, se déplace sur la carte et inflige des dégats aux ennemis qui penettrent sur sa case
  * @author remib
  */
 public class NuageToxique extends Objet implements Combattant, Deplacable {
@@ -24,10 +24,18 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
     }
 
     @Override
+    /**
+     * inflige des dégats automatiques aux créatures qu'il touche
+     */
     public void combattre(Creature creature,World monde) {        
         creature.setPtVie(Math.max(0, creature.getPtVie() - 5));
     }
 
+    /**
+     * Crée déplacement aléatoire de l'élément et l'empeche d'aller sur d'autre objets ou de sortir sur la carte
+     * @param carte
+     * @param monde 
+     */
     @Override
     public void deplacer(Case[][] carte,World monde){
         
@@ -69,7 +77,14 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
         this.gererDeplacement(carte, oldX, oldY, newX, newY);
     }
     
-
+    /**
+     * gére le changement de position de l'élément et la supression de son ancienne position
+     * @param carte
+     * @param oldX ancienne ordonnée
+     * @param oldY ancienne abscisse
+     * @param newX nouvelle ordonnée
+     * @param newY nouvelle abscisse
+     */
     public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY){
         //vider case oldX,oldY;
         if (carte[oldX][oldY].creature != null ){
@@ -90,6 +105,11 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
         this.getPos().SetPosition(newX, newY);
     }
 
+    /**
+     * Déclenche le combat lorsqu'une créature rentre sur la même case que le nuage
+     * @param utilisateur la créature qui arrive sur la case
+     * @param monde 
+     */
     @Override
     public void utiliser(Creature utilisateur, World monde) {
         combattre(utilisateur, monde);

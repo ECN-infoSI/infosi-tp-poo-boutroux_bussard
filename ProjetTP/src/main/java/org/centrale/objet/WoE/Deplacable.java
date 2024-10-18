@@ -5,7 +5,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * lie toute les créature pouvant se déplacer dans le monde
  * @author remib
  */
 public interface Deplacable {

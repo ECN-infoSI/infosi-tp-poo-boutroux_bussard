@@ -33,6 +33,12 @@ public final class Util {
         return true;
     }
     
+    /**
+     * Renvoie true si la creature est le joueur de ce monde
+     * @param crea la créature suscpectee d'etre le personnage joueur
+     * @param monde le monde de la partie en cours
+     * @return 
+     */
     public static boolean estLeJoueur(Creature crea, World monde){
         if (crea.getPos().getX()==monde.joueur.personnageJoue.getPos().getX() && crea.getPos().getY()==monde.joueur.personnageJoue.getPos().getY()){
             return true;

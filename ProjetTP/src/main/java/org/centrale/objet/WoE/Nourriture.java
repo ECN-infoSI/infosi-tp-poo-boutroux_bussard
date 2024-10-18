@@ -7,7 +7,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * Un objet rammassable qui donne des power-up de courte durée au joueur
  * @author Quent
  */
 public abstract class Nourriture extends Recoltable {
@@ -62,6 +62,10 @@ public abstract class Nourriture extends Recoltable {
         super.definirSymboleCarte(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
+    /**
+     * activation des effets lors de la consomation par le joueur
+     * @param j 
+     */
     @Override
     public void consommerDepuisInventaire(Joueur j) {
         tempsDebutUtilisation = j.monde.compteurTemps;
@@ -72,6 +76,11 @@ public abstract class Nourriture extends Recoltable {
     
     public abstract void annulerEffetNourriture(Joueur j);
 
+    /**
+     * stockage de l'element dans l'inventaire et affichage d'un message utilisateur
+     * @param utilisateur la créature qui veut utiliser la nourriture
+     * @param monde 
+     */
     @Override
     public void utiliser(Creature utilisateur, World monde) {
         if (Util.estLeJoueur(utilisateur, monde)){
