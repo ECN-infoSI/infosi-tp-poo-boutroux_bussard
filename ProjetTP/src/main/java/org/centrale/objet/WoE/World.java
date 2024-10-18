@@ -27,38 +27,43 @@ public class World {
     /** L'objet joueur est instancié au debut du monde et gere les inputs envoyes par le vrai joueur. */
     public Joueur joueur;
     
+    /** permet d'avoir une notion du temps, utile pour les effets ayant une duree*/
+    public int compteurTemps; 
+    
     
     /** constructeur sans parametre
      * choisi aléatoirement un nombre de chaque type d'entité
      */
     public World() {
+        this.compteurTemps = 0;
+        
         this.creatures = new ArrayList<Creature>();
 
         // On divise par 15 pour ne pas saturer la carte avec des personnages. 
-        int nbrMaxParElement=tailleMonde*tailleMonde/15;
+        int nbrMaxParElement = tailleMonde*tailleMonde/15;
         Random generateurAleatoire = new Random();
 
-        int nbrArcher=generateurAleatoire.nextInt(nbrMaxParElement);
+        int nbrArcher = generateurAleatoire.nextInt(nbrMaxParElement);
         System.out.println("Nombre d'Archer : "+ (nbrArcher+1));
         for(int i=0;i<=nbrArcher;i++){
             creatures.add(new Archer());
         }
-        int nbrGuerrier=generateurAleatoire.nextInt(nbrMaxParElement);
+        int nbrGuerrier = generateurAleatoire.nextInt(nbrMaxParElement);
         System.out.println("Nombre de Guerrier : "+ (nbrGuerrier+1));
         for(int i=0;i<=nbrGuerrier;i++){
             creatures.add(new Guerrier());
         }
-        int nbrPaysan=generateurAleatoire.nextInt(nbrMaxParElement);
+        int nbrPaysan = generateurAleatoire.nextInt(nbrMaxParElement);
         System.out.println("Nombre de paysan : "+ (nbrPaysan+1));
         for(int i=0;i<=nbrPaysan;i++){
             creatures.add(new Paysan());
         }
-        int nbrLoup=generateurAleatoire.nextInt(nbrMaxParElement);
+        int nbrLoup = generateurAleatoire.nextInt(nbrMaxParElement);
         System.out.println("Nombre de loup : "+ (nbrLoup+1));
         for(int i=0;i<=nbrLoup;i++){
             creatures.add(new Loup());
         }
-        int nbrLapin=generateurAleatoire.nextInt(nbrMaxParElement);
+        int nbrLapin = generateurAleatoire.nextInt(nbrMaxParElement);
         System.out.println("Nombre de Lapin : "+ (nbrLapin+1));
         for(int i=0;i<=nbrLapin;i++){
             creatures.add(new Lapin());
@@ -73,6 +78,8 @@ public class World {
      * @param nbrPersonnage nombre d'archer dans le monde
      */
     public World(int nbrPersonnage){
+        this.compteurTemps = 0;
+        
         if (nbrPersonnage > tailleMonde * tailleMonde){
             System.out.println("Trop de personnage, monde trop petit");
             nbrPersonnage=0;
@@ -349,7 +356,7 @@ public class World {
             choixNom = scannerString.nextLine();
         }
         
-        joueur = new Joueur( personnageJoueur, choixNom);
+        joueur = new Joueur( personnageJoueur, choixNom, this);
         joueur.personnageJoue.definirSymboleCarte('J');
         
         // Placer le joueur aleatoirement sur la carte

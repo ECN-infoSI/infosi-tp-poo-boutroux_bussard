@@ -8,11 +8,37 @@ package org.centrale.objet.WoE;
  *
  * @author Quent
  */
-//public class Nourriture extends Recoltable {
-//
-//    @Override
-//    public void definirSymboleCarte() {
-//        super.definirSymboleCarte(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-//    }
-//    
-//}
+public abstract class Nourriture extends Recoltable {
+    
+    private int tempsDebutUtilisation; 
+
+    public int getTempsDebutUtilisation() {
+        return tempsDebutUtilisation;
+    }
+
+    public void setTempsDebutUtilisation(int tempsDebutUtilisation) {
+        this.tempsDebutUtilisation = tempsDebutUtilisation;
+    }
+    
+    
+    @Override
+    public void definirSymboleCarte() {
+        super.definirSymboleCarte(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void consommerDepuisInventaire(Joueur j) {
+        tempsDebutUtilisation = j.monde.compteurTemps;
+        appliquerEffetNourriture(j);
+    }
+    
+    protected abstract void appliquerEffetNourriture(Joueur j);
+
+    @Override
+    public void utiliser(Creature utilisateur, World monde) {
+        if (Util.estLeJoueur(utilisateur, monde)){
+            System.out.println("vous avez trouve de la nourriture !");
+            monde.joueur.stocker(this);
+        }
+    }
+}

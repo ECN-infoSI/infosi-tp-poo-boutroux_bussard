@@ -15,15 +15,17 @@ public class Joueur {
     public Creature personnageJoue; 
     public String nomPersonnage;
     public Inventaire inventaire;
+    public World monde;
 
     public Joueur() {
         this.inventaire = new Inventaire(this);
     }
 
-    public Joueur(Creature perso, String nom) {
+    public Joueur(Creature perso, String nom, World monde) {
         this.personnageJoue = perso;
         this.nomPersonnage = nom;
         this.inventaire = new Inventaire(this);
+        this.monde = monde;
     }
     
     /**
