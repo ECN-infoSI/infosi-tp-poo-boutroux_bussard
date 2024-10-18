@@ -198,6 +198,14 @@ public class World {
      * Certaines crétures ne font rien d'autre que se déplacer. 
      */
     public void tourDeJeu(){
+        compteurTemps++;
+        for(int k=0;k<joueur.inventaire.getNourritureActive().size();k++){
+            if (joueur.inventaire.getNourritureActive().get(k).getTempsDebutUtilisation()+3>=compteurTemps){
+                joueur.inventaire.getNourritureActive().get(k).annulerEffetNourriture(joueur);
+                joueur.inventaire.getNourritureActive().remove(k);
+                k--;
+            }
+        }
         joueur.afficheStat();
         afficheWorld();
         joueur.deplacerJoueur(carte,this);

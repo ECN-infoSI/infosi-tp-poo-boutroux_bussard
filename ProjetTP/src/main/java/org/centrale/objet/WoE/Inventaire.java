@@ -13,18 +13,18 @@ import java.util.Scanner;
  */
 public class Inventaire {
     private ArrayList<Recoltable> objetActivable;
-    private ArrayList<Recoltable> objetActif;
+    private ArrayList<Nourriture> NourritureActive;
     private Joueur joueur;
 
     public Inventaire(Joueur j) {
         this.joueur = j;
-        this.objetActif = new ArrayList<Recoltable>();
+        this.NourritureActive = new ArrayList<Nourriture>();
         this.objetActivable = new ArrayList<Recoltable>();
     }
 
     public Inventaire() {
         this.joueur=new Joueur();
-        this.objetActif = new ArrayList<Recoltable>();
+        this.NourritureActive = new ArrayList<Nourriture>();
         this.objetActivable = new ArrayList<Recoltable>();
     }
 
@@ -32,16 +32,16 @@ public class Inventaire {
         return objetActivable;
     }
 
-    public void setObjetActivable(ArrayList<Recoltable> objetInactifs) {
-        this.objetActivable = objetInactifs;
+    public void setObjetActivable(ArrayList<Recoltable> objetactivable) {
+        this.objetActivable = objetactivable;
     }
 
-    public ArrayList<Recoltable> getObjetActif() {
-        return objetActif;
+    public ArrayList<Nourriture> getNourritureActive() {
+        return NourritureActive;
     }
 
-    public void setObjetActif(ArrayList<Recoltable> objetActif) {
-        this.objetActif = objetActif;
+    public void setNourritureActive(ArrayList<Nourriture> nourritureActive) {
+        this.NourritureActive = nourritureActive;
     }
 
     public Joueur getJoueur() {
@@ -97,8 +97,8 @@ public class Inventaire {
         Recoltable obj= objetActivable.get(index);
         obj.consommerDepuisInventaire(this.joueur);
         objetActivable.remove(index);
-//        if (obj.estunconsommable){
-//            objetInactifs.add(obj);
-//        }
+        if (obj instanceof Nourriture){
+            NourritureActive.add((Nourriture) obj);
+        }
     }
 }

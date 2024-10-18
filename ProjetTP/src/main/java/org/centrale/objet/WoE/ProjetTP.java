@@ -18,9 +18,14 @@ public class ProjetTP {
         System.out.println("world.joueur.getClass : " + world.joueur.personnageJoue.getClass().getName());
         
         world.afficheWorld();
-        for (int i = 0; i < 10; i++){
+        boolean joueurMort=false;
+        while (!joueurMort){
             world.tourDeJeu();
             world.afficheWorld();
+            if(world.joueur.personnageJoue.getPtVie()<=0){
+                System.out.println("Vous etes mort, dommage");
+                joueurMort=true;
+        }
         }
     }
 }
