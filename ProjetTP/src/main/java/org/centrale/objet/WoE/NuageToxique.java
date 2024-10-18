@@ -65,7 +65,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
                 newY = oldY;
             }
         }
-        System.out.println("avance final  : "+avanceX+";"+avanceY);
+        
         this.gererDeplacement(carte, oldX, oldY, newX, newY);
     }
     

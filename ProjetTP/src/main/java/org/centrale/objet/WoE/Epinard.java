@@ -17,6 +17,14 @@ public class Epinard extends Nourriture {
     public Epinard(int augmentationCarac) {
         super(augmentationCarac);
     }
+    
+    public Epinard(Point2D point) {
+        super(point);
+    }
+    
+    public Epinard(){
+        super();
+    }
 
     @Override
     protected void appliquerEffetNourriture(Joueur j) {

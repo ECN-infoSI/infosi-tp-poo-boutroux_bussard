@@ -15,7 +15,14 @@ public abstract class Nourriture extends Recoltable {
     private int tempsDebutUtilisation; 
     
     private int augmentationCarac; 
-
+    
+    public Nourriture() {
+        super();
+        Random generateurAleatoire = new Random();
+        this.augmentationCarac = generateurAleatoire.nextInt(3)+1;
+        this.tempsDebutUtilisation = Integer.MAX_VALUE;
+    }
+    
     public Nourriture(Point2D point) {
         super(point);
         Random generateurAleatoire = new Random();

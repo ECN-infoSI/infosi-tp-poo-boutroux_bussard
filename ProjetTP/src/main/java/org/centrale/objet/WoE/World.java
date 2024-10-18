@@ -120,7 +120,7 @@ public class World {
             }
         }
         
-        int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/12;
+        int nbrEntiteMaxObjet= (tailleMonde*tailleMonde-creatures.size())/8;
         int nbrObjet=generateurAleatoire.nextInt(nbrEntiteMaxObjet);
         System.out.println("Nombre d'objet : "+ (nbrObjet+1) );
         for(int i=0;i<=nbrObjet;i++){
@@ -130,18 +130,21 @@ public class World {
                 int x=generateurAleatoire.nextInt(tailleMonde);
                 int y=generateurAleatoire.nextInt(tailleMonde);
                 if ( carte[x][y]==null){
-                    int typeAleatoire = generateurAleatoire.nextInt(3);
+                    int typeAleatoire = generateurAleatoire.nextInt(4);
                     switch(typeAleatoire){
                         case 0:
-                           carte[x][y]=new Case(new PotionSoin());
+                           carte[x][y]=new Case(new PotionSoin(new Point2D(x,y)));
                            break;
                         case 1:
-                           carte[x][y]=new Case(new Epee());
+                           carte[x][y]=new Case(new Epee(new Point2D(x,y)));
                            break;
                         case 2:
                            carte[x][y]=new Case(new NuageToxique(new Point2D(x,y)));
                            objetsAgissants.add(carte[x][y].objet);
                            break; 
+                        case 3:
+                           carte[x][y]=new Case(new Epinard(new Point2D(x,y)));
+                           break;
                         default:
                             System.out.println("Erreur: création objet non existant");
                             break;    
