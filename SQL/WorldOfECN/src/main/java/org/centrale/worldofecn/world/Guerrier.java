@@ -28,8 +28,10 @@ public class Guerrier extends Personnage {
      * @param connection
      */
     @Override
-    public void saveToDatabase(Connection connection) {
-        
+    public void saveToDatabase(Connection connection){//int id_monde) {
+//        INSERT INTO monstre (page_esquive,page_attaque_arme_naturelle,pt_att_arme_naturelle,type_monstre) VALUES (?,?,?,'Loup');
+//        INSERT INTO Creature (point_de_vie,position_x,position_y,id_monde,id_humanoide,id_monstre,est_male) VALUES 
+//        (?,?,?,?,(SELECT max(id_monstre) FROM monstre),?);
     }
 
     /**
