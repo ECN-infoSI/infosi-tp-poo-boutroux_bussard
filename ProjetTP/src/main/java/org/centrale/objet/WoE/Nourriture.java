@@ -4,6 +4,8 @@
  */
 package org.centrale.objet.WoE;
 
+import java.util.Random;
+
 /**
  *
  * @author Quent
@@ -11,6 +13,26 @@ package org.centrale.objet.WoE;
 public abstract class Nourriture extends Recoltable {
     
     private int tempsDebutUtilisation; 
+    
+    private int augmentationCarac; 
+
+    public Nourriture(Point2D point) {
+        super(point);
+        Random generateurAleatoire = new Random();
+        this.augmentationCarac = generateurAleatoire.nextInt(3)+1;
+        this.tempsDebutUtilisation = Integer.MAX_VALUE;
+    }
+    
+    public Nourriture(int augmentationCarac, Point2D point) {
+        super(point);
+        this.tempsDebutUtilisation = Integer.MAX_VALUE;
+        this.augmentationCarac = augmentationCarac;
+    }
+
+    public Nourriture(int augmentationCarac) {
+        this.tempsDebutUtilisation = Integer.MAX_VALUE;
+        this.augmentationCarac = augmentationCarac;
+    }
 
     public int getTempsDebutUtilisation() {
         return tempsDebutUtilisation;
@@ -19,7 +41,14 @@ public abstract class Nourriture extends Recoltable {
     public void setTempsDebutUtilisation(int tempsDebutUtilisation) {
         this.tempsDebutUtilisation = tempsDebutUtilisation;
     }
-    
+
+    public int getAugmentationCarac() {
+        return augmentationCarac;
+    }
+
+    public void setAugmentationCarac(int augmentationCarac) {
+        this.augmentationCarac = augmentationCarac;
+    }
     
     @Override
     public void definirSymboleCarte() {
@@ -33,6 +62,8 @@ public abstract class Nourriture extends Recoltable {
     }
     
     protected abstract void appliquerEffetNourriture(Joueur j);
+    
+    public abstract void annulerEffetNourriture(Joueur j);
 
     @Override
     public void utiliser(Creature utilisateur, World monde) {
