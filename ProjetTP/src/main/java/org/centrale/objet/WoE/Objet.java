@@ -40,5 +40,6 @@ public abstract class  Objet implements AffichableCarte{
     }
     
     public abstract void utiliser(Creature utilisateur);
-      
+    
+    
 }

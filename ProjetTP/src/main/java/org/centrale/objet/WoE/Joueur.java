@@ -14,13 +14,16 @@ import java.util.ArrayList;
 public class Joueur {
     public Creature personnageJoue; 
     public String nomPersonnage;
+    public Inventaire inventaire;
 
     public Joueur() {
+        this.inventaire = new Inventaire(this);
     }
 
     public Joueur(Creature perso, String nom) {
         this.personnageJoue = perso;
         this.nomPersonnage = nom;
+        this.inventaire = new Inventaire(this);
     }
     
     /**

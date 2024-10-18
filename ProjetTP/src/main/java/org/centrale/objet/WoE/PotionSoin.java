@@ -10,7 +10,7 @@ import java.util.Random;
  * Objet que les creatures peuvent ramasser puis utiliser pour regagner de la vie. 
  * @author Quent
  */
-public class PotionSoin extends Objet {
+public class PotionSoin extends Objet implements Recoltable{
     /** total de point de vie que la potion restaure */
     private int qttSoin;
     private final int minimumQttSoin=5;
@@ -67,4 +67,8 @@ public class PotionSoin extends Objet {
         utilisateur.setPtVie(utilisateur.getPtVie()+qttSoin);
     }
     
+    @Override
+    public void afficherObjet(){
+        System.out.println("Potion de Soin, restaure "+qttSoin+" points de vie");
+    }
 }    
