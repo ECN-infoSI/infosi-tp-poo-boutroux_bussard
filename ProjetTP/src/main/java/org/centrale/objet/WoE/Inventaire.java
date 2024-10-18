@@ -59,6 +59,11 @@ public class Inventaire {
     }
     
     private void utiliserObj(int index){
-        Objet obj= objetActif.get(index);
+        Recoltable obj= objetActif.get(index);
+        //utiliser obj
+        objetActif.remove(index);
+//        if (obj.estunconsommable){
+//            objetInactifs.add(obj);
+//        }
     }
 }

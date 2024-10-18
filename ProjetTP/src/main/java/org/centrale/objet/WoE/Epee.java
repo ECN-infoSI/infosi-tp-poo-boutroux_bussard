@@ -52,11 +52,18 @@ public class Epee extends Recoltable{
      * @param utilisateur 
      */
     @Override
-    public void utiliser(Creature utilisateur) {
+    public void utiliser(Creature utilisateur, World monde) {
         utilisateur.setDegAtt(utilisateur.getDegAtt()+degAtt);
     }
+    
     @Override
     public void afficherObjet(){
         System.out.println("Epee, inflige "+degAtt+" degats supplementaires");
+    }
+    
+    @Override
+    public void consommerDepuisInventaire(Joueur j){
+        System.out.println("vous equipez l'epee, vous gagnez "+degAtt+" degats supplementaires");
+        j.personnageJoue.setDegAtt(j.personnageJoue.getDegAtt()+degAtt);
     }
 }

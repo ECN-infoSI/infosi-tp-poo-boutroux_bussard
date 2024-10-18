@@ -22,7 +22,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
     }
 
     @Override
-    public void deplacer(Case[][] carte){
+    public void deplacer(Case[][] carte,World monde){
         
         Random generateurAleatoire = new Random();
         
@@ -84,7 +84,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
     }
 
     @Override
-    public void utiliser(Creature utilisateur) {
+    public void utiliser(Creature utilisateur, World monde) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }    
 }

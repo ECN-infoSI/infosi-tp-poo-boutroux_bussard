@@ -158,7 +158,8 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * si la creature veut se deplacer sur une case hors de la carte elle fait le mouvement opposé
      * @param carte le tableau représentant contenant les differents objets du monde et leur positions 
      */
-    public void deplacer(Case[][] carte){
+    @Override
+    public void deplacer(Case[][] carte,World monde){
         
         Random generateurAleatoire = new Random();
         
@@ -195,7 +196,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
             }
         }
 //        System.out.println("avance final  : "+avanceX+";"+avanceY);
-        this.gererDeplacement(carte, oldX, oldY, newX, newY,false);
+        this.gererDeplacement(carte, oldX, oldY, newX, newY,false,monde);
     }
     
     /**
@@ -209,7 +210,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * @param newY ordonnée de la position après déplacement
      * @param estLeJoueur
      */
-    public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY,boolean estLeJoueur){
+    public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY,boolean estLeJoueur, World monde){
         //vider case oldX,oldY;
         if (carte[oldX][oldY].objet != null ){
             carte[oldX][oldY].creature=null;
@@ -233,7 +234,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
             if (estLeJoueur){
                 System.out.println("Vous avez trouver une "+carte[newX][newY].objet.getClass().getSimpleName());
             }
-            carte[newX][newY].objet.utiliser(this);
+            carte[newX][newY].objet.utiliser(this,monde);
             carte[newX][newY].objet=null;
         }
     }

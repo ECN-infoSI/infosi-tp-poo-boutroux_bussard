@@ -161,7 +161,7 @@ public class Joueur {
     
     
     
-    public void deplacerJoueur(Case[][] carte){
+    public void deplacerJoueur(Case[][] carte,World monde){
         affiche_boussole();
         int[] deplacement=new int[2];
         boolean deplacementValide= false;
@@ -190,7 +190,7 @@ public class Joueur {
             }
         }
         
-    personnageJoue.gererDeplacement(carte, x, y, newX, newY,true);
+    personnageJoue.gererDeplacement(carte, x, y, newX, newY,true,monde);
     }
     
     private void affiche_boussole(){

@@ -9,5 +9,5 @@ package org.centrale.objet.WoE;
  * @author remib
  */
 public interface Deplacable {
-    public void deplacer(Case[][] carte);
+    public void deplacer(Case[][] carte,World monde);
 }

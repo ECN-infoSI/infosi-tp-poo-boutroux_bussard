@@ -63,12 +63,18 @@ public class PotionSoin extends Recoltable{
      * @param utilisateur 
      */
     @Override
-    public void utiliser(Creature utilisateur) {
+    public void utiliser(Creature utilisateur, World monde) {
         utilisateur.setPtVie(utilisateur.getPtVie()+qttSoin);
     }
     
     @Override
     public void afficherObjet(){
         System.out.println("Potion de Soin, restaure "+qttSoin+" points de vie");
+    }
+    
+    @Override
+    public void consommerDepuisInventaire(Joueur j){
+        System.out.println("vous buvez la potion, vous gagnez "+qttSoin+" points de vie");
+        j.personnageJoue.setPtVie(j.personnageJoue.getPtVie()+qttSoin);
     }
 }    

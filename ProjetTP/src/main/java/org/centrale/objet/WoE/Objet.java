@@ -39,7 +39,7 @@ public abstract class  Objet implements AffichableCarte{
         symboleCarte = 'O';
     }
     
-    public abstract void utiliser(Creature utilisateur);
+    public abstract void utiliser(Creature utilisateur, World monde);
     
     
 }

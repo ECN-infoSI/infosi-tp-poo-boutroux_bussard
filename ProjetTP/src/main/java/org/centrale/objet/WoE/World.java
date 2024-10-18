@@ -193,7 +193,7 @@ public class World {
     public void tourDeJeu(){
         joueur.afficheStat();
         afficheWorld();
-        joueur.deplacerJoueur(carte);
+        joueur.deplacerJoueur(carte,this);
         afficheWorld();
         joueur.choixCombat(carte,this);
         attendre();
@@ -206,7 +206,7 @@ public class World {
                 creatures.remove(compteur);
             }
             else{
-                creature.deplacer(carte);
+                creature.deplacer(carte,this);
                 creature.agir(carte,this); 
             }
              
@@ -216,7 +216,7 @@ public class World {
         
         for (Objet objet: objetsAgissants){
             if (objet instanceof Deplacable){
-                ((Deplacable) objet).deplacer(carte);
+                ((Deplacable) objet).deplacer(carte,this);
             }
             if (objet instanceof Combattant){
                 Point2D positionObjet = objet.getPos();
