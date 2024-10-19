@@ -73,7 +73,7 @@ public class Archer extends Personnage implements Combattant, Jouable {
     /**
      * L'archer attaque s'il voit une creature a sa portee. 
      * @param carte 
-     * @param joueurImpliqué 
+     * @param monde 
      */
     @Override
     public void agir(Case[][] carte,World monde) {
@@ -87,6 +87,7 @@ public class Archer extends Personnage implements Combattant, Jouable {
      * L'archer se bat au corps a corps (avec un couteau par exemple)
      * et il se bat evidemment a distance
      * @param creature 
+     * @param monde 
      */
     @Override
     public void combattre(Creature creature,World monde) {

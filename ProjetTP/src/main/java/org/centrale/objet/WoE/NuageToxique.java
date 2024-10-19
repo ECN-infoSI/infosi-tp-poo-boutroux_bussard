@@ -68,8 +68,6 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
         if (carte[newX][newY] != null){
             if (carte[newX][newY].objet != null){
                 newX = oldX;
-                avanceY = 0;
-                avanceX = 0;
                 newY = oldY;
             }
         }

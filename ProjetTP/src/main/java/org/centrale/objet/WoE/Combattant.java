@@ -12,7 +12,7 @@ public interface Combattant {
     /**
      * Tous les combattants doivent implémenter combattre
      * @param creature 
-     * @param joueurImpliqué 
+     * @param monde 
      */
     public void combattre(Creature creature,World monde);
 }

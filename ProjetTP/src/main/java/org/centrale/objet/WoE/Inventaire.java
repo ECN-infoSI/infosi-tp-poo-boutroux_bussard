@@ -57,7 +57,7 @@ public class Inventaire {
             System.out.println("Votre inventaire est vide");
             return;
         }
-        System.out.println("voici votre inventaire :");
+        System.out.println("Voici votre inventaire :");
         afficherObjetDisponibles();
         boolean veutSortir=false;
         int choix;

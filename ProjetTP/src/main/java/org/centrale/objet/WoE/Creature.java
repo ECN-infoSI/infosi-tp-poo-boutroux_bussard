@@ -157,6 +157,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * si la creature veut se deplacer sur une case contenant une autre creature, elle reste sur place
      * si la creature veut se deplacer sur une case hors de la carte elle fait le mouvement opposé
      * @param carte le tableau représentant contenant les differents objets du monde et leur positions 
+     * @param monde 
      */
     @Override
     public void deplacer(Case[][] carte,World monde){
@@ -190,12 +191,10 @@ public abstract class Creature implements AffichableCarte, Deplacable{
         if (carte[newX][newY] != null){
             if (carte[newX][newY].creature != null){
                 newX=oldX;
-                avanceY=0;
-                avanceX=0;
                 newY=oldY;
             }
         }
-//        System.out.println("avance final  : "+avanceX+";"+avanceY);
+
         this.gererDeplacement(carte, oldX, oldY, newX, newY,false,monde);
     }
     
@@ -209,6 +208,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * @param newX abscisse de la position après déplacement
      * @param newY ordonnée de la position après déplacement
      * @param estLeJoueur
+     * @param monde
      */
     public void gererDeplacement(Case[][] carte,int oldX, int oldY, int newX, int newY,boolean estLeJoueur, World monde){
         //vider case oldX,oldY;
@@ -241,12 +241,14 @@ public abstract class Creature implements AffichableCarte, Deplacable{
     /**
      * La méthode à appeler pour que la créature fasse ses actions spécifiques
      * @param carte 
+     * @param monde 
      */
     public abstract void agir(Case[][] carte,World monde);
     
     /**
      * Verfie que la creature est adjacente puis l'attaque. 
      * @param creature 
+     * @param monde 
      */
     protected void combatCorpsACorps(Creature creature, World monde){
         if (this.getPos().distance(creature.getPos()) <= 1){
@@ -261,6 +263,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * Préviens l'utilisateur si le personnage joueur est attaqué
      * Previens l'utilisateur s'il attaque une autre créature
      * @param creature 
+     * @param monde 
      */
     protected void attaqueCorpsACorps(Creature creature,World monde){
         
@@ -293,6 +296,7 @@ public abstract class Creature implements AffichableCarte, Deplacable{
      * Préviens l'utilisateur si le personnage joueur est attaqué
      * Previens l'utilisateur s'il attaque une autre créature
      * @param creature 
+     * @param monde 
      */
     protected void attaqueDistance(Creature creature,World monde){
         boolean joueurImplique=joueurImpliqueDansCombat(creature, monde);

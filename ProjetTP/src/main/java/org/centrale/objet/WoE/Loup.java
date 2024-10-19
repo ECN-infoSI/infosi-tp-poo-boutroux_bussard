@@ -43,6 +43,7 @@ public class Loup extends Monstre implements Combattant {
     /**
      * Le loup attaque s'il voit une creature a sa portee. 
      * @param carte 
+     * @param monde 
      */
     @Override
     public void agir(Case[][] carte,World monde) {

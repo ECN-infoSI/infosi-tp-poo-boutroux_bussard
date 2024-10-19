@@ -6,7 +6,6 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.String;
 /**
  * Le monde est la classe principale qui contient des references vers toutes les creatures s'y trouvant et les faisant agir a chaque tour. 
  * @author remib
@@ -216,11 +215,8 @@ public class World {
         joueur.inventaire.consulterInventaire();
         joueur.choixCombat(carte,this);
         attendre();
-        //joueur.choixsauvegarde();
-        int compteur=0;
         ArrayList<Creature> creaturesASupprimer = new ArrayList<Creature>(); 
         for (Creature creature : creatures){
-            compteur+=1;
             if(creature.getPtVie()<=0){
                 creaturesASupprimer.add(creature);
             }
@@ -228,7 +224,6 @@ public class World {
                 creature.deplacer(carte,this);
                 creature.agir(carte,this); 
             }
-            //condition d'affichage si le joueur est attaqué a rajouter
         }
         
         // On supprime des différentes listes toutes les creatures qui sont mortes
