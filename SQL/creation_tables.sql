@@ -1,6 +1,5 @@
 DROP TABLE creature,humanoide,nomenclature_monstre,nomenclature_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,nomenclature_humanoide;
 
-
 CREATE TABLE public.nomenclature_objet (
                 type_objet VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_objet PRIMARY KEY (type_objet)
@@ -134,18 +133,14 @@ CREATE TABLE public.partie (
 
 ALTER SEQUENCE public.partie_id_partie_seq OWNED BY public.partie.id_partie;
 
-CREATE SEQUENCE public.monde_id_monde_seq;
-
 CREATE TABLE public.sauvegarde (
-                id_monde INTEGER NOT NULL DEFAULT nextval('public.monde_id_monde_seq'),
+                id_monde_sauvegarde INTEGER NOT NULL,
                 id_partie INTEGER NOT NULL,
                 date_sauvegarde TIMESTAMP NOT NULL,
                 nom VARCHAR(40) NOT NULL,
-                CONSTRAINT pk_sauvegarde PRIMARY KEY (id_monde, id_partie)
+                CONSTRAINT pk_sauvegarde PRIMARY KEY (id_monde_sauvegarde, id_partie)
 );
 
-
-ALTER SEQUENCE public.monde_id_monde_seq OWNED BY public.sauvegarde.id_monde;
 
 ALTER TABLE public.objet ADD CONSTRAINT type_objet_objet_fk
 FOREIGN KEY (type_objet)
@@ -225,7 +220,7 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.sauvegarde ADD CONSTRAINT monde_sauvegarde_fk
-FOREIGN KEY (id_monde)
+FOREIGN KEY (id_monde_sauvegarde)
 REFERENCES public.monde (id_monde)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
