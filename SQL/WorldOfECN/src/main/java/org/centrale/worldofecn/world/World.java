@@ -327,16 +327,35 @@ public class World {
             
             // get world for Player ID
             Integer id_world = 1;
+            String queryWorld = "SELECT largeur, longueur FROM monde WHERE id_monde = ?;";
+            try{
+                PreparedStatement stmt = connection.prepareStatement( queryWorld );
+                stmt.setInt(1,id_world);
+                ResultSet rs = stmt.executeQuery();
+                System.out.println("query : "+ queryWorld);
+                if (rs.next()){
+                    System.out.println("rs.next() true : ");
+                    height = rs.getInt("longueur");
+                    width = rs.getInt("largeur");
+                }
+            }
+            catch(SQLException ex){
+                System.err.println(ex);
+                ex.printStackTrace();
+                return;
+            }
             String type_humanoide = "Guerrier";
             Integer id_humanoide = -1;
             try{
-                String query = "SELECT id_humanoide FROM humanoide NATURAL JOIN creature NATURAL JOIN monde WHERE id_monde=? AND type_humanoide=?";
+                String query = "SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide) JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? AND humanoide.type_humanoide = ?;";
                 PreparedStatement stmt = connection.prepareStatement( query );
                 stmt.setInt(1,id_world);
                 stmt.setString(2,type_humanoide);
                 ResultSet rs = stmt.executeQuery();
+                System.out.println("query : "+ query);
                 while (rs.next()){
-                    id_humanoide = rs.getInt(id_humanoide);
+                    System.out.println("rs.next() true : ");
+                    id_humanoide = rs.getInt("id_humanoide");
                     System.out.println("id_humanoide : "+id_humanoide);
                     Guerrier newGuerrier = new Guerrier(this);
                     newGuerrier.getFromDatabase(connection, id_humanoide);
@@ -344,6 +363,7 @@ public class World {
             }
             catch (SQLException ex){
                 System.err.println(ex);
+                ex.printStackTrace();
             }
         }
     }
