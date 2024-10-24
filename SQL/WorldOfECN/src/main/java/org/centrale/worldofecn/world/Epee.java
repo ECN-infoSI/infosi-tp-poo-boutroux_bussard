@@ -28,15 +28,5 @@ public class Epee extends Arme {
     public String typeObjet(){
         return "Epee";
     }
-
-    /**
-     *
-     * @param connection
-     * @param id
-     */
-    @Override
-    public void getFromDatabase(Connection connection, Integer id) {
-
-    }
     
 }

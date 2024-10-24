@@ -52,4 +52,25 @@ public abstract class Objet extends ElementDeJeu{
         System.out.println("type objet n'est pas sencé etre appellé dans cette classe");
         return null;
     }
+    
+    /**
+     *
+     * @param connection
+     * @param id
+     */
+    @Override
+    public void getFromDatabase(Connection connection, Integer id) {
+        try{
+            String query = "SELECT position_x, position_y FROM  objet WHERE id_objet=?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                this.position = new Point2D(rs.getInt("position_x"),rs.getInt("position_y"));
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }  
+    }
 }

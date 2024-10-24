@@ -9,6 +9,9 @@
 package org.centrale.worldofecn.world;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -28,14 +31,6 @@ public class PotionSoin extends Objet {
         return "PotionSoin";
     }
 
-    /**
-     *
-     * @param connection
-     * @param id
-     */
-    @Override
-    public void getFromDatabase(Connection connection, Integer id) {
-
-    }
+    
     
 }
