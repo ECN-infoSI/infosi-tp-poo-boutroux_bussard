@@ -21,16 +21,14 @@ public class Archer extends Personnage {
      */
     public Archer(World world) {
         super(world);
+        this.pagAttpoing=60;
+        this.pagPar=20;
+        this.distAttMax=3;
+        this.ptDegPoing=8;
+        this.nbrFleche=10;
     }
     
-    /**
-     *
-     * @param connection
-     */
-    @Override
-    public void saveToDatabase(Connection connection, Integer id_monde) {
-        
-    }
+    
 
     /**
      *
@@ -40,4 +38,8 @@ public class Archer extends Personnage {
     @Override
     public void getFromDatabase(Connection connection, Integer id) {
     }
+    
+    public String typeHumain(){
+        return "Archer";
+    }    
 }

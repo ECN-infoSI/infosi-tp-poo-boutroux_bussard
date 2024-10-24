@@ -27,5 +27,5 @@ public abstract class Creature extends ElementDeJeu {
         ptVie=100;
         estMale=true;
     }
-
+    
 }

@@ -21,17 +21,14 @@ public class Paysan extends Personnage {
      */
     public Paysan(World world) {
         super(world);
+        this.pagAttpoing=50;
+        this.pagPar=10;
+        this.distAttMax=1;
+        this.ptDegPoing=5;
+        this.nbrFleche=0;
     }
     
-    /**
-     *
-     * @param connection
-     */
-    @Override
-    public void saveToDatabase(Connection connection, Integer id_monde) {
-        
-    }
-
+   
     /**
      *
      * @param connection
@@ -41,4 +38,8 @@ public class Paysan extends Personnage {
     public void getFromDatabase(Connection connection, Integer id) {
 
     }
+    
+    public String typeHumain(){
+        return "Paysan";
+    }    
 }

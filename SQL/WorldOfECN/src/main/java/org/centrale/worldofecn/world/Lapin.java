@@ -9,6 +9,8 @@
 package org.centrale.worldofecn.world;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -29,7 +31,7 @@ public class Lapin extends Monstre {
      */
     @Override
     public void saveToDatabase(Connection connection, Integer id_monde) {
-        
+        super.saveToDatabase(connection, id_monde);
     }
 
     /**
@@ -42,4 +44,8 @@ public class Lapin extends Monstre {
 
     }
     
+    @Override
+    public String typeMonstre(){
+        return "Lapin";
+    }
 }
