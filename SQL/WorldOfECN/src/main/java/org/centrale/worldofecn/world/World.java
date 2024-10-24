@@ -359,6 +359,7 @@ public class World {
                     System.out.println("id_humanoide : "+id_humanoide);
                     Guerrier newGuerrier = new Guerrier(this);
                     newGuerrier.getFromDatabase(connection, id_humanoide);
+                    listElements.add(newGuerrier);
                 }
             }
             catch (SQLException ex){
