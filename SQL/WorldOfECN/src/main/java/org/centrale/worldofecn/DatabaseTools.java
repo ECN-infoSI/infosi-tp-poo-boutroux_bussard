@@ -139,23 +139,29 @@ public class DatabaseTools {
      * @param monde
      */
     public void saveWorld(Integer idJoueur, Integer idPartie, String nomPartie, String nomSauvegarde, World monde){
-        monde.saveToDatabase(connection, idPartie, nomPartie, nomSauvegarde);
+        Integer id_monde = monde.saveToDatabase(connection, idPartie, nomPartie, nomSauvegarde);
 
 //INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom) 
 //VALUES ('m1','p1','2024-04-10 00:00:00','Sauvegarde_1'),('m2','p1','2024-04-10 03:00:00','Sauvegarde_2'),('m5','p3','2024-04-10 00:00:00','Sauvegarde_1');
 //
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.println("timestamp" + timestamp);
+        System.out.println("timestamp : " + timestamp);
 
-        String query = "INSERT INTO sauvegarde (id_monde,id_partie,date_sauvegarde,nom) "
-                + "VALUES ('1','1'," + timestamp + ",'Sauvegarde_1');";
+        String query = "INSERT INTO sauvegarde (id_monde_sauvegarde,id_partie,date_sauvegarde,nom) "
+                + "VALUES (?,?,?,?);";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, id_monde);
+            stmt.setInt(2, idPartie);
+            stmt.setTimestamp(3, timestamp);
+            stmt.setString(4, nomSauvegarde);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex);
 //            Logger.getLogger(DatabaseTools.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     /**

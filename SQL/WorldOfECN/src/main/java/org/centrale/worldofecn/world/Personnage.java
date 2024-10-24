@@ -106,7 +106,7 @@ public abstract class Personnage extends Creature {
             stmt.setBoolean(6,estMale);
             ResultSet rs= stmt.executeQuery();
             if (rs.next()){
-                id_creature=rs1.getInt("id_creature");
+                id_creature=rs.getInt("id_creature");
             }
         }
         catch (SQLException ex){
