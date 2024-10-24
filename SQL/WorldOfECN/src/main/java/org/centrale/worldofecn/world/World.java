@@ -291,9 +291,21 @@ public class World {
                 System.err.println(ex);
                 return;
             }
+            boolean joueurSauvegarde = false;
             for (ElementDeJeu element : listElements){
-                element.saveToDatabase(connection, id_monde);
+                if (!joueurSauvegarde){
+                    ((Creature) element).saveCreatureJoueurToDatabase(connection, id_monde);
+                    joueurSauvegarde = true;
+                }
+                else {
+                    element.saveToDatabase(connection, id_monde);
+                }
             }
+            
+            // save partie
+            String queryPartie = "UPDATE partie\n" +
+                                "SET column_name = new_value\n" +
+                                "WHERE column_name IS NULL;";
             
 
             // Insertion des elements

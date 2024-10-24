@@ -18,3 +18,5 @@ INSERT INTO nomenclature_monstre VALUES ('Lapin'),('Loup'),('trolls'),('gobelin'
 INSERT INTO nomenclature_humanoide (type_humanoide) VALUES ('Guerrier'), ('Archer'), ('Paysan');
 
 INSERT INTO joueur (nom_de_code, mot_de_passe) VALUES ('Saegusa', 'Mayumi');
+
+INSERT INTO partie (nom, id_joueur) VALUES ('Test Game 1', (SELECT id_joueur FROM joueur WHERE nom_de_code = 'Saegusa' AND mot_de_passe='Mayumi'));

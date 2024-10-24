@@ -77,7 +77,7 @@ public abstract class Personnage extends Creature {
     
     
     @Override
-    public int saveCreatureJoueurtoDatabase(Connection connection, Integer id_monde){
+    public int saveCreatureJoueurToDatabase(Connection connection, Integer id_monde){
         int id_perso=-1;
         int id_creature=-1;
         try{

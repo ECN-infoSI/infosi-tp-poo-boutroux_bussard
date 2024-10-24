@@ -1,5 +1,6 @@
 DROP TABLE creature,humanoide,nomenclature_monstre,nomenclature_objet,monde,inventaire,joueur,monstre,objet,partie,sauvegarde,nomenclature_humanoide;
 
+
 CREATE TABLE public.nomenclature_objet (
                 type_objet VARCHAR(15) NOT NULL,
                 CONSTRAINT pk_type_objet PRIMARY KEY (type_objet)
@@ -123,7 +124,7 @@ CREATE SEQUENCE public.partie_id_partie_seq;
 CREATE TABLE public.partie (
                 id_partie INTEGER NOT NULL DEFAULT nextval('public.partie_id_partie_seq'),
                 id_monde_sauvegarde_rapide INTEGER,
-                id_monde_initial INTEGER NOT NULL,
+                id_monde_initial INTEGER,
                 date_derniere_sauvegarde_rapide TIMESTAMP,
                 nom VARCHAR(30) NOT NULL,
                 id_joueur INTEGER NOT NULL,

@@ -28,5 +28,5 @@ public abstract class Creature extends ElementDeJeu {
         estMale=true;
     }
     
-    public abstract int saveCreatureJoueurtoDatabase(Connection connection, Integer id_monde);
+    public abstract int saveCreatureJoueurToDatabase(Connection connection, Integer id_monde);
 }
