@@ -16,7 +16,7 @@ import java.util.Random;
  * @author ECN
  */
 public abstract class ElementDeJeu {
-    private Point2D position;
+    protected Point2D position;
     
     /**
      * generate element in the world

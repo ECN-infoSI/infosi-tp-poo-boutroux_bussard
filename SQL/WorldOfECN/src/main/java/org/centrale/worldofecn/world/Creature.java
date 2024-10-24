@@ -15,12 +15,17 @@ import java.sql.Connection;
  */
 public abstract class Creature extends ElementDeJeu {
     
+    protected int ptVie;
+    protected boolean estMale;
+   
     /**
      *
      * @param world
      */
     public Creature(World world) {
         super(world);
+        ptVie=100;
+        estMale=true;
     }
 
 }

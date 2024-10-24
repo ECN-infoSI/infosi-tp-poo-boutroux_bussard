@@ -24,6 +24,9 @@ public class Loup extends Monstre {
      */
     public Loup(World world) {
         super(world);
+        pEsquive=25;
+        pAttaque=75;
+        ptAttaque=8;
     }
     
     /**
@@ -36,9 +39,9 @@ public class Loup extends Monstre {
         try{
             String query = "INSERT INTO monstre (page_esquive,page_attaque_arme_naturelle,pt_att_arme_naturelle,type_monstre) VALUES (?,?,?,'Loup')";
             PreparedStatement stmt = connection.prepareStatement( query );
-            stmt.setInt(1, pesquive);
-            stmt.setInt(2, pattaque);
-            stmt.setInt(3, ptattaque);
+            stmt.setInt(1, pEsquive);
+            stmt.setInt(2, pAttaque);
+            stmt.setInt(3, ptAttaque);
             stmt.executeUpdate();
         }
         catch (SQLException ex){
@@ -48,11 +51,11 @@ public class Loup extends Monstre {
             String query = "INSERT INTO Creature (point_de_vie,position_x,position_y,id_monde,id_humanoide,id_monstre,est_male)" +
             " VALUES (?,?,?,?,(SELECT max(id_monstre) FROM monstre),?)";
             PreparedStatement stmt = connection.prepareStatement( query );
-            stmt.setInt(1, ptvie);
-            stmt.setInt(2, posX);
-            stmt.setInt(3, posY);
+            stmt.setInt(1, ptVie);
+            stmt.setInt(2, this.position.getX());
+            stmt.setInt(3, this.position.getY());
             stmt.setInt(4, id_monde);
-            stmt.setBoolean(5, est_male);
+            stmt.setBoolean(5,estMale);
             stmt.executeUpdate();
         }
         catch (SQLException ex){

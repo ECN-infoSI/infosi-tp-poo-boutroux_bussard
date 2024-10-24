@@ -16,12 +16,18 @@ import java.sql.Connection;
  */
 public abstract class Monstre extends Creature {
     
+    protected int pEsquive;
+    protected int pAttaque;
+    protected int ptAttaque;
     /**
      *
      * @param world
      */
     public Monstre(World world) {
         super(world);
+        pEsquive=10;
+        pAttaque=50;
+        ptAttaque=1;
     }
     
 }
