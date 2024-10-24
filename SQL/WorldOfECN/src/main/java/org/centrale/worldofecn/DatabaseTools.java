@@ -151,7 +151,7 @@ public class DatabaseTools {
                 + "VALUES ('1','1'," + timestamp + ",'Sauvegarde_1');";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex);
 //            Logger.getLogger(DatabaseTools.class.getName()).log(Level.SEVERE, null, ex);

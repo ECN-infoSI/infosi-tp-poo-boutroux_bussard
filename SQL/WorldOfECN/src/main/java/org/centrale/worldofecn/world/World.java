@@ -8,6 +8,9 @@
 package org.centrale.worldofecn.world;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -241,15 +244,57 @@ public class World {
     public void saveToDatabase(Connection connection, Integer idPartie, String gameName, String saveName) {
         if (connection != null) {
             // Insertion du joueur
-            String queryJoueur = "BEGIN; "+
-                                 "INSERT INTO creature (point_de_vie, position_x, position_y, id_monde, id_humanoide, id_monstre);";
+//            String queryJoueur ="BEGIN; "+
+//                                "INSERT INTO creature (point_de_vie, position_x, position_y, id_monde, id_humanoide, id_monstre);"+
+//                                "VALUES (?,?,?,?,?,?)"+
+//                                "SELECT MAX(id_creature) FROM creature;"+
+//                                "COMMIT;";
+//            Integer id_creature_joueur = -1;
+//            
+//            System.out.println("queryJoueur : " + queryJoueur);
+//            try{
+//                PreparedStatement stmt = connection.prepareStatement(queryJoueur);
+//                ResultSet rs = stmt.executeQuery();
+//                if (rs.next()){
+//                    id_creature_joueur = rs.getInt("id_creature");
+//                }
+//                System.out.println("id_creature_joueur : " + id_creature_joueur);
+//            }
+//            catch (SQLException ex){
+//                System.err.println(ex);
+//            }
+//            
+//            
+//            // Insertion du monde
+//            String query = "BEGIN;" + 
+//                            "INSERT INTO monde (id_creature, largeur, longueur) VALUES ("+id_creature_joueur+","+ width+ ","+height + ");" + 
+//                            "SELECT id_monde FROM monde WHERE id_creature = "+id_creature_joueur+";" + 
+//                            "COMMIT;";
             
-            Integer id_creature = 0;
-            // Insertion du monde
-            String query = "BEGIN;" + 
-                            "INSERT INTO monde (id_creature, largeur, longueur) VALUES ("+id_creature+","+ width+ ","+height + ");" + 
-                            "SELECT id_monde INTO id_monde FROM monde WHERE id_creature = "+id_creature+";" + 
-                            "COMMIT;";
+//            System.out.println("query world pas utile : " + query);
+            
+            String queryWorld = "INSERT INTO monde (largeur, longueur) VALUES ("+ width+ ","+height + ") RETURNING id_monde;";
+            
+            Integer id_monde = -1;
+            
+            try{
+                PreparedStatement stmt = connection.prepareStatement(queryWorld);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()){
+                    id_monde = rs.getInt("id_monde");
+                }
+                System.out.println("id_monde : " + id_monde);
+                
+                
+            }
+            catch (SQLException ex){
+                System.err.println(ex);
+                return;
+            }
+            for (ElementDeJeu element : listElements){
+                element.saveToDatabase(connection, id_monde);
+            }
+            
 
             // Insertion des elements
             
