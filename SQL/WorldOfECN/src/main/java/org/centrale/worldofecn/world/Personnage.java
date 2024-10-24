@@ -121,4 +121,35 @@ public abstract class Personnage extends Creature {
         System.out.println("type humain n'est pas sencé etre appellé dans cette classe");
         return null;
     }
+    
+    /**
+     *
+     * @param connection
+     * @param idHumanoide
+     */
+    @Override
+    public void getFromDatabase(Connection connection, Integer idHumanoide) {
+        try{
+            String query = "SELECT * FROM humanoide NATURAL JOIN creature WHERE id_humanoide=?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,idHumanoide );
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                this.position = new Point2D(rs.getInt("position_x"),rs.getInt("position_y"));
+                this.ptVie=rs.getInt("point_de_vie");
+                this.estMale=rs.getBoolean("est_male");
+                this.pagAttpoing=rs.getInt("page_att_arme_poing");
+                this.pagPar=rs.getInt("page_par");
+                this.distAttMax=rs.getInt("dist_att_max");
+                this.ptDegPoing=rs.getInt("pt_degats_arme_poing");
+                this.nbrFleche=rs.getInt("nombre_de_fleche");
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
+    }
+    
+    
+    
 }

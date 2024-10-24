@@ -110,4 +110,30 @@ public abstract class Monstre extends Creature {
         }
         return id_creature;
     }
+    
+    /**
+     *
+     * @param connection
+     * @param id
+     */
+    @Override
+    public void getFromDatabase(Connection connection, Integer idMonstre) {
+        try{
+            String query = "SELECT * FROM monstre NATURAL JOIN creature WHERE id_monstre=?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,idMonstre );
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                this.position = new Point2D(rs.getInt("position_x"),rs.getInt("position_y"));
+                this.ptVie=rs.getInt("point_de_vie");
+                this.estMale=rs.getBoolean("est_male");
+                this.pAttaque=rs.getInt("page_attaque_arme_naturelle");
+                this.pEsquive=rs.getInt("page_esquive");
+                this.ptAttaque=rs.getInt("pt_att_arme_naturelle");
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
+    }
 }
