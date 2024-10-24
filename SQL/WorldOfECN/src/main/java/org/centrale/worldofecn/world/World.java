@@ -7,6 +7,9 @@
  * -------------------------------------------------------------------------------- */
 package org.centrale.worldofecn.world;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +17,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -344,28 +349,87 @@ public class World {
                 ex.printStackTrace();
                 return;
             }
-            String type_humanoide = "Guerrier";
-            Integer id_humanoide = -1;
-            try{
-                String query = "SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide) JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? AND humanoide.type_humanoide = ?;";
-                PreparedStatement stmt = connection.prepareStatement( query );
-                stmt.setInt(1,id_world);
-                stmt.setString(2,type_humanoide);
-                ResultSet rs = stmt.executeQuery();
-                System.out.println("query : "+ query);
-                while (rs.next()){
-                    System.out.println("rs.next() true : ");
-                    id_humanoide = rs.getInt("id_humanoide");
-                    System.out.println("id_humanoide : "+id_humanoide);
-                    Guerrier newGuerrier = new Guerrier(this);
-                    newGuerrier.getFromDatabase(connection, id_humanoide);
-                    listElements.add(newGuerrier);
-                }
+//            String type_humanoide = "Guerrier";
+//            Integer id_humanoide = -1;
+//            try{
+//                String query = "SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide) JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? AND humanoide.type_humanoide = ?;";
+//                PreparedStatement stmt = connection.prepareStatement( query );
+//                stmt.setInt(1,id_world);
+//                stmt.setString(2,type_humanoide);
+//                ResultSet rs = stmt.executeQuery();
+//                System.out.println("query : "+ query);
+//                while (rs.next()){
+//                    System.out.println("rs.next() true : ");
+//                    id_humanoide = rs.getInt("id_humanoide");
+//                    System.out.println("id_humanoide : "+id_humanoide);
+//                    Guerrier newGuerrier = new Guerrier(this);
+//                    newGuerrier.getFromDatabase(connection, id_humanoide);
+//                    listElements.add(newGuerrier);
+//                }
+//            }
+//            catch (SQLException ex){
+//                System.err.println(ex);
+//                ex.printStackTrace();
+//            }
+        }
+    }
+    
+    /**
+     * 
+     * @param humanoideOumonstre contient soit "humanoide" soit "monstre"
+     * @param classeJava contient le nom de la classe finale dans le code java (par ex "Guerrier")
+     * @param classeBdd contient le nom de l'entité dans la bdd (par exemple "Archer"
+     * @param id_world
+     * @param connection 
+     */
+    private void creerCreature(String humanoideOumonstre, String classeJava, String classeBdd, int id_world,Connection connection){
+        Integer id_creature = -1;
+        try{
+            String id=".id_"+humanoideOumonstre;
+            //SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide)
+            String query = "SELECT "+humanoideOumonstre + id+
+                    "FROM ("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature.id_humanoide)"+
+                    "JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ?"+
+                    "AND "+humanoideOumonstre+".type_"+humanoideOumonstre+" = ?;";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,id_world);
+            stmt.setString(2,classeBdd);
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("query : "+ query);
+            
+            
+            Class<?> typeCreature = Class.forName(classeJava);
+            Constructor<?> constructor = typeCreature.getDeclaredConstructor(int.class);
+            Class<?>[] methodParamTypes = { Connection.class,int.class };
+            Method method = typeCreature.getDeclaredMethod("getFromDatabase", methodParamTypes);
+            
+            while (rs.next()){
+                System.out.println("rs.next() true : ");
+                id_creature = rs.getInt("id_"+humanoideOumonstre);
+                System.out.println("id_creature : "+id_creature);
+                Object newCreature = constructor.newInstance(id_world);
+                method.invoke(newCreature, connection, id_creature);
+                listElements.add((ElementDeJeu) newCreature);
             }
-            catch (SQLException ex){
-                System.err.println(ex);
-                ex.printStackTrace();
-            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+            ex.printStackTrace();
+        }
+        catch (ClassNotFoundException ex){
+             System.err.println(ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
