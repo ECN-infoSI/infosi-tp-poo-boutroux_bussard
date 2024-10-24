@@ -28,7 +28,7 @@ public class Lapin extends Monstre {
      * @param connection
      */
     @Override
-    public void saveToDatabase(Connection connection) {
+    public void saveToDatabase(Connection connection, Integer id_monde) {
         
     }
 

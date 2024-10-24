@@ -28,7 +28,7 @@ public class PotionSoin extends Objet {
      * @param connection
      */
     @Override
-    public void saveToDatabase(Connection connection) {
+    public void saveToDatabase(Connection connection, Integer id_monde) {
 
     }
 

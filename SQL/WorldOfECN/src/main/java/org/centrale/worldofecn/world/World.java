@@ -240,6 +240,19 @@ public class World {
      */
     public void saveToDatabase(Connection connection, Integer idPartie, String gameName, String saveName) {
         if (connection != null) {
+            // Insertion du joueur
+            String queryJoueur = "BEGIN; "+
+                                 "INSERT INTO creature (point_de_vie, position_x, position_y, id_monde, id_humanoide, id_monstre);";
+            
+            Integer id_creature = 0;
+            // Insertion du monde
+            String query = "BEGIN;" + 
+                            "INSERT INTO monde (id_creature, largeur, longueur) VALUES ("+id_creature+","+ width+ ","+height + ");" + 
+                            "SELECT id_monde INTO id_monde FROM monde WHERE id_creature = "+id_creature+";" + 
+                            "COMMIT;";
+
+            // Insertion des elements
+            
             // Get Player ID
             
             // Save world for Player ID

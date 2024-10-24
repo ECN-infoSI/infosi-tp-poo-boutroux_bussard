@@ -28,7 +28,7 @@ public class Paysan extends Personnage {
      * @param connection
      */
     @Override
-    public void saveToDatabase(Connection connection) {
+    public void saveToDatabase(Connection connection, Integer id_monde) {
         
     }
 

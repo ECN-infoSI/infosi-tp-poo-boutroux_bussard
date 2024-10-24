@@ -41,7 +41,7 @@ public abstract class ElementDeJeu {
      *
      * @param connection
      */
-    public abstract void saveToDatabase(Connection connection);
+    public abstract void saveToDatabase(Connection connection, Integer id_monde);
     
     /**
      *

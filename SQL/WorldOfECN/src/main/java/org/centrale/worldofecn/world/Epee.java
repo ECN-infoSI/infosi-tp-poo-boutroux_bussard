@@ -29,8 +29,8 @@ public class Epee extends Arme {
      * @param connection
      */
     @Override
-    public void saveToDatabase(Connection connection) {
-
+    public void saveToDatabase(Connection connection, Integer id_monde) {
+        
     }
 
     /**
