@@ -56,7 +56,7 @@ public abstract class Monstre extends Creature {
             stmt1.setString(4, this.typeMonstre());
             ResultSet rs = stmt1.executeQuery();
             if (rs.next()){
-                id_monstre=rs.getInt("monstre id");
+                id_monstre=rs.getInt("id_monstre");
             }
             String query2 = "INSERT INTO Creature (point_de_vie,position_x,position_y,id_monde,id_monstre,est_male)" +
             " VALUES (?,?,?,?,?,?)";

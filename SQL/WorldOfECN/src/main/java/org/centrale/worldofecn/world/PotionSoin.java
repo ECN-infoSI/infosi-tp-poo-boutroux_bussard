@@ -23,13 +23,9 @@ public class PotionSoin extends Objet {
         super(world);
     }
 
-    /**
-     *
-     * @param connection
-     */
     @Override
-    public void saveToDatabase(Connection connection, Integer id_monde) {
-
+    public String typeObjet(){
+        return "PotionSoin";
     }
 
     /**

@@ -45,7 +45,7 @@ public abstract class Personnage extends Creature {
     public void saveToDatabase(Connection connection, Integer id_monde) {
         int id_perso=-1;
         try{
-            String query1 = "INSERT INTO monstre "+
+            String query1 = "INSERT INTO humanoide "+
                     "(page_att_arme_poing,page_par,dist_att_max,pt_degats_arme_poing,nombre_de_fleche,type_humanoide)"+
                     "VALUES (?,?,?,?,?,?) RETURNING id_humanoide";
             PreparedStatement stmt1 = connection.prepareStatement( query1 );
@@ -57,7 +57,7 @@ public abstract class Personnage extends Creature {
             stmt1.setString(6, this.typeHumain());
             ResultSet rs= stmt1.executeQuery();
             if (rs.next()){
-                id_perso=rs.getInt("monstre id");
+                id_perso=rs.getInt("id_humanoide");
             }
             String query = "INSERT INTO Creature (point_de_vie,position_x,position_y,id_monde,id_humanoide,est_male)" +
             " VALUES (?,?,?,?,?,?)";
