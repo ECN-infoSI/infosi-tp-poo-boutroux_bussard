@@ -172,6 +172,6 @@ public class DatabaseTools {
      * @param monde
      */
     public void readWorld(Integer idJoueur, Integer idPartie, String nomPartie, String nomSauvegarde, World monde) {
-
+        monde.getFromDatabase(connection, nomPartie, nomSauvegarde);
     }
 }

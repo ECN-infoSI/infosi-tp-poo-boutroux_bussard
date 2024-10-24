@@ -326,6 +326,25 @@ public class World {
             // Get Player ID
             
             // get world for Player ID
+            Integer id_world = 1;
+            String type_humanoide = "Guerrier";
+            Integer id_humanoide = -1;
+            try{
+                String query = "SELECT id_humanoide FROM humanoide NATURAL JOIN creature NATURAL JOIN monde WHERE id_monde=? AND type_humanoide=?";
+                PreparedStatement stmt = connection.prepareStatement( query );
+                stmt.setInt(1,id_world);
+                stmt.setString(2,type_humanoide);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()){
+                    id_humanoide = rs.getInt(id_humanoide);
+                    System.out.println("id_humanoide : "+id_humanoide);
+                    Guerrier newGuerrier = new Guerrier(this);
+                    newGuerrier.getFromDatabase(connection, id_humanoide);
+                }
+            }
+            catch (SQLException ex){
+                System.err.println(ex);
+            }
         }
     }
 }
