@@ -48,7 +48,7 @@ public abstract class Monstre extends Creature {
         int id_monstre=-1;
         try{
             String query1 = "INSERT INTO monstre (page_esquive,page_attaque_arme_naturelle,pt_att_arme_naturelle,type_monstre) "+
-                    "VALUES (?,?,?,?) RETURNING monstre_id";
+                    "VALUES (?,?,?,?) RETURNING id_monstre";
             PreparedStatement stmt1 = connection.prepareStatement( query1 );
             stmt1.setInt(1, pEsquive);
             stmt1.setInt(2, pAttaque);
