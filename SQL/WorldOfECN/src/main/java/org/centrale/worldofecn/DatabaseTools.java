@@ -148,13 +148,13 @@ public class DatabaseTools {
         System.out.println("timestamp : " + timestamp);
 
         String query = "INSERT INTO sauvegarde (id_monde_sauvegarde,id_partie,date_sauvegarde,nom) "
-                + "VALUES (?,?,?,?);";
+                + "VALUES (?,(SELECT max(id_partie) FROM partie),?,?);";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, id_monde);
-            stmt.setInt(2, idPartie);
-            stmt.setTimestamp(3, timestamp);
-            stmt.setString(4, nomSauvegarde);
+//            stmt.setInt(2, idPartie);
+            stmt.setTimestamp(2, timestamp);
+            stmt.setString(3, nomSauvegarde);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex);

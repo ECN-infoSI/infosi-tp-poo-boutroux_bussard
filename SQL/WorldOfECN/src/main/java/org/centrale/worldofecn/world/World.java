@@ -332,10 +332,10 @@ public class World {
             
             // get world for Player ID
             Integer id_world = 1;
-            String queryWorld = "SELECT largeur, longueur FROM monde WHERE id_monde = ?;";
+            String queryWorld = "SELECT largeur, longueur FROM monde WHERE id_monde = (SELECT max(id_monde) FROM monde);";
             try{
                 PreparedStatement stmt = connection.prepareStatement( queryWorld );
-                stmt.setInt(1,id_world);
+//                stmt.setInt(1,id_world);
                 ResultSet rs = stmt.executeQuery();
                 System.out.println("query : "+ queryWorld);
                 if (rs.next()){
