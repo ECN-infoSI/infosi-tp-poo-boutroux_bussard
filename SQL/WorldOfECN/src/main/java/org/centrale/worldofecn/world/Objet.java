@@ -30,6 +30,7 @@ public abstract class Objet extends ElementDeJeu{
     /**
      *
      * @param connection
+     * @param id_monde
      */
     @Override
     public void saveToDatabase(Connection connection, Integer id_monde) {

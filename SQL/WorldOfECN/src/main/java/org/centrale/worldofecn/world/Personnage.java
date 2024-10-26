@@ -108,6 +108,11 @@ public abstract class Personnage extends Creature {
             if (rs.next()){
                 id_creature=rs.getInt("id_creature");
             }
+            String query3 = "UPDATE monde SET id_creature=? WHERE id_monde=?";
+            PreparedStatement stmt3 = connection.prepareStatement( query3 );
+            stmt3.setInt(1, id_creature);
+            stmt3.setInt(2, id_monde);
+            stmt3.executeUpdate();
         }
         catch (SQLException ex){
             System.err.println(ex);

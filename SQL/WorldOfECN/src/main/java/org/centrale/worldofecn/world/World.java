@@ -215,6 +215,8 @@ public class World {
         }
         // Add to list
         this.listElements.add(item);
+        // Add to joueur
+        this.player.setPersonnage(item);
     }
 
     /**
@@ -349,6 +351,7 @@ public class World {
                 ex.printStackTrace();
                 return;
             }
+            creerCreature("humanoide", "Guerrier", "Guerrier", id_world, connection);
 //            String type_humanoide = "Guerrier";
 //            Integer id_humanoide = -1;
 //            try{
@@ -388,9 +391,10 @@ public class World {
             String id=".id_"+humanoideOumonstre;
             //SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide)
             String query = "SELECT "+humanoideOumonstre + id+
-                    "FROM ("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature.id_humanoide)"+
-                    "JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ?"+
+                    " FROM ("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature.id_humanoide) "+
+                    "JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? "+
                     "AND "+humanoideOumonstre+".type_"+humanoideOumonstre+" = ?;";
+            System.out.println(query);
             PreparedStatement stmt = connection.prepareStatement( query );
             stmt.setInt(1,id_world);
             stmt.setString(2,classeBdd);
@@ -399,7 +403,7 @@ public class World {
             
             
             Class<?> typeCreature = Class.forName(classeJava);
-            Constructor<?> constructor = typeCreature.getDeclaredConstructor(int.class);
+            Constructor<?> constructor = typeCreature.getDeclaredConstructor(World.class);
             Class<?>[] methodParamTypes = { Connection.class,int.class };
             Method method = typeCreature.getDeclaredMethod("getFromDatabase", methodParamTypes);
             
@@ -407,7 +411,7 @@ public class World {
                 System.out.println("rs.next() true : ");
                 id_creature = rs.getInt("id_"+humanoideOumonstre);
                 System.out.println("id_creature : "+id_creature);
-                Object newCreature = constructor.newInstance(id_world);
+                Object newCreature = constructor.newInstance(this);
                 method.invoke(newCreature, connection, id_creature);
                 listElements.add((ElementDeJeu) newCreature);
             }
