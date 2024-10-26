@@ -37,6 +37,7 @@ public class Archer extends Personnage {
      */
     @Override
     public void getFromDatabase(Connection connection, Integer id) {
+        super.getFromDatabase(connection, id);
     }
     
     public String typeHumain(){

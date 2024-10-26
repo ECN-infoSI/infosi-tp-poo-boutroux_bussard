@@ -39,6 +39,16 @@ public class Loup extends Monstre {
         super.saveToDatabase(connection, id_monde);
     }
 
+    /**
+     *
+     * @param connection
+     * @param id
+     */
+    @Override
+    public void getFromDatabase(Connection connection, Integer id) {
+        super.getFromDatabase(connection, id);
+    }
+    
     
     @Override
     public String typeMonstre(){

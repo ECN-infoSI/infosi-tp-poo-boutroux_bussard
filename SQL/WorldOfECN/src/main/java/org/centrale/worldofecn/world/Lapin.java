@@ -41,7 +41,7 @@ public class Lapin extends Monstre {
      */
     @Override
     public void getFromDatabase(Connection connection, Integer id) {
-
+        super.getFromDatabase(connection, id);
     }
     
     @Override

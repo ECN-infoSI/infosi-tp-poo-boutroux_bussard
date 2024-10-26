@@ -339,9 +339,7 @@ public class World {
                 PreparedStatement stmt = connection.prepareStatement( queryWorld );
 //                stmt.setInt(1,id_world);
                 ResultSet rs = stmt.executeQuery();
-                System.out.println("query : "+ queryWorld);
                 if (rs.next()){
-                    System.out.println("rs.next() true : ");
                     height = rs.getInt("longueur");
                     width = rs.getInt("largeur");
                 }
@@ -352,6 +350,10 @@ public class World {
                 return;
             }
             creerCreature("humanoide", "Guerrier", "Guerrier", id_world, connection);
+            creerCreature("humanoide", "Paysan", "Paysan", id_world, connection);
+            creerCreature("humanoide", "Archer", "Archer", id_world, connection);
+            creerCreature("monstre", "Loup", "Loup", id_world, connection);
+            creerCreature("monstre", "Lapin", "Lapin", id_world, connection);
 //            String type_humanoide = "Guerrier";
 //            Integer id_humanoide = -1;
 //            try{
@@ -394,21 +396,17 @@ public class World {
                     " FROM ("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature.id_humanoide) "+
                     "JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? "+
                     "AND "+humanoideOumonstre+".type_"+humanoideOumonstre+" = ?;";
-            System.out.println(query);
             PreparedStatement stmt = connection.prepareStatement( query );
             stmt.setInt(1,id_world);
             stmt.setString(2,classeBdd);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("query : "+ query);
             
-            
-            Class<?> typeCreature = Class.forName(classeJava);
+            Class<?> typeCreature = Class.forName("org.centrale.worldofecn.world."+classeJava);
             Constructor<?> constructor = typeCreature.getDeclaredConstructor(World.class);
-            Class<?>[] methodParamTypes = { Connection.class,int.class };
+            Class<?>[] methodParamTypes = { Connection.class,Integer.class };
             Method method = typeCreature.getDeclaredMethod("getFromDatabase", methodParamTypes);
             
             while (rs.next()){
-                System.out.println("rs.next() true : ");
                 id_creature = rs.getInt("id_"+humanoideOumonstre);
                 System.out.println("id_creature : "+id_creature);
                 Object newCreature = constructor.newInstance(this);

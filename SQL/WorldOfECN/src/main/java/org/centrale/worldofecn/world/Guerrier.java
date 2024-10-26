@@ -34,5 +34,6 @@ public class Guerrier extends Personnage {
      */
     @Override
     public void getFromDatabase(Connection connection, Integer id) {
+        super.getFromDatabase(connection, id);
     }
 }

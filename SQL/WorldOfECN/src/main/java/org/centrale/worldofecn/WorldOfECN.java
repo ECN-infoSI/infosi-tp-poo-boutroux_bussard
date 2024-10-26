@@ -24,6 +24,8 @@ public class WorldOfECN {
         World world = new World();
         world.setPlayer("Saegusa");
         
+        World worldCopie = new World();
+        worldCopie.setPlayer("Saegusa");
         // Test phase
         DatabaseTools database = new DatabaseTools();
 
@@ -33,7 +35,7 @@ public class WorldOfECN {
         database.saveWorld(playerId, 2, "Test Game 1", "Start", world);
         
         // Retreive World
-        database.readWorld(playerId, 2, "Test Game 1", "Start", world);
+        database.readWorld(playerId, 2, "Test Game 1", "Start", worldCopie);
         database.disconnect();
     }
 }
