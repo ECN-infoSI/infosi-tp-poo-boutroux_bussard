@@ -332,9 +332,9 @@ public class World {
 
             // Get Player ID
             
-            // get world for Player ID
+            // get world for Player ID   
             Integer id_world = 1;
-            String queryWorld = "SELECT largeur, longueur FROM monde WHERE id_monde = (SELECT max(id_monde) FROM monde);";
+            String queryWorld = "SELECT largeur, longueur,id_monde FROM monde WHERE id_monde = (SELECT MAX(id_monde)AS id_max FROM monde);";
             try{
                 PreparedStatement stmt = connection.prepareStatement( queryWorld );
 //                stmt.setInt(1,id_world);
@@ -342,6 +342,7 @@ public class World {
                 if (rs.next()){
                     height = rs.getInt("longueur");
                     width = rs.getInt("largeur");
+                    id_world=rs.getInt("id_monde");
                 }
             }
             catch(SQLException ex){
@@ -349,11 +350,13 @@ public class World {
                 ex.printStackTrace();
                 return;
             }
-            creerCreature("humanoide", "Guerrier", "Guerrier", id_world, connection);
-            creerCreature("humanoide", "Paysan", "Paysan", id_world, connection);
-            creerCreature("humanoide", "Archer", "Archer", id_world, connection);
-            creerCreature("monstre", "Loup", "Loup", id_world, connection);
-            creerCreature("monstre", "Lapin", "Lapin", id_world, connection);
+            creerJoueur(id_world,connection);
+            creerCreatures("humanoide", "Guerrier", "Guerrier", id_world, connection);
+            creerCreatures("humanoide", "Paysan", "Paysan", id_world, connection);
+            creerCreatures("humanoide", "Archer", "Archer", id_world, connection);
+            creerCreatures("monstre", "Loup", "Loup", id_world, connection);
+            creerCreatures("monstre", "Lapin", "Lapin", id_world, connection);
+            creerObjets(id_world, connection);
 //            String type_humanoide = "Guerrier";
 //            Integer id_humanoide = -1;
 //            try{
@@ -387,15 +390,16 @@ public class World {
      * @param id_world
      * @param connection 
      */
-    private void creerCreature(String humanoideOumonstre, String classeJava, String classeBdd, int id_world,Connection connection){
+    private void creerCreatures(String humanoideOumonstre, String classeJava, String classeBdd, int id_world,Connection connection){
         Integer id_creature = -1;
         try{
             String id=".id_"+humanoideOumonstre;
             //SELECT humanoide.id_humanoide FROM (humanoide JOIN creature ON humanoide.id_humanoide = creature.id_humanoide)
             String query = "SELECT "+humanoideOumonstre + id+
-                    " FROM ("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature.id_humanoide) "+
-                    "JOIN monde ON monde.id_monde = creature.id_monde WHERE creature.id_monde = ? "+
+                    " FROM (("+humanoideOumonstre+" JOIN creature ON "+humanoideOumonstre +id+" = creature"+id+")"+
+                    "JOIN monde ON monde.id_monde = creature.id_monde) WHERE creature.id_monde = ? AND monde.id_creature <> creature.id_creature "+
                     "AND "+humanoideOumonstre+".type_"+humanoideOumonstre+" = ?;";
+//            System.out.println(query);
             PreparedStatement stmt = connection.prepareStatement( query );
             stmt.setInt(1,id_world);
             stmt.setString(2,classeBdd);
@@ -405,10 +409,11 @@ public class World {
             Constructor<?> constructor = typeCreature.getDeclaredConstructor(World.class);
             Class<?>[] methodParamTypes = { Connection.class,Integer.class };
             Method method = typeCreature.getDeclaredMethod("getFromDatabase", methodParamTypes);
-            
+//            int k=0;
             while (rs.next()){
+//                k++;
+//                System.out.println(classeJava + " : " + k);
                 id_creature = rs.getInt("id_"+humanoideOumonstre);
-                System.out.println("id_creature : "+id_creature);
                 Object newCreature = constructor.newInstance(this);
                 method.invoke(newCreature, connection, id_creature);
                 listElements.add((ElementDeJeu) newCreature);
@@ -422,16 +427,152 @@ public class World {
              System.err.println(ex);
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         } catch (SecurityException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         } catch (InstantiationException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         } catch (InvocationTargetException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+        }
+    }
+    
+    private void creerObjets(int id_world, Connection connection){
+       Objet newobjet; 
+       try{
+            String query="SELECT id_objet, type_objet FROM objet WHERE id_monde = ?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,id_world);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                switch(rs.getString("type_objet")){
+                    case "Epee":
+                        newobjet=new Epee(this);
+                        break;
+                    case "PotionSoin":
+                        newobjet=new PotionSoin(this);
+                        break;
+                    default:
+                        System.out.println("type d'objet inconnu");
+                        continue;
+                }
+                newobjet.getFromDatabase(connection, rs.getInt("id_objet"));
+                listElements.add(newobjet);
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
+    }
+    
+    private void creerJoueur(int id_world, Connection connection){
+       try{
+            String query="SELECT id_humanoide, id_monstre FROM (creature JOIN monde ON creature.id_creature = monde.id_creature)"+
+                    "WHERE monde.id_monde = ?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,id_world);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                if (rs.getInt("id_humanoide")!=0){
+                    creerUnHumanoide(rs.getInt("id_humanoide"),connection);
+                }
+                else if(rs.getInt("id_monstre")!=0){
+                    creerUnMonstre(rs.getInt("id_monstre"),connection);
+                }
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
+    }
+    
+    private void creerUnHumanoide(int id_humanoide,Connection connection){
+        String type_humanoide="";
+        Boolean persoDef=false;
+        try{
+            String query="SELECT type_humanoide FROM humanoide WHERE id_humanoide = ?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,id_humanoide);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                type_humanoide=rs.getString("type_humanoide");
+                persoDef=true;
+            }
+            
+            if(persoDef){
+                Personnage perso=null;
+                switch(type_humanoide){
+                    case "Guerrier":
+                        perso=new Guerrier(this);
+                        break;
+                    case "Archer":
+                        perso=new Archer(this);
+                        break;
+                    case "Paysan":
+                        perso =new Paysan(this);
+                        break;
+                    default:
+                        System.out.println("classe non reconnue");
+                }
+                
+                if(perso!=null){
+                    perso.getFromDatabase(connection, id_humanoide);
+                    this.player.setPersonnage(perso);
+                    this.listElements.add(perso);
+                }
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
+        }
+    }
+    
+    private void creerUnMonstre(int id_monstre,Connection connection){
+        String type_monstre="";
+        Boolean persoDef=false;
+        try{
+            String query="SELECT type_monstre FROM monstre WHERE monde.id_monde = ?";
+            PreparedStatement stmt = connection.prepareStatement( query );
+            stmt.setInt(1,id_monstre);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                type_monstre=rs.getString("type_monstre");
+                persoDef=true;
+            }
+            
+            if(persoDef){
+                Monstre perso=null;
+                switch(type_monstre){
+                    case "Lapin":
+                        perso=new Lapin(this);
+                        break;
+                    case "Loup":
+                        perso=new Loup(this);
+                        break;
+                    default:
+                        System.out.println("classe non reconnue");
+                }
+                
+                if(perso!=null){
+                    perso.getFromDatabase(connection, id_monstre);
+                    System.out.println("le personnage ne peut pas etre un monstre");
+                    this.listElements.add(perso);
+                }
+            }
+        }
+        catch (SQLException ex){
+            System.err.println(ex);
         }
     }
 }

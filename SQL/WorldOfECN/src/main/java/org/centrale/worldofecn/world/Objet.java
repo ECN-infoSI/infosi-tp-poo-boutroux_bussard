@@ -57,12 +57,12 @@ public abstract class Objet extends ElementDeJeu{
     /**
      *
      * @param connection
-     * @param id
+     * @param id de l'objet dans la base de donnée 
      */
     @Override
     public void getFromDatabase(Connection connection, Integer id) {
         try{
-            String query = "SELECT position_x, position_y FROM  objet WHERE id_objet=?";
+            String query = "SELECT position_x, position_y FROM  objet WHERE id_objet= ?";
             PreparedStatement stmt = connection.prepareStatement( query );
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
