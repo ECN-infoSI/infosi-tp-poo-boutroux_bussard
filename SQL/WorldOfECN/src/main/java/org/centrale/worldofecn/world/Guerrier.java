@@ -23,6 +23,7 @@ public class Guerrier extends Personnage {
         super(world);
     }
     
+    @Override
     public String typeHumain(){
         return "Guerrier";
     }    

@@ -21,6 +21,7 @@ public class Loup extends Monstre {
     
     /**
      *
+     * @param world
      */
     public Loup(World world) {
         super(world);

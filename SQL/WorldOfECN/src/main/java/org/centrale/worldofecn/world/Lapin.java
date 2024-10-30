@@ -20,6 +20,7 @@ public class Lapin extends Monstre {
     
     /**
      *
+     * @param world
      */
     public Lapin(World world) {
         super(world);

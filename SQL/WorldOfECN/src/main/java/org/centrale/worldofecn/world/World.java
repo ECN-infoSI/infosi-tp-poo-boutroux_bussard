@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * contient tous les elements de la partie et gère son déroulé
  * @author ECN
  */
 public class World {
@@ -245,8 +245,10 @@ public class World {
      * Save world to database
      *
      * @param connection
+     * @param idPartie
      * @param gameName
      * @param saveName
+     * @return 
      */
     public Integer saveToDatabase(Connection connection, Integer idPartie, String gameName, String saveName) {
         if (connection != null) {
@@ -383,11 +385,11 @@ public class World {
     }
     
     /**
-     * 
+     * récupère toutes les créatures non joueur du monde dans la bdd et les implémentes dans ce monde
      * @param humanoideOumonstre contient soit "humanoide" soit "monstre"
      * @param classeJava contient le nom de la classe finale dans le code java (par ex "Guerrier")
      * @param classeBdd contient le nom de l'entité dans la bdd (par exemple "Archer"
-     * @param id_world
+     * @param id_world id du monde dont on veut récupérer les donnees
      * @param connection 
      */
     private void creerCreatures(String humanoideOumonstre, String classeJava, String classeBdd, int id_world,Connection connection){
@@ -446,6 +448,11 @@ public class World {
         }
     }
     
+    /**
+     * recupere tous les objets du monde dans la bdd et les implémentes dans ce monde
+     * @param id_world
+     * @param connection 
+     */
     private void creerObjets(int id_world, Connection connection){
        Objet newobjet; 
        try{
@@ -475,6 +482,11 @@ public class World {
         }
     }
     
+    /**
+     * recupere le joueur dans la bdd et l'implémente dans le monde
+     * @param id_world
+     * @param connection 
+     */
     private void creerJoueur(int id_world, Connection connection){
        try{
             String query="SELECT id_humanoide, id_monstre FROM (creature JOIN monde ON creature.id_creature = monde.id_creature)"+
@@ -497,6 +509,11 @@ public class World {
         }
     }
     
+    /**
+     * recupere un humanoide spécifique et en fait le personnage joueur de ce monde
+     * @param id_humanoide
+     * @param connection 
+     */
     private void creerUnHumanoide(int id_humanoide,Connection connection){
         String type_humanoide="";
         Boolean persoDef=false;
@@ -538,6 +555,11 @@ public class World {
         }
     }
     
+    /**
+     * recupere un monstre spécifique et en fait le personnage joueur de ce monde
+     * @param id_monstre
+     * @param connection 
+     */
     private void creerUnMonstre(int id_monstre,Connection connection){
         String type_monstre="";
         Boolean persoDef=false;

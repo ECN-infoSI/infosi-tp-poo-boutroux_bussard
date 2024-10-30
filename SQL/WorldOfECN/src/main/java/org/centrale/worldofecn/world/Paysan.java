@@ -39,6 +39,7 @@ public class Paysan extends Personnage {
         super.getFromDatabase(connection, id);
     }
     
+    @Override
     public String typeHumain(){
         return "Paysan";
     }    

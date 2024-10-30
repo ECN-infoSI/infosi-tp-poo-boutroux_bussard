@@ -119,7 +119,7 @@ public abstract class Monstre extends Creature {
     /**
      *
      * @param connection
-     * @param id
+     * @param idMonstre
      */
     @Override
     public void getFromDatabase(Connection connection, Integer idMonstre) {

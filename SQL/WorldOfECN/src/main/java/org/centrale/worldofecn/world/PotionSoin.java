@@ -21,7 +21,7 @@ public class PotionSoin extends Objet {
     
     /**
      *
-     */
+     * @param world */
     public PotionSoin(World world) {
         super(world);
     }
